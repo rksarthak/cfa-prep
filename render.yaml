@@ -1,0 +1,6 @@
+services:
+  - type: web
+    name: cfa-level1-prep
+    runtime: static
+    buildCommand: ""
+    staticPublishPath: public
