@@ -63,7 +63,8 @@
     }).join("");
   }
   function render(html, title) {
-    app.innerHTML = html;
+    app.innerHTML = (typeof guestNote === "string" && guestNote ? guestNote : "") + html;
+    guestNote = "";
     document.title = (title ? title + " · " : "") + ((window.CFA_CONFIG && CFA_CONFIG.brandName) || "FinPrepCamp");
     window.scrollTo(0, 0);
   }
@@ -102,6 +103,7 @@
   var FREE = CONF.freeModulesPerSubject || 2;
   var PRICE = CONF.subjectPriceInr || 399;
   var gated = false;   // true while a sign-in gate or loading screen is shown
+  var guestNote = ""; // notice shown above free content to visitors who aren't signed in
 
   function owns(sid) { return !!CONF.previewAllContent || (Account.enabled && Account.hasSubject(sid)); }
   function isFree(num) { return num <= FREE; }
@@ -111,6 +113,7 @@
   // Returns true when the page was replaced by a redirect, loading screen or sign-in gate.
   function guard(sid, num, what) {
     gated = false;
+    guestNote = "";
     var s = subjectById(sid);
     if (!canAccess(sid, num)) {
       if (Account.enabled && !Account.isReady()) { gated = true; render('<p class="muted">Loading…</p>'); return true; }
@@ -120,12 +123,9 @@
     if (!Account.enabled) return false;              // preview copy without accounts
     if (!Account.isReady()) { gated = true; render('<p class="muted">Loading…</p>'); return true; }
     if (!Account.user()) {
-      gated = true;
-      setCrumbs([{ label: "Subjects", href: "#/" }, { label: s.name, href: "#/s/" + sid }, { label: "Module " + num, href: "#/s/" + sid + "/m/" + num }]);
-      render('<div class="auth-card"><span class="badge">Free</span><h1>Sign in to start</h1><p class="muted">This ' + what +
-        " is free. Sign in or create a free account so your quiz scores and progress are saved.</p>" +
-        '<a class="btn wide" href="#/signup">Create a free account</a><p class="small switch">Already have an account? <a href="#/login">Sign in</a></p></div>', "Sign in to start");
-      return true;
+      // Free content is open without an account; tell guests their progress isn't saved to one.
+      guestNote = '<div class="callout trap guest-note"><span class="label">Trying it without an account</span>You are not signed in, so your progress will not be saved to an account. ' +
+        'It stays only in this browser and can be lost. <a href="#/signup">Create a free account</a> or <a href="#/login">sign in</a> to keep your quiz scores.</div>';
     }
     return false;
   }

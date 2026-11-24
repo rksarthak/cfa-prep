@@ -85,7 +85,7 @@ Don't want Google sign-in? Set `googleLogin: false` in `js/config.js` and the bu
 
 ## 7. Payments: your UPI QR code and admin access
 
-Modules 1 and 2 of every subject are free (sign-in required). A whole subject costs ₹399 (change both in `js/config.js`: `freeModulesPerSubject`, `subjectPriceInr`).
+Modules 1 and 2 of every subject are free and open without signing in (guests see a notice that their progress is kept only in this browser and is not saved to an account; signing in saves it). A whole subject costs ₹399 (change both in `js/config.js`: `freeModulesPerSubject`, `subjectPriceInr`).
 
 **Add your QR code**
 1. Save your UPI QR image as `assets/upi-qr.png` in this folder.
