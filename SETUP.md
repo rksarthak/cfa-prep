@@ -45,8 +45,6 @@ Without this, confirmation emails, password-reset links and Google sign-in send 
 
 On by default (**Authentication → Providers → Email**). Keep **Confirm email** on so students verify their address.
 
-**Branded emails.** Ready-made HTML emails in the site's style are in `supabase/email-templates/` (confirm signup, reset password, magic link, change email). Paste them in under **Authentication → Emails**; the README in that folder has the subjects and steps.
-
 **Your own sender (needed before real students sign up).** Supabase's built-in sender shows "Supabase Auth <noreply@mail.app.supabase.io>" and sends only a few emails per hour. Sending from your own address needs a domain you own (Gmail addresses can't be used as the sender through these services; mail would land in spam).
 
 1. Buy a domain, e.g. `cfaprep.in` (about ₹500–1,000 a year at Cloudflare, Namecheap, GoDaddy or Hostinger). The same domain can later become the site address (Render → your site → **Settings → Custom Domains**).
@@ -59,6 +57,8 @@ On by default (**Authentication → Providers → Email**). Keep **Confirm email
 6. Test: sign up with a new address and check the email arrives from your name and isn't in spam.
 
 Brevo (300 emails a day free) works the same way if you prefer it; it also needs your own domain for good delivery.
+
+**Branded emails (after custom SMTP is on).** Supabase only lets you edit email subjects and bodies once custom SMTP is set up; before that, the editor shows "Set up custom SMTP to edit templates". Ready-made HTML emails in the site's style are in `supabase/email-templates/` (confirm signup, reset password, magic link, change email). Paste them in under **Authentication → Emails**; the README in that folder has the subjects and steps.
 
 ## 6. Google sign-in (optional)
 
