@@ -269,5 +269,41 @@ CFA.paidMeta = {
    }
   ],
   "moduleQuiz": 36
+ },
+ "fsa/9": {
+  "title": "Analysis of Income Taxes",
+  "lessons": [
+   {
+    "id": "l1",
+    "title": "Two profits: for shareholders and for the tax authority",
+    "summary": "Accounting profit vs taxable income; taxes payable vs income tax expense; carrying amount and tax base; the basic formula linking tax expense to deferred taxes.",
+    "questions": 10
+   },
+   {
+    "id": "l2",
+    "title": "Deferred tax assets and liabilities: the four-box rule",
+    "summary": "How comparing carrying amount with tax base tells you whether an asset or liability creates a DTL or a DTA; common examples; taxable vs deductible temporary differences.",
+    "questions": 10
+   },
+   {
+    "id": "l3",
+    "title": "Deferred taxes over time, rate changes and how analysts treat them",
+    "summary": "A three-year example of a DTL building and reversing; what happens when the tax rate changes; valuation allowances and recognising DTAs; when to treat a DTL as debt, as equity or as neither.",
+    "questions": 10
+   },
+   {
+    "id": "l4",
+    "title": "Statutory, effective and cash tax rates",
+    "summary": "Three tax rates and what each is for; calculating a blended rate across countries; why the effective rate moves when the profit mix shifts; which rate to use for earnings and which for cash flow forecasts.",
+    "questions": 10
+   },
+   {
+    "id": "l5",
+    "title": "Reading the tax note",
+    "summary": "The effective tax rate reconciliation and which items are likely to recur; the components of deferred tax assets and liabilities; loss carryforwards and valuation allowances; tax on items in OCI; effects on ratios.",
+    "questions": 10
+   }
+  ],
+  "moduleQuiz": 36
  }
 };
