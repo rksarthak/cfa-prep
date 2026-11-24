@@ -119,6 +119,14 @@ The database enforces the rules: students can only create *pending* requests for
 4. In Supabase **Table Editor → progress** you should see your row.
 5. Sign in from another device or browser: the same progress appears.
 
+## 9. Load the paid modules (each time a new one is ready)
+
+Paid modules (3 onward) are not public files. Each one comes as an SQL file, e.g. `fsa-m03.sql`, which Claude attaches in the project thread (the files are kept out of the public GitHub repo on purpose).
+
+1. In Supabase open **SQL Editor → New query**.
+2. Paste the whole SQL file and press **Run**. It adds or updates that module in the `module_content` table; running it twice is safe.
+3. Check: signed in with your admin account, open the module on the site. It should load. A student without a purchase sees the lock and the ₹399 page.
+
 ---
 
 ## Costs

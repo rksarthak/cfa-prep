@@ -8,30 +8,34 @@ Access: modules 1–2 of every subject are free after sign-in; other modules are
 ## Structure
 
 ```
-index.html                     page shell, loads the scripts below
-css/style.css                  all styling (light and dark mode)
-js/config.js                   Supabase project URL and public key (empty = no sign-in, browser-only progress)
-js/vendor/supabase-2.118.0.js  Supabase client library, bundled so the site needs no CDN
-js/account.js                  sign-in, sign-up, Google, password reset, progress sync
-js/app.js                      router, pages (sign-in, My progress, Unlock subject, admin Payments), locks, quiz engine
-assets/upi-qr.png              your UPI QR image (add it; see SETUP.md step 7)
-supabase/schema.sql            tables (progress, purchases, admins) and security rules (run in Supabase)
-supabase/email-templates/      branded sign-in emails to paste into Supabase (see its README)
-SETUP.md                       step-by-step: GitHub, Supabase, Render, email, Google
-js/content/catalog.js          list of subjects and their modules
-js/content/fsa/m01-intro-fsa.js  FSA Module 1: lessons, diagrams, quizzes, module quiz
+public/                         the site Render serves (publish directory)
+  index.html                    page shell, loads the scripts below
+  css/style.css                 all styling (light and dark mode)
+  js/config.js                  brand, Supabase URL and public key, price, UPI details
+  js/vendor/supabase-2.118.0.js Supabase client library, bundled so the site needs no CDN
+  js/account.js                 sign-in, sign-up, Google, password reset, progress sync, purchases
+  js/app.js                     router, pages, locks, quiz engine
+  js/content/catalog.js         subjects and their module titles
+  js/content/paid-meta.js       generated outline (titles, question counts) of paid modules; no lesson content
+  js/content/fsa/m01-…, m02-…   free modules (1–2), served as normal files
+  assets/upi-qr.png             your UPI QR image (SETUP.md step 7)
+supabase/schema.sql             tables and security rules (run in Supabase)
+supabase/email-templates/       branded emails to paste into Supabase
+tools/build-content.js          turns paid module sources into SQL + paid-meta.js
+tools/build-preview.js          makes a private review copy with every module unlocked
+content-paid/                   paid module sources (NOT in the public repo; kept in the project files)
+supabase/paid-content/          generated SQL that loads paid modules (NOT in the public repo)
 ```
 
 Subject → Module → Lessons (each with a quiz) → Module quiz.
 
 ## Add a new module
 
-1. Copy `js/content/fsa/m01-intro-fsa.js` to a new file, e.g. `js/content/fsa/m02-income-statements.js`.
-2. Change `num`, `title`, `los`, `lessons` and `moduleQuiz`.
-3. Add a `<script>` tag for the file in `index.html`, after `catalog.js`.
-The module card switches from "Coming soon" to active automatically.
+**Free module (1–2 of a subject):** put the file in `public/js/content/<subject>/` and add a `<script>` tag for it in `public/index.html`, after `paid-meta.js`.
 
-For a new subject's modules, add them to that subject's `modules` list in `catalog.js` first.
+**Paid module (3 onward):** put the file in `content-paid/<subject>/`, then run `node tools/build-content.js`. This writes `supabase/paid-content/<subject>-mNN.sql` and refreshes `public/js/content/paid-meta.js`. Run the SQL file in Supabase (SETUP.md step 9) and push `paid-meta.js`. Only buyers and admins can read the module, because it is fetched from the `module_content` table under row-level security.
+
+All content must be original (see the teaching instructions, sections 10–11).
 
 ## Run locally
 
