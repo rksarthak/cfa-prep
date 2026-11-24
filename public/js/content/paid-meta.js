@@ -47,5 +47,53 @@ CFA.paidMeta = {
    }
   ],
   "moduleQuiz": 37
+ },
+ "fsa/4": {
+  "title": "Analyzing Statements of Cash Flows I",
+  "lessons": [
+   {
+    "id": "l1",
+    "title": "How the three statements fit together",
+    "summary": "Stocks and flows; the cash, retained earnings and receivables roll-forwards; why profit and cash differ; tracing simple transactions through all three statements.",
+    "questions": 9
+   },
+   {
+    "id": "l2",
+    "title": "Direct method I: cash from customers and cash to suppliers",
+    "summary": "The direct format; turning revenue into cash collected and cost of goods sold into cash paid to suppliers; deferred revenue; the two-step supplier calculation.",
+    "questions": 10
+   },
+   {
+    "id": "l3",
+    "title": "Direct method II: staff, other costs, interest and tax",
+    "summary": "Cash paid to employees, for other operating expenses (prepaids and accruals), for interest and for taxes; assembling the full direct-method operating section.",
+    "questions": 10
+   },
+   {
+    "id": "l4",
+    "title": "The indirect method: from net income to operating cash",
+    "summary": "Start with net income; add back non-cash charges; remove non-operating gains and losses; adjust for working capital; deferred taxes, equity-method income and bond discount or premium.",
+    "questions": 11
+   },
+   {
+    "id": "l5",
+    "title": "Investing and financing: cash from asset sales, debt, shares and dividends",
+    "summary": "Finding the cost and book value of assets sold and the cash received; capital spending; debt and share issues and repayments; dividends from retained earnings; non-cash transactions.",
+    "questions": 10
+   },
+   {
+    "id": "l6",
+    "title": "Turning an indirect statement into a direct one",
+    "summary": "Why analysts rebuild the direct format; the three-step conversion; the shortcut of pairing each income statement line with its working capital adjustment.",
+    "questions": 9
+   },
+   {
+    "id": "l7",
+    "title": "IFRS vs US GAAP: where interest, dividends and taxes go",
+    "summary": "Classification choices under IFRS and fixed rules under US GAAP; bank overdrafts; taxes; format and reconciliation; adjusting for comparability.",
+    "questions": 10
+   }
+  ],
+  "moduleQuiz": 38
  }
 };
