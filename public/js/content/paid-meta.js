@@ -401,5 +401,47 @@ CFA.paidMeta = {
    }
   ],
   "moduleQuiz": 36
+ },
+ "fsa/12": {
+  "title": "Introduction to Financial Statement Modeling",
+  "lessons": [
+   {
+    "id": "l1",
+    "title": "Forecasting revenue: top-down, bottom-up and hybrid",
+    "summary": "Three approaches to a sales forecast; growth relative to GDP; market size × market share; volume × price; capacity and store-based forecasts; checking one approach against another.",
+    "questions": 10
+   },
+   {
+    "id": "l2",
+    "title": "Forecasting costs, working capital, capital spending and returns",
+    "summary": "Cost of sales via gross margin; fixed and variable operating costs and operating leverage; depreciation and capital spending (maintenance vs growth); interest from debt and rates; tax rates; working capital from days ratios; return on invested capital.",
+    "questions": 10
+   },
+   {
+    "id": "l3",
+    "title": "Worked example: a one-year pro forma for Calder Bikes",
+    "summary": "Putting the pieces together: revenue, cost of sales, fixed and variable costs, depreciation, interest, tax, net income, and the working capital lines that follow from the forecast.",
+    "questions": 10
+   },
+   {
+    "id": "l4",
+    "title": "Thinking traps in forecasting, and how to avoid them",
+    "summary": "Five thinking traps (overconfidence, conservatism, confirmation bias, illusion of control and representativeness): what each looks like in an analyst's model and practical remedies.",
+    "questions": 10
+   },
+   {
+    "id": "l5",
+    "title": "Competition and inflation: what they do to prices and costs",
+    "summary": "The five competitive forces and how each affects a company's prices and costs; forecasting sales and costs when prices rise or fall: pricing power, pass-through, volume response and timing lags.",
+    "questions": 10
+   },
+   {
+    "id": "l6",
+    "title": "How far ahead? The explicit forecast period and beyond",
+    "summary": "Choosing an explicit forecast horizon (holding period, business cycle, company events); normalising earnings; projecting beyond the horizon with long-term growth rates, mean reversion of returns and terminal values; allowing for disruption with scenarios.",
+    "questions": 10
+   }
+  ],
+  "moduleQuiz": 36
  }
 };
