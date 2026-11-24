@@ -353,5 +353,53 @@ CFA.paidMeta = {
    }
   ],
   "moduleQuiz": 36
+ },
+ "fsa/11": {
+  "title": "Financial Analysis Techniques",
+  "lessons": [
+   {
+    "id": "l1",
+    "title": "The toolkit: common-size, trends, peers and ratios",
+    "summary": "Vertical and horizontal common-size statements; trend (time-series) and cross-sectional (peer) comparisons; why ratios need context; limits of ratio analysis; graphs and regression. Introduces Ashby Kitchenware, used in every lesson.",
+    "questions": 10
+   },
+   {
+    "id": "l2",
+    "title": "Activity ratios: how hard the assets work",
+    "summary": "Inventory, receivables and payables turnover and their days equivalents; working capital, fixed asset and total asset turnover; reading high and low values.",
+    "questions": 10
+   },
+   {
+    "id": "l3",
+    "title": "Liquidity ratios: can it pay its near-term bills?",
+    "summary": "Current, quick and cash ratios; the defensive interval; the cash conversion cycle; how liquidity ratios relate to activity ratios.",
+    "questions": 10
+   },
+   {
+    "id": "l4",
+    "title": "Solvency ratios: can it carry its debt?",
+    "summary": "Debt-to-assets, debt-to-capital, debt-to-equity, financial leverage, debt-to-EBITDA; interest coverage and fixed charge coverage; what counts as debt.",
+    "questions": 10
+   },
+   {
+    "id": "l5",
+    "title": "Profitability ratios: margins and returns",
+    "summary": "Gross, operating, pretax and net profit margins; return on assets, operating return on assets, return on total capital and return on equity; how margins and returns move together.",
+    "questions": 10
+   },
+   {
+    "id": "l6",
+    "title": "DuPont analysis: what drives return on equity",
+    "summary": "Three-part DuPont (net margin × asset turnover × leverage) and five-part DuPont (tax burden × interest burden × EBIT margin × asset turnover × leverage); using it to explain changes and differences in ROE.",
+    "questions": 10
+   },
+   {
+    "id": "l7",
+    "title": "Industry ratios, integrated analysis and forecasting",
+    "summary": "Valuation ratios (P/E, dividend payout, retention, sustainable growth); ratios used in particular industries (banks, retailers, airlines, hotels); segment analysis; using ratios to build forecasts with sensitivity, scenario and simulation analysis.",
+    "questions": 10
+   }
+  ],
+  "moduleQuiz": 36
  }
 };
