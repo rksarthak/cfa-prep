@@ -1237,6 +1237,186 @@ Some summary tables of IFRS vs US GAAP add “revaluation of assets” (true, bu
       ans: 1,
       hint: "Did the economics change, or only where the cost is shown and who notices it?",
       why: "Moving an item from the notes into the statements makes it <b>visible</b> to market participants who skip the notes, and management tends to be <b>more rigorous</b> with figures in the statements, so <b>valuations can change</b>. No cash moves (A). C is wrong: the notes stay essential."
+    },
+    {
+      lesson: 1,
+      q: "Which statement best describes the main purpose of financial statement analysis?",
+      opts: [
+        "To use a company's reported information, along with other data, to make economic decisions such as investing or lending",
+        "To check that the company's bookkeeping entries are arithmetically correct",
+        "To decide which accounting standards the company should adopt"
+      ],
+      ans: 0,
+      hint: "Think about who does the analysis and what they want out of it.",
+      why: "Analysts use financial reports and other information to judge past performance, current position and future prospects, so they can make <b>decisions</b> such as buying a share or extending credit. Checking bookkeeping (B) is the job of accountants and auditors. Choosing standards (C) is for standard setters and management, not analysts."
+    },
+    {
+      lesson: 2,
+      q: "Nadia has gathered three years of statements for a retailer and has already built common-size statements and ratios. Under the six-step framework, her next step is to:",
+      opts: [
+        "collect more input data",
+        "analyse and interpret the processed data",
+        "state the purpose of the analysis"
+      ],
+      ans: 1,
+      hint: "Processing the data turns raw numbers into ratios and charts. What comes after that?",
+      why: "The order is: purpose and context, collect data, process data, <b>analyse and interpret</b>, report conclusions, follow up. Ratios and common-size statements are the output of processing, so interpretation comes next. A and C belong to earlier steps."
+    },
+    {
+      lesson: 2,
+      q: "Deciding which questions an analysis must answer, how detailed it should be, and setting a timetable and budget all belong to which step of the framework?",
+      opts: [
+        "Follow-up",
+        "Processing the data",
+        "Stating the purpose and context of the analysis"
+      ],
+      ans: 2,
+      hint: "Which step comes before any data is gathered?",
+      why: "The first step sets the <b>purpose and context</b>: the questions to answer, the form of the output, the time and the budget. Processing (B) happens after data is collected, and follow-up (A) is the last step."
+    },
+    {
+      lesson: 3,
+      q: "Which statement best describes the difference between standard-setting bodies and regulatory authorities?",
+      opts: [
+        "Standard setters such as the IASB and FASB write reporting standards; regulators such as the SEC have legal power to enforce reporting requirements",
+        "Regulators write reporting standards, and standard setters enforce them in court",
+        "Both are government agencies with the power to fine companies"
+      ],
+      ans: 0,
+      hint: "Which group is made up of private-sector professionals, and which has legal authority?",
+      why: "<b>Standard setters</b> (usually private-sector bodies like the IASB and FASB) set the rules. <b>Regulators</b> (government agencies like the SEC) have the legal power to require and enforce reporting. B reverses the roles, and C is wrong because standard setters are not government agencies with enforcement powers."
+    },
+    {
+      lesson: 3,
+      q: "The members of IOSCO are mainly:",
+      opts: [
+        "national securities regulators",
+        "accounting standard setters",
+        "the large audit firms"
+      ],
+      ans: 0,
+      hint: "What does the 'S' and 'C' in IOSCO stand for?",
+      why: "IOSCO is an association of <b>securities regulators</b> from around the world, which together oversee most of the world's capital markets. It is not a standard setter (B) and its members are not audit firms (C)."
+    },
+    {
+      lesson: 4,
+      q: "An analyst wants to know whether a US company's directors have recently bought or sold the company's shares. The most useful filings are:",
+      opts: [
+        "Form 10-Q",
+        "the proxy statement (DEF 14A)",
+        "Forms 3, 4 and 5"
+      ],
+      ans: 2,
+      hint: "Which forms report ownership changes by insiders?",
+      why: "<b>Forms 3, 4 and 5</b> report the holdings and trades of directors, officers and large shareholders. The 10-Q (A) is the quarterly report. The proxy statement (B) covers matters for a shareholder vote such as board pay, not individual trades."
+    },
+    {
+      lesson: 4,
+      q: "A company based outside the US whose shares trade in the US files its annual report with the SEC on:",
+      opts: [
+        "Form 20-F",
+        "Form 8-K",
+        "Form 144"
+      ],
+      ans: 0,
+      hint: "Domestic companies file a 10-K. Foreign private issuers use a different number.",
+      why: "Foreign private issuers file their annual report on <b>Form 20-F</b>. The 8-K (B) reports material current events, and Form 144 (C) relates to sales of restricted shares."
+    },
+    {
+      lesson: 5,
+      q: "Which item is LEAST likely to be found in management's discussion and analysis (MD&A)?",
+      opts: [
+        "Discussion of trends and significant events affecting results",
+        "The auditor's opinion on the financial statements",
+        "Known uncertainties and the effects of inflation"
+      ],
+      ans: 1,
+      hint: "Who writes the MD&A, and who writes the opinion?",
+      why: "The MD&A is written by <b>management</b> and covers trends, significant events, uncertainties and similar items (A and C). The <b>auditor's opinion</b> is a separate report written by the independent auditor."
+    },
+    {
+      lesson: 5,
+      q: "Segment information in the notes is most useful to an analyst for:",
+      opts: [
+        "comparing revenue and profit across business lines or regions",
+        "checking whether the auditor is independent",
+        "finding out how much the CEO was paid"
+      ],
+      ans: 0,
+      hint: "What does a 'segment' split the company into?",
+      why: "Segment disclosures break results down by <b>business line or geography</b>, showing which parts of the company drive growth and profit. Auditor independence (B) and CEO pay (C) are covered elsewhere."
+    },
+    {
+      lesson: 6,
+      q: "An auditor states that the statements are fairly presented except for the way inventory is valued, which does not follow the applicable standards. This is:",
+      opts: [
+        "an adverse opinion",
+        "a qualified opinion",
+        "a disclaimer of opinion"
+      ],
+      ans: 1,
+      hint: "The words 'except for' are the clue.",
+      why: "An opinion that is fair <b>except for</b> one specific departure from standards is a <b>qualified</b> opinion. An adverse opinion (A) says the statements as a whole are not fairly presented. A disclaimer (C) means the auditor could not form an opinion at all."
+    },
+    {
+      lesson: 6,
+      q: "An auditor could not obtain enough evidence to form any view on whether the statements are fairly presented. The auditor will most likely issue:",
+      opts: [
+        "an unqualified opinion with an emphasis paragraph",
+        "an adverse opinion",
+        "a disclaimer of opinion"
+      ],
+      ans: 2,
+      hint: "Is the auditor saying the statements are wrong, or that it cannot say anything?",
+      why: "When the auditor cannot form an opinion, it issues a <b>disclaimer</b>. An adverse opinion (B) needs enough evidence to conclude the statements are materially wrong. An unqualified opinion (A) needs enough evidence that they are fair."
+    },
+    {
+      lesson: 6,
+      q: "Which part of the audit report best shows an analyst where the auditor saw the greatest judgement or risk in the statements?",
+      opts: [
+        "The key audit matters (critical audit matters in the US)",
+        "Management's statement of its responsibilities",
+        "The basis of preparation note"
+      ],
+      ans: 0,
+      hint: "Which section is written by the auditor and highlights the hardest areas of the audit?",
+      why: "The <b>key audit matters</b> (called <b>critical audit matters</b> in the US) section describes the areas the auditor judged most significant, often those involving difficult estimates. B and C are written by management and do not show the auditor's view of risk."
+    },
+    {
+      lesson: 7,
+      q: "Two competitors report under different frameworks, one under IFRS and one under US GAAP. The best way for an analyst to compare them is to:",
+      opts: [
+        "treat the figures as identical, because the frameworks have fully converged",
+        "read the accounting policy notes and adjust for any material differences",
+        "refuse to compare companies that use different frameworks"
+      ],
+      ans: 1,
+      hint: "The frameworks are similar but not the same.",
+      why: "IFRS and US GAAP still differ in several areas, so the analyst should read the <b>notes on accounting policies</b> and <b>adjust</b> where the differences are material. A is wrong because full convergence has not happened. C is too strict: comparisons are possible with care."
+    },
+    {
+      lesson: 8,
+      q: "Which source of information is NOT prepared by the company itself?",
+      opts: [
+        "A transcript of the company's earnings call",
+        "The company's press release on quarterly results",
+        "An industry association's report on market share"
+      ],
+      ans: 2,
+      hint: "Who writes each document?",
+      why: "An <b>industry association's report</b> is an outside source, useful for checking the company's claims against the wider market. The earnings call (A) and press release (B) both come from the company."
+    },
+    {
+      lesson: 8,
+      q: "During an earnings call, the CFO says margins will recover next year, but an industry data provider shows prices across the sector are still falling. The best response for an analyst is to:",
+      opts: [
+        "accept the CFO's view, because management knows the business best",
+        "ignore the call, because only audited statements are reliable",
+        "treat the CFO's view with caution and test it against the outside data and later results"
+      ],
+      ans: 2,
+      hint: "Different sources have different strengths and biases.",
+      why: "Management commentary is useful but may be optimistic, so the analyst should <b>weigh it against independent sources</b> such as industry data and check it against later results. A trusts one source blindly. B throws away useful information."
     }
   ]
 });

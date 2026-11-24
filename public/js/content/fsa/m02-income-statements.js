@@ -1428,6 +1428,186 @@ CFA.registerModule("fsa", {
       ans: 0,
       hint: "Subtract all operating costs.",
       why: "Operating profit = 4,000 − 2,400 − 600 − 200 = 800; margin = <b>20%</b>. B is the gross margin; C forgets R&amp;D."
+    },
+    {
+      lesson: 1,
+      q: "Under the five-step revenue model, after identifying the contract and its separate performance obligations, the next step is to:",
+      opts: [
+        "recognise revenue as each obligation is satisfied",
+        "determine the transaction price",
+        "allocate the price to each obligation"
+      ],
+      ans: 1,
+      hint: "Before you can split the price, you need to know what the price is.",
+      why: "The steps are: identify the contract, identify the performance obligations, <b>determine the transaction price</b>, allocate it to the obligations, then recognise revenue as each is satisfied. C and A are steps four and five."
+    },
+    {
+      lesson: 1,
+      q: "Orbit Soft sells a software licence and two years of support together for $1,200. Sold on their own, the licence would cost $1,000 and the support $500. The licence is delivered on day one and support is provided evenly. Revenue in year 1 is closest to:",
+      opts: [
+        "$1,200",
+        "$1,000",
+        "$800"
+      ],
+      ans: 1,
+      hint: "Split the $1,200 by relative standalone prices, then work out how much of each part is earned in year 1.",
+      why: "Licence share = 1,200 × 1,000/1,500 = $800, all earned on delivery. Support share = 1,200 × 500/1,500 = $400, earned evenly over two years, so $200 in year 1. Total = <b>$1,000</b>. A recognises everything at once. C forgets the support earned in year 1."
+    },
+    {
+      lesson: 2,
+      q: "A travel website sells a $500 airline ticket and keeps a $40 commission. The airline sets the price and bears the risk if the flight is cancelled. The website should report revenue of:",
+      opts: [
+        "$40",
+        "$460",
+        "$500"
+      ],
+      ans: 0,
+      hint: "Is the website acting for itself or for the airline?",
+      why: "The website does not control the ticket before it is sold, so it is an <b>agent</b> and reports revenue <b>net</b>: the $40 commission. $500 (C) would be correct only for a principal. $460 (B) is the amount passed on to the airline."
+    },
+    {
+      lesson: 2,
+      q: "Halden Build signs a $10 m contract and expects total costs of $8 m. It recognises revenue over time based on costs incurred. In year 1 it incurs $2 m of costs. Year 1 revenue is:",
+      opts: [
+        "$2.0 m",
+        "$10.0 m",
+        "$2.5 m"
+      ],
+      ans: 2,
+      hint: "What fraction of total expected cost has been incurred?",
+      why: "Progress = 2/8 = 25%. Revenue = 25% × $10 m = <b>$2.5 m</b>, giving a profit of $0.5 m. A records revenue equal to cost (no profit). B recognises the whole contract at once."
+    },
+    {
+      lesson: 3,
+      q: "Pinecrest pays $1 m for a machine with a five-year life and no residual value, using straight-line depreciation. Compared with expensing the full $1 m immediately, Pinecrest's year 1 pre-tax income is higher by:",
+      opts: [
+        "$0.8 m",
+        "$1.0 m",
+        "$0.2 m"
+      ],
+      ans: 0,
+      hint: "If capitalised, only one year's depreciation hits year 1.",
+      why: "Expensing charges $1.0 m in year 1. Capitalising charges only depreciation of $1 m / 5 = $0.2 m. Income is higher by 1.0 − 0.2 = <b>$0.8 m</b>. B ignores depreciation. C is the depreciation charge itself."
+    },
+    {
+      lesson: 3,
+      q: "Over the whole life of an asset, capitalising a cost rather than expensing it immediately results in:",
+      opts: [
+        "a higher total expense",
+        "the same total expense, with more profit in early years and less in later years",
+        "a lower total expense"
+      ],
+      ans: 1,
+      hint: "The cost does not disappear; it is only spread out.",
+      why: "Capitalising <b>spreads</b> the same cost over the asset's life through depreciation. Total expense is unchanged, but early profits are higher and later profits are lower than if the cost had been expensed at once."
+    },
+    {
+      lesson: 4,
+      q: "A company builds its own warehouse and capitalises the interest on the construction loan. Compared with expensing that interest, in the construction year the company reports:",
+      opts: [
+        "higher net income and higher cash flow from operations",
+        "lower net income and lower cash flow from operations",
+        "the same net income and the same cash flow from operations"
+      ],
+      ans: 0,
+      hint: "Where does capitalised interest go on the income statement and on the cash flow statement?",
+      why: "Capitalised interest is added to the asset, so there is no interest expense this year and <b>net income is higher</b>. The cash paid is shown in <b>investing</b> rather than operating activities, so <b>operating cash flow is higher</b> too. Total cash is the same."
+    },
+    {
+      lesson: 4,
+      q: "Under US GAAP, Velora Pharma spends $3 m on research and $5 m on development of a new manufacturing process (not software). The amount expensed in the year is:",
+      opts: [
+        "$3 m",
+        "$8 m",
+        "$5 m"
+      ],
+      ans: 1,
+      hint: "Does US GAAP generally allow development costs to be capitalised outside software?",
+      why: "US GAAP generally requires both research and development costs to be <b>expensed</b>, with limited exceptions such as some software costs. So the full <b>$8 m</b> is expensed. Under IFRS, development costs meeting the criteria could be capitalised, giving $3 m (A)."
+    },
+    {
+      lesson: 5,
+      q: "A company sold a business unit during the year and reports it as a discontinued operation. To forecast next year's earnings, an analyst should usually:",
+      opts: [
+        "include the unit's profit because it was profitable this year",
+        "add back the loss on disposal to income from continuing operations",
+        "focus on income from continuing operations"
+      ],
+      ans: 2,
+      hint: "Will the unit produce earnings next year?",
+      why: "Discontinued operations will <b>not continue</b>, so the forecast should start from <b>income from continuing operations</b>. A includes earnings that will not recur. B mixes a discontinued item into continuing results."
+    },
+    {
+      lesson: 5,
+      q: "A company revises the expected useful life of its delivery vans from 8 years to 5 years. How is this change reported?",
+      opts: [
+        "Prior years' statements are restated",
+        "It is shown as a discontinued operation",
+        "It is applied prospectively, affecting the current and future periods only"
+      ],
+      ans: 2,
+      hint: "Is this a change in accounting policy or a change in an estimate?",
+      why: "A new useful life is a <b>change in accounting estimate</b>, applied <b>prospectively</b> with no restatement. Restatement (A) applies to changes in accounting policy. C is irrelevant: the vans are still used."
+    },
+    {
+      lesson: 6,
+      q: "Juniper Ltd earned net income of $5.0 m and paid $0.5 m of preferred dividends. It had 2.0 m common shares on 1 January, issued 0.6 m on 1 July and bought back 0.2 m on 1 October. Basic EPS is closest to:",
+      opts: [
+        "$1.88",
+        "$2.22",
+        "$2.00"
+      ],
+      ans: 2,
+      hint: "Weight each share change by the fraction of the year it was outstanding, and remove preferred dividends from the numerator.",
+      why: "Weighted shares = 2.0 + 0.6 × 6/12 − 0.2 × 3/12 = 2.25 m. Earnings for common = 5.0 − 0.5 = $4.5 m. EPS = 4.5 / 2.25 = <b>$2.00</b>. A uses year-end shares (2.4 m). B forgets the preferred dividends."
+    },
+    {
+      lesson: 6,
+      q: "A company had 1.2 m shares outstanding all year and did a 2-for-1 stock split on 1 November. The weighted average number of shares for the year's EPS is:",
+      opts: [
+        "2.4 m",
+        "1.4 m",
+        "1.2 m"
+      ],
+      ans: 0,
+      hint: "Stock splits are applied as if they happened at the start of the period.",
+      why: "A split is applied <b>retroactively</b> to the start of the year, so all 1.2 m shares become 2.4 m for the whole year: <b>2.4 m</b>. B wrongly time-weights the split. C ignores it."
+    },
+    {
+      lesson: 7,
+      q: "Tessaly Corp has net income of $6.0 m, preferred dividends of $0.8 m and 4.0 m weighted common shares. Its preferred shares convert into 0.5 m common shares. The diluted EPS Tessaly should report is:",
+      opts: [
+        "$1.33",
+        "$1.30",
+        "$1.50"
+      ],
+      ans: 1,
+      hint: "Work out basic EPS first, then check whether conversion lowers it.",
+      why: "Basic EPS = (6.0 − 0.8) / 4.0 = $1.30. If converted, EPS = 6.0 / 4.5 = $1.33, which is <b>higher</b> than basic, so conversion is <b>antidilutive</b> and is ignored. Diluted EPS = <b>$1.30</b>. C divides by basic shares without removing preferred dividends."
+    },
+    {
+      lesson: 7,
+      q: "A company has 100,000 options with an exercise price of $20. The average share price for the year was $25. Using the treasury stock method, how many extra shares are added to the diluted share count?",
+      opts: [
+        "20,000",
+        "100,000",
+        "80,000"
+      ],
+      ans: 0,
+      hint: "The exercise cash is assumed to buy back shares at the average price.",
+      why: "Cash from exercise = 100,000 × $20 = $2,000,000, which buys back 2,000,000 / 25 = 80,000 shares. Net new shares = 100,000 − 80,000 = <b>20,000</b>. B ignores the buyback. C is the number bought back."
+    },
+    {
+      lesson: 8,
+      q: "Kestrel Shops has revenue of $800 m, cost of sales $520 m, operating expenses $120 m, interest $20 m and tax $35 m. Its net profit margin is closest to:",
+      opts: [
+        "20.0%",
+        "17.5%",
+        "13.1%"
+      ],
+      ans: 2,
+      hint: "Net margin uses profit after interest and tax.",
+      why: "Net income = 800 − 520 − 120 − 20 − 35 = $105 m. Net margin = 105 / 800 = <b>13.1%</b>. A is the operating margin (160/800). B is pre-tax margin (140/800)."
     }
   ]
 });

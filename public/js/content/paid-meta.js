@@ -46,6 +46,6 @@ CFA.paidMeta = {
     "questions": 11
    }
   ],
-  "moduleQuiz": 22
+  "moduleQuiz": 37
  }
 };
