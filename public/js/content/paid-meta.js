@@ -95,5 +95,41 @@ CFA.paidMeta = {
    }
   ],
   "moduleQuiz": 38
+ },
+ "fsa/5": {
+  "title": "Analyzing Statements of Cash Flows II",
+  "lessons": [
+   {
+    "id": "l1",
+    "title": "Reading a cash flow statement: four steps",
+    "summary": "Start with the big picture of sources and uses, then look inside operating, investing and financing; how the picture changes over a company's life.",
+    "questions": 10
+   },
+   {
+    "id": "l2",
+    "title": "Worked analysis: Corlett Outdoor Gear",
+    "summary": "Applying the four steps to two years of a made-up company's statements: rising profit, falling operating cash, a capital spending jump paid for with debt.",
+    "questions": 9
+   },
+   {
+    "id": "l3",
+    "title": "Common-size cash flow statements",
+    "summary": "Two ways to common-size: each inflow and outflow as a share of the totals, or each line as a share of revenue; how the direct and indirect formats change the picture; using it to forecast.",
+    "questions": 10
+   },
+   {
+    "id": "l4",
+    "title": "Free cash flow: FCFF and FCFE",
+    "summary": "Free cash flow to the firm (from net income or from operating cash flow), free cash flow to equity, and adjustments for IFRS classification choices.",
+    "questions": 11
+   },
+   {
+    "id": "l5",
+    "title": "Cash flow ratios: performance and coverage",
+    "summary": "Cash flow to revenue, cash return on assets and equity, cash to income, cash flow per share; debt, interest, reinvestment, debt payment, dividend payment and investing-and-financing coverage.",
+    "questions": 11
+   }
+  ],
+  "moduleQuiz": 36
  }
 };
