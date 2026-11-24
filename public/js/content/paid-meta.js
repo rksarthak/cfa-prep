@@ -227,5 +227,47 @@ CFA.paidMeta = {
    }
   ],
   "moduleQuiz": 37
+ },
+ "fsa/8": {
+  "title": "Topics in Long-Term Liabilities and Equity",
+  "lessons": [
+   {
+    "id": "l1",
+    "title": "What is a lease, and is it finance or operating?",
+    "summary": "The three tests for a lease; why companies lease; the five tests that make a lease a finance lease; short-term and low-value exemptions.",
+    "questions": 9
+   },
+   {
+    "id": "l2",
+    "title": "Lessee accounting: IFRS and US GAAP",
+    "summary": "Right-of-use asset and lease liability at the present value of payments; the IFRS single model; US GAAP finance versus operating leases; effects on income, cash flow and ratios.",
+    "questions": 10
+   },
+   {
+    "id": "l3",
+    "title": "Lessor accounting: finance and operating leases",
+    "summary": "How the owner of a leased asset reports it: a lease receivable and interest income for a finance lease (with selling profit for a maker or dealer), and depreciation plus straight-line lease income for an operating lease.",
+    "questions": 10
+   },
+   {
+    "id": "l4",
+    "title": "Pensions: defined contribution and defined benefit",
+    "summary": "Why a DC plan is simple and a DB plan is not; the funded status; how IFRS and US GAAP split DB pension cost between profit and OCI; and how actuarial assumptions move the obligation.",
+    "questions": 10
+   },
+   {
+    "id": "l5",
+    "title": "Share-based compensation",
+    "summary": "Why companies pay staff in shares and options and what can go wrong; stock grants, restricted and performance shares, options and cash-settled awards; grant-date fair value expensed over the vesting period; what drives an option's fair value.",
+    "questions": 10
+   },
+   {
+    "id": "l6",
+    "title": "Reading the notes: leases, pensions and share-based pay",
+    "summary": "What the notes add: lease maturity tables, discount rates and remaining terms; pension assumptions and funded status; unrecognised share-based cost and when it will be expensed. How analysts adjust debt, cash flow and expense forecasts.",
+    "questions": 10
+   }
+  ],
+  "moduleQuiz": 36
  }
 };
