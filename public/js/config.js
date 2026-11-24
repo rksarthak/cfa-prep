@@ -20,6 +20,7 @@ window.CFA_CONFIG = {
   upi: {
     id: "9415115418@superyes", // your UPI ID, e.g. "yourname@okhdfcbank"
     payeeName: "RAVINDRA KUMAR AGRAWAL", // name shown to students
-    qrImage: "assets/upi-qr.png" // path to your QR image, e.g. "assets/upi-qr.png"
+    qrImage: "assets/upi-qr-399.png", // your signed QR from the UPI app, with the amount built in
+    qrAmountInr: 399          // amount inside that QR. If it differs from subjectPriceInr, the site draws its own QR with the right amount instead
   }
 };

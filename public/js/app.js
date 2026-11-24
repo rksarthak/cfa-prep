@@ -200,15 +200,16 @@
         var upiLink = upi.id ? "upi://pay?pa=" + encodeURIComponent(upi.id) + "&pn=" + encodeURIComponent(upi.payeeName || CONF.brandName || "FinPrepCamp") +
           "&am=" + Number(PRICE).toFixed(2) + "&cu=INR&tn=" + encodeURIComponent(s.name) : "";
         var qr = "";
-        if (upiLink && typeof window.qrcode === "function") {
+        // Prefer the payee's own signed QR when it carries the current price; otherwise draw one with the price set.
+        if (upi.qrImage && Number(upi.qrAmountInr) === Number(PRICE)) {
+          qr = '<img class="qr" src="' + esc(upi.qrImage) + '" alt="UPI QR code to pay ₹' + PRICE + '">';
+        } else if (upiLink && typeof window.qrcode === "function") {
           try {
             var code = window.qrcode(0, "M"); code.addData(upiLink); code.make();
             qr = '<div class="qr qr-live" role="img" aria-label="UPI QR code to pay ₹' + PRICE + '">' + code.createSvgTag({ cellSize: 4, margin: 2, scalable: true }) + "</div>";
           } catch (e) { qr = ""; }
         }
-        if (!qr) qr = upi.qrImage
-          ? '<img class="qr" src="' + esc(upi.qrImage) + '" alt="UPI QR code to pay ₹' + PRICE + '">'
-          : '<div class="qr placeholder">QR code<br><span class="small">added soon</span></div>';
+        if (!qr) qr = '<div class="qr placeholder">QR code<br><span class="small">added soon</span></div>';
         body = (Account.enabled ? "" : '<div class="callout key"><span class="label">Preview</span>Payments switch on once accounts are connected (see SETUP.md).</div>') +
           '<div class="pay-card"><h2>Step 1: Pay ₹' + PRICE + ' with UPI</h2><div class="pay-row">' + qr +
           '<div><p>Scan the QR code with any UPI app (Google Pay, PhonePe, Paytm, BHIM). The amount, <b>₹' + PRICE + "</b>, fills in by itself; please don't change it.</p>" +

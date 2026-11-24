@@ -93,7 +93,7 @@ Modules 1 and 2 of every subject are free and open without signing in (guests se
    ```js
    upi: { id: "yourname@okhdfcbank", payeeName: "Your name", qrImage: "assets/upi-qr.png" }
    ```
-   The payment page draws its own QR code from these details with the amount set (`subjectPriceInr`), so scanning it fills in ₹399 automatically, and on phones an "Open my UPI app" button does the same. The code is made in the student's browser (`js/vendor/qrcode-generator-1.4.4.js`), with no outside QR service. The saved image `assets/upi-qr.png` (no amount) is only a fallback. Change the price in one place: `subjectPriceInr`.
+   Best: in your UPI app, make a QR **with the amount set to ₹399** and save it as `assets/upi-qr-399.png`, with `qrAmountInr: 399` in `js/config.js` (done 24 Nov 2026; this signed QR is what students see). If you change `subjectPriceInr` without a new QR, the page automatically draws its own QR with the new amount instead (made in the student's browser by `js/vendor/qrcode-generator-1.4.4.js`, no outside service). On phones, an "Open my UPI app" button also fills in the amount.
    Some UPI apps still let the payer edit the amount, so when approving, check the payment in your bank app is exactly ₹399.
 
 **Make yourself the admin** (once, after you have created your own account on the site)
