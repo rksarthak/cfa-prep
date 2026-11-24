@@ -1,21 +1,20 @@
 /*
- * FSA · Learning Module 1 – Introduction to Financial Statement Analysis
- * Source: CFA Program Curriculum 2027, Level I, Volume 4, Learning Module 1 (pp. 3–36),
- * including Exhibits 1–6, the Knowledge Check and Practice Problems 1–16.
+ * FSA · Module 1 – Introduction to Financial Statement Analysis
+ * Original teaching text, examples and questions. The CFA curriculum is used only as a private
+ * benchmark of topics and level; none of its text, exhibits or practice problems is reproduced.
  *
- * Question format: { q, opts:[A,B,C], ans:0|1|2, hint, why, src?, lesson? }
- * src is an internal note of the curriculum question used; it is not shown on the site.
+ * Question format: { q, opts:[A,B,C], ans:0|1|2, hint, why, lesson? }
  */
 CFA.registerModule("fsa", {
   num: 1,
   title: "Introduction to Financial Statement Analysis",
   intro: "Before any ratio or adjustment, you need to know <b>why</b> analysts read financial statements, <b>how</b> an analysis is organised, and <b>where</b> the information comes from: regulatory filings, the notes, management’s commentary, the audit report and sources outside the company. This module is light on numbers but heavy on look-alike terms, which is exactly where the exam tries to catch you.",
   los: [
-    "describe the steps in the financial statement analysis framework",
-    "describe the roles of financial statement analysis",
-    "describe the importance of regulatory filings, financial statement notes and supplementary information, management’s commentary, and audit reports",
-    "describe implications for financial analysis of alternative financial reporting systems and the importance of monitoring developments in financial reporting standards",
-    "describe information sources that analysts use in financial statement analysis besides annual and interim financial reports"
+    "Explain, in order, the six steps an analyst follows, and what goes in and comes out of each",
+    "Explain what financial statement analysis is for, and how it differs from financial reporting",
+    "Know which filing, note, commentary or audit report to open for a given piece of information, and why each one matters",
+    "Explain how IFRS and US GAAP differences affect comparisons, and why analysts keep track of changes to the standards",
+    "Classify the other information sources analysts use beyond annual and interim reports"
   ],
   lessons: [
 
@@ -31,8 +30,8 @@ CFA.registerModule("fsa", {
           html: `
 <p>A friend asks you to lend money to their café. You don't just ask “how is it going?”. You ask for the records: how much it sold, what it spent, how much cash is left, what it already owes. You look at the <b>past and present</b> so that you can guess the <b>future</b>: will they be able to pay me back?</p>
 <p>That is financial statement analysis. The company <b>prepares</b> the financial reports. The analyst <b>uses</b> them, together with other information, to make a decision.</p>
-<div class="callout key"><span class="label">Curriculum definition – learn the shape of it</span>
-The role of financial statement analysis is to use financial reports <b>prepared by companies</b>, combined with other information, to <b>evaluate</b> the past, current and potential performance and financial position of a company <b>for the purpose of making investment, credit and other economic decisions</b>.</div>
+<div class="callout key"><span class="label">Definition to remember</span>
+Financial statement analysis takes the reports a <b>company has prepared</b>, adds other information, and <b>judges</b> how the company has performed, where it stands financially and how it is likely to do, so that someone can make a <b>decision</b>: to invest, to lend, or another economic choice.</div>
 <p>Three words carry the definition:</p>
 <div class="flow">
   <div class="step"><b>Look at</b><span>Past and current results</span><small>performance (profit, cash flow) and position (assets, debts)</small></div>
@@ -67,7 +66,7 @@ The role of financial statement analysis is to use financial reports <b>prepared
         {
           title: "The decisions analysts support",
           html: `
-<p>The curriculum lists six typical decisions. Notice that every one of them is a decision, not just “getting information”.</p>
+<p>Here are six typical decisions. Notice that every one of them is a decision, not just “getting information”.</p>
 <div class="tiles">
   <div class="tile"><h4>Equity side</h4><ul><li>Evaluate an equity investment for a portfolio</li><li>Value a security to recommend it to others</li></ul></div>
   <div class="tile c2"><h4>Credit side</h4><ul><li>Decide whether to lend, and on what terms</li><li>Assign a debt rating to a company or bond issue</li></ul></div>
@@ -76,22 +75,21 @@ The role of financial statement analysis is to use financial reports <b>prepared
 <p class="small muted">Analysts also evaluate a subsidiary's performance or look for overvalued shares to sell short. Same tools, different purpose.</p>`
         },
         {
-          title: "Curriculum Exhibits 2 and 3, redrawn: results versus expectations",
+          title: "Results versus expectations",
           html: `
-<span class="exhibit-tag">Matches curriculum Exhibit 2 (Sea Ltd) and Exhibit 3 (T-Mobile)</span>
-<p>Markets compare a company's results with what analysts <b>expected</b>, not only with last year. Exhibit 2 shows Sea Ltd's second quarter of 2022:</p>
+<p>Markets compare a company's results with what analysts <b>expected</b>, not only with last year. Take a made-up games company, <b>Kestrel Games</b>, reporting a quarter:</p>
 <div class="table-wrap"><table>
 <tr><th>Measure</th><th class="num">Expected by analysts</th><th class="num">Reported</th><th>Verdict</th></tr>
-<tr><td>Revenue</td><td class="num">$2.98 bn</td><td class="num">$2.90 bn</td><td>Missed (lower than expected)</td></tr>
-<tr><td>Earnings per share</td><td class="num">−$1.14 (a loss)</td><td class="num">−$0.61 (a smaller loss)</td><td>Beat (better than expected)</td></tr>
+<tr><td>Revenue</td><td class="num">$1.20 bn</td><td class="num">$1.15 bn</td><td>Missed (lower than expected)</td></tr>
+<tr><td>Earnings per share</td><td class="num">−$0.50 (a loss)</td><td class="num">−$0.30 (a smaller loss)</td><td>Beat (better than expected)</td></tr>
 </table></div>
-<p>Revenue was still <b>up 29%</b> on the year and the loss was <b>smaller</b> than feared, yet the shares fell 14.3% that afternoon, partly because the company suspended its e-commerce revenue guidance. The lesson: a number is only “good” or “bad” relative to expectations and to what it says about the future.</p>
-<p>Exhibit 3 is the credit-side version. Moody's upgraded T-Mobile's unsecured debt from Ba2 to <b>Baa3</b>, giving it its first full investment-grade rating. The reasons are all about the future ability to repay:</p>
+<p>Revenue still grew 25% on the year and the loss was <b>smaller</b> than feared, yet the shares fell 10% that day, partly because management withdrew its outlook for the online-shop business. The lesson: a number is only “good” or “bad” relative to expectations and to what it says about the future.</p>
+<p>The credit side works the same way. Suppose a rating agency raises <b>Northline Telecom</b>'s bonds from just below to just inside investment grade. The reasons are all about the future ability to repay:</p>
 <div class="vflow">
-  <div class="node">Merger savings achieved faster than expected</div><div class="arrow">⬇</div>
-  <div class="node">Rising <b>free cash flow</b> and EBITDA margin</div><div class="arrow">⬇</div>
-  <div class="node">Debt leverage expected to fall to about 3.75× and stay there</div><div class="arrow">⬇</div>
-  <div class="node good"><b>Credit rating upgraded</b> → cheaper access to debt markets</div>
+  <div class="node">Savings from a merger arrive sooner than planned</div><div class="arrow">⬇</div>
+  <div class="node">Free cash flow and operating margin keep rising</div><div class="arrow">⬇</div>
+  <div class="node">Debt is expected to fall to about 3.5× EBITDA and stay there</div><div class="arrow">⬇</div>
+  <div class="node good"><b>Rating upgraded</b> → the company can borrow more cheaply</div>
 </div>`
         }
       ],
@@ -104,20 +102,18 @@ The role of financial statement analysis is to use financial reports <b>prepared
       ],
       quiz: [
         {
-          src: "CFA practice problem 3",
-          q: "Which of the following best describes the role of financial statement analysis?",
-          opts: ["To provide information about a company’s performance", "To provide information about a company’s changes in financial position", "To form expectations about a company’s future performance and financial position"],
+          q: "Priya reads a bakery chain's annual report, compares this year's margins with last year's and builds a forecast to decide whether to buy its shares. What is she doing?",
+          opts: ["Financial reporting: providing information about the chain's performance","Financial reporting: describing the chain's changes in financial position","Financial analysis: using past and current results to form expectations about the future, for a decision"],
           ans: 2,
-          hint: "Two options use the same verb. Which job is that verb describing: reporting or analysis?",
-          why: "Analysts examine past and current performance and position <b>to form expectations about the future</b>. A and B describe what financial <i>reporting</i> does (provide information); they are the look-alike trap."
+          hint: "Is Priya producing the report or using it?",
+          why: "Priya is <b>analysing</b>: she uses results to <b>form expectations about the future</b> and make a decision. A and B describe what financial <i>reporting</i> does (the company provides information); that is the look-alike trap."
         },
         {
-          src: "CFA practice problem 4",
-          q: "The primary role of financial statement analysis is best described as:",
-          opts: ["providing information useful for making investment decisions.", "evaluating a company for the purpose of making economic decisions.", "using financial reports prepared by analysts to make economic decisions."],
+          q: "A colleague says: “Analysts prepare financial reports so that investors can decide whether to buy shares.” What is wrong with this description of financial statement analysis?",
+          opts: ["Nothing, it is accurate","Companies prepare the reports; analysts evaluate them, with other information, for investment, credit and other economic decisions","Analysts support credit decisions only, never investment decisions"],
           ans: 1,
-          hint: "Check who prepares the reports, and whether “investment” alone is wide enough.",
-          why: "The role is to use reports <b>prepared by companies</b> to evaluate past, current and potential performance <b>for economic decisions</b> (investment, credit and others). A is reporting's job and too narrow; C gets the preparer wrong (companies, not analysts)."
+          hint: "Two things to check: who prepares the reports, and which decisions are covered.",
+          why: "The reports are prepared by <b>companies</b>. Analysts <b>evaluate</b> them for <b>economic decisions</b> of all kinds (investment, credit and others). A misses both errors; C is far too narrow."
         },
         {
           q: "A bank is deciding whether to lend $5 million to a retailer for five years. Which question is the bank’s credit analyst <b>most</b> focused on?",
@@ -131,7 +127,7 @@ The role of financial statement analysis is to use financial reports <b>prepared
           opts: ["a beat, because the loss was smaller than expected", "a miss, because the company still made a loss", "neither, because loss-making results are not compared with expectations"],
           ans: 0,
           hint: "Compare the reported number with the expected number, not with zero.",
-          why: "−$0.40 is better than −$0.90, so earnings <b>beat</b> expectations (as Sea Ltd did in Exhibit 2). B compares with zero instead of with expectations. C is false: losses are compared with expectations too."
+          why: "−$0.40 is better than −$0.90, so earnings <b>beat</b> expectations (as Kestrel Games did above). B compares with zero instead of with expectations. C is false: losses are compared with expectations too."
         },
         {
           q: "Why do a company’s own managers rely less on its published financial statements than outside analysts do?",
@@ -141,14 +137,14 @@ The role of financial statement analysis is to use financial reports <b>prepared
           why: "Managers make operating, investing and financing decisions with access to <b>non-public</b> information, so they do not rely exclusively on the published statements. B is invented. C is wrong: managers use past results too, and analysts also use the past to predict the future."
         },
         {
-          q: "Which activity is <b>least likely</b> to be described as a use of financial statement analysis in the curriculum?",
+          q: "Which activity is <b>least likely</b> to be described as a use of financial statement analysis?",
           opts: ["Assigning a debt rating to a bond issue","Evaluating a merger or acquisition candidate","Preparing the company’s annual financial statements in line with IFRS"],
           ans: 2,
           hint: "One of these is done by the company, not by the analyst.",
-          why: "Preparing the statements is financial <b>reporting</b>, done by the company. Rating a bond (A) and evaluating an acquisition (B) are both on the curriculum's list of decisions supported by analysis."
+          why: "Preparing the statements is financial <b>reporting</b>, done by the company. Rating a bond (A) and evaluating an acquisition (B) are both decisions that analysis supports."
         },
         {"q": "An equity analyst values a company’s shares by comparing its price-to-earnings ratio with those of peer companies. This is an example of analysts using:", "opts": ["reported earnings as an input to valuation", "the auditor’s opinion as an input to valuation", "management’s compensation as an input to valuation"], "ans": 0, "hint": "What does the “E” in P/E stand for, and where does it come from?", "why": "Earnings are frequently used in <b>valuation</b>, for example comparing P/E ratios with peers or forecasting earnings for a discounted cash flow model. The audit opinion (B) and pay (C) are not the valuation inputs described."},
-        {"q": "When analysts examine a company’s past and current financial statements, which two broad aspects of performance does the curriculum say they typically assess?", "opts": ["Share price momentum and trading volume", "Market share and brand strength", "Profitability and the ability to generate positive cash flows"], "ans": 2, "hint": "One is about earning a profit; the other is about cash coming in versus going out.", "why": "Analysts assess <b>profitability</b> (earning a profit from goods and services) and the ability to generate <b>positive cash flows</b> (cash receipts above disbursements). A and B are market or strategy measures, not what the statements show."},
+        {"q": "When analysts examine a company’s past and current financial statements, which two broad aspects do they typically assess?", "opts": ["Share price momentum and trading volume", "Market share and brand strength", "Profitability and the ability to generate positive cash flows"], "ans": 2, "hint": "One is about earning a profit; the other is about cash coming in versus going out.", "why": "Analysts assess <b>profitability</b> (earning a profit from goods and services) and the ability to generate <b>positive cash flows</b> (cash receipts above disbursements). A and B are market or strategy measures, not what the statements show."},
         {"q": "Besides forming expectations about future performance and financial position, analysts are also concerned with:", "opts": ["preparing the statements in line with accounting standards", "factors that affect the risks to the company’s future performance and position", "certifying that the statements are fairly presented"], "ans": 1, "hint": "Expectations are one half of the picture. What could make those expectations wrong?", "why": "Analysts look at the <b>risks</b> to future performance and position as well as the expected outcome. Preparing statements (A) is management’s job; certifying fair presentation (C) is the auditor’s and management’s."}
       ]
     },
@@ -174,23 +170,21 @@ The role of financial statement analysis is to use financial reports <b>prepared
   <div class="step"><b>Step 5</b><span>Develop &amp; communicate conclusions</span><small>Report and recommendation</small></div>
   <div class="step"><b>Step 6</b><span>Follow-up</span><small>Compare actual with expected, update</small></div>
 </div>
-<figcaption>The financial statement analysis framework (curriculum Exhibit 1). Follow-up repeats the earlier steps when new information arrives.</figcaption>
+<figcaption>The financial statement analysis framework. Follow-up repeats the earlier steps when new information arrives.</figcaption>
 </figure>`
         },
         {
-          title: "Curriculum Exhibit 1, redrawn: inputs and outputs",
+          title: "What goes in and what comes out of each step",
           html: `
-<span class="exhibit-tag">Matches curriculum Exhibit 1</span>
-<div class="table-wrap"><table>
-<tr><th>Phase</th><th>Sources of information (inputs)</th><th>Output</th></tr>
-<tr><td><b>1. Articulate purpose &amp; context</b></td><td>The analyst's function (equity, debt, credit rating); talks with client or supervisor; institutional guidelines</td><td>Statement of purpose; list of specific questions; nature and content of the report; timetable and budget</td></tr>
-<tr><td><b>2. Collect data</b></td><td>Financial statements, questionnaires, industry and economic data; talks with management, suppliers, customers, competitors; site visits</td><td>Statements and data in usable form (e.g. a spreadsheet); completed questionnaires</td></tr>
-<tr><td><b>3. Process data</b></td><td>Data from Step 2</td><td><b>Adjusted statements; common-size statements; ratios and graphs</b></td></tr>
-<tr><td><b>4. Analyze / interpret</b></td><td>Input data <b>and processed data</b> (e.g. the ratios)</td><td>Analytical results; <b>forecasts; valuations</b></td></tr>
-<tr><td><b>5. Develop &amp; communicate conclusions</b></td><td>Analytical results, previous reports; guidelines for published reports</td><td>Report answering the Step 1 questions; recommendation (invest? extend credit?)</td></tr>
-<tr><td><b>6. Follow-up</b></td><td>Information from periodically repeating the steps</td><td>Actual vs expected comparison; <b>revised forecasts; updated reports and recommendations</b></td></tr>
-</table></div>
-<div class="callout key"><span class="label">The one chain to remember</span>Ratios are an <b>output</b> of Step 3 (process) and an <b>input</b> to Step 4 (analyze/interpret). Forecasts and valuations are <b>outputs</b> of Step 4. Updated reports are an output of Step 6.</div>`
+<div class="vflow">
+  <div class="node"><b>1. Purpose &amp; context.</b> <i>In:</i> your role (equity, credit, rating), what the client or boss is asking, your firm's rules. <i>Out:</i> the question in one sentence, the sub-questions to answer, the form of the report, the deadline and budget.</div><div class="arrow">⬇</div>
+  <div class="node"><b>2. Collect data.</b> <i>In:</i> the company's reports, industry and economic data, conversations with management, customers, suppliers and competitors, site visits. <i>Out:</i> the data organised and usable, e.g. in a spreadsheet.</div><div class="arrow">⬇</div>
+  <div class="node"><b>3. Process data.</b> <i>In:</i> what you collected. <i>Out:</i> <b>adjusted statements, common-size statements, ratios and charts</b>.</div><div class="arrow">⬇</div>
+  <div class="node"><b>4. Analyze / interpret.</b> <i>In:</i> the raw data <b>and the processed data</b> (your ratios). <i>Out:</i> conclusions about the company, <b>forecasts and valuations</b>.</div><div class="arrow">⬇</div>
+  <div class="node"><b>5. Develop &amp; communicate.</b> <i>In:</i> your conclusions, earlier reports, your firm's publishing rules. <i>Out:</i> the report and the recommendation (buy? lend?).</div><div class="arrow">⬇</div>
+  <div class="node"><b>6. Follow-up.</b> <i>In:</i> new information as it arrives. <i>Out:</i> actual versus expected, <b>revised forecasts, updated reports and recommendations</b>.</div>
+</div>
+<div class="callout key"><span class="label">The one chain to remember</span>Ratios come <b>out</b> of Step 3 and go <b>in</b> to Step 4. Forecasts and valuations come out of Step 4. Updated recommendations come out of Step 6.</div>`
         },
         {
           title: "Worked example: “Should we lend $2 million to Bean & Co?”",
@@ -205,7 +199,7 @@ The role of financial statement analysis is to use financial reports <b>prepared
 </div>`
         },
         {
-          title: "What the curriculum adds to each step",
+          title: "Tips for each step",
           html: `
 <h3>Step 1 – Purpose first, ratios later</h3>
 <p>A less experienced analyst is tempted to start calculating ratios. Resist it. Ask: “If all the ratios were done instantly, what question would I answer, and what decision would it support?” Also define the context: audience, deliverable, deadline, resources. For routine work (a periodic credit review, a quarterly equity report) the purpose and format may already be set by the institution.</p>
@@ -224,10 +218,10 @@ The role of financial statement analysis is to use financial reports <b>prepared
 <p>Follow-up applies even when the investment was <b>rejected</b>: if the price or business conditions change, the analysis may be repeated.</p>`
         },
         {
-          title: "Note on your FSA notes (Pareto)",
+          title: "Older names you may meet",
           html: `
 <div class="callout fix"><span class="label">Different names, same steps</span>
-The Pareto notes call the steps “State the objective and context – Gather data – Process – Analyze and interpret – Report conclusions – Update the analysis”. That is the same framework under older labels. The exam uses the curriculum names: <b>articulate the purpose and context</b>, <b>collect data</b>, <b>process data</b>, <b>analyze/interpret</b>, <b>develop and communicate conclusions and recommendations</b>, <b>follow-up</b>. ✅ Learn these.</div>`
+Some study notes use older labels: “state the objective, gather data, process, analyse, report, update”. It is the same framework. Exam questions use these names: <b>articulate the purpose and context</b>, <b>collect data</b>, <b>process data</b>, <b>analyze/interpret</b>, <b>develop and communicate conclusions and recommendations</b>, <b>follow-up</b>. Learn these.</div>`
         }
       ],
       traps: [
@@ -239,20 +233,18 @@ The Pareto notes call the steps “State the objective and context – Gather da
       ],
       quiz: [
         {
-          src: "CFA practice problem 1",
-          q: "Ratios are an input into which step in the financial statement analysis framework?",
-          opts: ["Process data", "Collect input data", "Analyze/interpret the processed data"],
+          q: "An analyst already has a spreadsheet of margins and debt ratios for a retailer. She now uses those ratios to judge whether the retailer could safely borrow more. Which step of the framework is she in?",
+          opts: ["Process data","Collect input data","Analyze/interpret the processed data"],
           ans: 2,
-          hint: "Ratios are made in one step and used in the next. The question asks where they are used.",
-          why: "Ratios are an <b>output</b> of the process step and an <b>input</b> into analyze/interpret. A is the step that produces them (the input/output trap). B comes before any ratio exists."
+          hint: "The ratios already exist. Is she making them or using them?",
+          why: "Making ratios is <b>process data</b>; using them to reach a judgment is <b>analyze/interpret</b>. Ratios are an output of one step and an <b>input</b> into the next. B comes before any ratio exists."
         },
         {
-          src: "CFA practice problem 2",
-          q: "Which phase in the financial statement analysis framework is most likely to involve producing updated reports and recommendations?",
-          opts: ["Follow-up", "Analyze/interpret the processed data", "Develop and communicate conclusions and recommendations"],
+          q: "Six months after recommending a retailer's shares, an analyst reads the new quarterly results, repeats her analysis and revises her price target. Which step of the framework is this?",
+          opts: ["Follow-up","Collect input data","Develop and communicate conclusions and recommendations"],
           ans: 0,
-          hint: "Key word: <i>updated</i>. An update needs something to have been reported already.",
-          why: "Follow-up gathers new information and repeats the analysis to decide whether reports and recommendations need <b>updating</b>. C produces the <i>first</i> report. B produces results, forecasts and valuations."
+          hint: "Key words: <i>after</i> a recommendation, and <i>revises</i>.",
+          why: "<b>Follow-up</b> means gathering new information, repeating the analysis and <b>updating</b> the report or recommendation. C is where the first recommendation was made. B is part of the work, but the purpose here is updating an earlier conclusion."
         },
         {
           q: "An analyst prepares common-size income statements for three competitors, expressing every line as a percentage of revenue. In which phase is this work done?",
@@ -265,15 +257,15 @@ The Pareto notes call the steps “State the objective and context – Gather da
           q: "An analyst’s output is a range of fair values for a share and a five-year earnings forecast. These are outputs of which phase?",
           opts: ["Analyze/interpret the data", "Process data", "Follow-up"],
           ans: 0,
-          hint: "Exhibit 1 lists forecasts and valuations in one specific row.",
+          hint: "The inputs-and-outputs list puts forecasts and valuations in one specific step.",
           why: "Forecasts and valuations are outputs of <b>analyze/interpret</b>. Process (B) produces adjusted statements, common-size data and ratios. Follow-up (C) produces <i>revised</i> forecasts, after new information arrives."
         },
         {
-          q: "A junior analyst receives ten years of data on a company and immediately computes 40 ratios. According to the curriculum, the main problem with this approach is that:",
+          q: "A junior analyst receives ten years of data on a company and immediately computes 40 ratios. The main problem with this approach is that:",
           opts: ["the purpose and the specific questions of the analysis were not defined first","ratios should only be computed after a site visit","ten years of data is too short for a reliable ratio analysis"],
           ans: 0,
           hint: "Which step was skipped?",
-          why: "The curriculum warns against calculating ratios without first deciding what is relevant: <b>articulate the purpose and context</b> and list the specific questions. B and C are invented rules."
+          why: "Good practice warns against calculating ratios without first deciding what is relevant: <b>articulate the purpose and context</b> and list the specific questions. B and C are invented rules."
         },
         {
           q: "An analyst forecasts a company’s earnings by first assessing GDP growth and inflation, then the outlook for the company’s industry, and finally the company itself. This is best described as:",
@@ -283,7 +275,7 @@ The Pareto notes call the steps “State the objective and context – Gather da
           why: "Economy → industry → company is the <b>top-down</b> approach described under <b>collect data</b>. Bottom-up (B) would start from the company. It is not follow-up (C), which repeats the analysis after a report."
         },
         {"q": "An analyst visits three of a retailer’s stores and interviews its suppliers before building any spreadsheet. In which phase of the framework is this work done?", "opts": ["Collect data", "Process data", "Articulate the purpose and context"], "ans": 0, "hint": "Is the analyst gathering information, transforming it, or deciding what to ask?", "why": "Site visits and discussions with suppliers, customers and management are sources in the <b>collect data</b> phase. Processing (B) transforms data already gathered. Articulating the purpose (C) defines the questions, before any gathering."},
-        {"q": "Before comparing two airlines, an analyst adjusts the statements because one airline leases its planes and the other buys them. This adjustment is part of which phase?", "opts": ["Collect data", "Process data", "Follow-up"], "ans": 1, "hint": "Exhibit 1 lists “adjusted financial statements” as an output of one phase.", "why": "Making adjustments for differences such as <b>leasing vs buying</b> is part of <b>process data</b>; adjusted statements are its output. Collecting (A) obtains the raw statements. Follow-up (C) happens after a report has been issued."},
+        {"q": "Before comparing two airlines, an analyst adjusts the statements because one airline leases its planes and the other buys them. This adjustment is part of which phase?", "opts": ["Collect data", "Process data", "Follow-up"], "ans": 1, "hint": "The inputs-and-outputs list puts “adjusted financial statements” as an output of one phase.", "why": "Making adjustments for differences such as <b>leasing vs buying</b> is part of <b>process data</b>; adjusted statements are its output. Collecting (A) obtains the raw statements. Follow-up (C) happens after a report has been issued."},
         {"q": "Under CFA Institute Standard V(B), when an analyst communicates an investment recommendation the report must, among other things:", "opts": ["include a buy, hold or sell rating in the first paragraph", "clearly distinguish between opinions and facts", "exclude any discussion of the risks of the investment"], "ans": 1, "hint": "Think about what a reader needs to judge the recommendation for themselves.", "why": "Standard V(B) requires the factors behind the recommendation, a clear distinction between <b>facts and opinions</b>, and disclosure of limitations and <b>risks</b>. A is not required. C is the opposite of the rule."},
         {"q": "An analyst decided not to recommend a company’s bonds last year. This year the bonds’ price has fallen sharply. According to the framework, the analyst should most likely:", "opts": ["ignore the bonds, because the analysis is complete once a recommendation is made", "repeat the analysis, because follow-up can apply to rejected investments when prices or conditions change", "only update the analysis if the bonds were bought"], "ans": 1, "hint": "Does the process end with the report?", "why": "Follow-up can apply to a <b>rejected</b> investment if the security’s price or business conditions change. A and C both wrongly end the process at the report."}
       ]
@@ -361,12 +353,11 @@ The Pareto notes call the steps “State the objective and context – Gather da
 <p>Because regulation still rests with member states, rules for registering shares and filing reports still differ from country to country.</p>`
         },
         {
-          title: "Fix for your FSA notes (Pareto)",
+          title: "Common mistake: is IOSCO a regulator?",
           html: `
 <div class="callout fix"><span class="label">Correction</span>
-❌ The notes list IOSCO under “Regulatory authorities”, next to the SEC.<br>
-✅ The curriculum says IOSCO is <b>technically not a regulatory authority</b>. It is an organisation of regulators whose members regulate over 95% of world markets.<br>
-Check: curriculum, “International Organization of Securities Commissions”, p. 13.</div>`
+❌ Some study notes list IOSCO under “regulatory authorities”, next to the SEC.<br>
+✅ IOSCO is <b>not itself a regulator</b>. It is an organisation whose <b>members</b> are regulators, and together they cover most of the world's securities markets.</div>`
         }
       ],
       traps: [
@@ -379,28 +370,25 @@ Check: curriculum, “International Organization of Securities Commissions”, p
       ],
       quiz: [
         {
-          src: "CFA practice problem 5",
-          q: "International Financial Reporting Standards are currently developed by which entity?",
-          opts: ["IFRS Foundation", "International Accounting Standards Board", "International Organization of Securities Commissions"],
+          q: "A Singapore-listed company prepares its statements under IFRS. Which body wrote the standards it follows?",
+          opts: ["The trustees of the IFRS Foundation","The International Accounting Standards Board","The International Organization of Securities Commissions"],
           ans: 1,
-          hint: "Which body is a <i>board</i> that writes <i>standards</i>?",
-          why: "The <b>IASB</b> develops IFRS. The IFRS Foundation (A) is the name-alike trap: it oversees the IASB but does not write the standards. IOSCO (C) is an organisation of securities regulators."
+          hint: "Look for the <i>board</i> that writes <i>standards</i>.",
+          why: "The <b>IASB</b> writes IFRS. The IFRS Foundation (A) oversees and funds the IASB but does not write standards; it is the name-alike trap. IOSCO (C) brings together securities regulators."
         },
         {
-          src: "CFA practice problem 6",
-          q: "US GAAP are currently developed by which entity?",
-          opts: ["Securities and Exchange Commission", "Financial Accounting Standards Board", "Public Company Accounting Oversight Board"],
+          q: "A US company changes how it accounts for leases because a new US GAAP standard has been issued. Which body issued that standard?",
+          opts: ["The Securities and Exchange Commission","The Financial Accounting Standards Board","The Public Company Accounting Oversight Board"],
           ans: 1,
-          hint: "Standard setter, regulator or auditor overseer?",
-          why: "The <b>FASB</b> develops US GAAP. The SEC (A) is the regulator that recognises those standards. The PCAOB (C) oversees auditors."
+          hint: "Standard setter, market regulator or overseer of auditors?",
+          why: "The <b>FASB</b> sets US GAAP. The SEC (A) is the regulator that recognises those standards and enforces filing rules. The PCAOB (C) oversees audit firms."
         },
         {
-          src: "CFA practice problem 7",
-          q: "A core objective of the International Organization of Securities Commissions is to:",
-          opts: ["eliminate systemic risk.", "protect users of financial statements.", "ensure that markets are fair, efficient, and transparent."],
+          q: "Which of these is one of IOSCO's three core objectives?",
+          opts: ["Removing all systemic risk from financial markets","Protecting the companies that issue securities","Making sure markets are fair, efficient and transparent"],
           ans: 2,
-          hint: "Two options each change one word of a real objective.",
-          why: "IOSCO's three core objectives: protect <b>investors</b>, ensure markets are <b>fair, efficient and transparent</b>, and <b>reduce</b> systemic risk. A says “eliminate” instead of reduce; B says “users of financial statements” instead of investors."
+          hint: "Each wrong option changes one key word of a real objective.",
+          why: "IOSCO aims to protect <b>investors</b>, keep markets <b>fair, efficient and transparent</b>, and <b>reduce</b> systemic risk. A says remove (eliminate) rather than reduce; B protects the wrong party."
         },
         {
           q: "Which US law created the Securities and Exchange Commission and empowered it to require periodic reporting by companies with publicly traded securities?",
@@ -455,9 +443,9 @@ Applying for a passport (once, at the start) = <b>registration statement</b>. Yo
 <tr><td><b>Annual report</b> to shareholders</td><td>Annually</td><td><b>Not an SEC requirement.</b> A polished marketing document (CEO letter, photos, goals). The 10-K is the legal version; the two overlap a lot.</td></tr>
 <tr><td><b>Proxy statement / DEF-14A</b></td><td>Before every shareholder meeting</td><td>Proposals to vote on, ownership by management and major owners, director biographies, <b>executive compensation</b>.</td></tr>
 <tr><td><b>10-Q</b> (US, quarterly) · <b>6-K</b> (many non-US, semiannual)</td><td>Interim periods</td><td><b>Unaudited</b> statements and MD&amp;A for the interim period; certain non-recurring events (new significant accounting policy, significant litigation, limits on security holders' rights).</td></tr>
-<tr><td><b>8-K</b> (US) · <b>6-K</b> (non-US)</td><td>When a material event happens (“current report”)</td><td>Acquisitions or disposals, changes in securities and trading markets, matters related to accountants and statements, governance and management changes, Regulation FD disclosures.</td></tr>
+<tr><td><b>8-K</b> (US) · <b>6-K</b> (non-US)</td><td>When a material event happens (“current report”)</td><td>Acquisitions or disposals, changes to the company’s securities or where they trade, auditor or accounting issues, governance and management changes, Regulation FD disclosures.</td></tr>
 <tr><td><b>Forms 3, 4, 5</b></td><td>Initial / on change / annual</td><td>Beneficial ownership by directors, officers and owners of more than 10% of a class of shares: <b>insider</b> trading.</td></tr>
-<tr><td><b>Form 144</b></td><td>Before a proposed sale</td><td>Notice of proposed sale of restricted securities or securities held by an affiliate.</td></tr>
+<tr><td><b>Form 144</b></td><td>Before a proposed sale</td><td>Filed before an insider (affiliate) sells shares, or before restricted shares are sold.</td></tr>
 <tr><td><b>Form 11-K</b></td><td>Annually</td><td>Employee stock purchase, savings and similar plans.</td></tr>
 </table></div>
 <p class="small muted"><b>Regulation FD</b> (fair disclosure): if a company tells material non-public information to certain people (for example analysts), it must make it public, so everyone gets it at the same time.</p>`
@@ -487,10 +475,10 @@ Applying for a passport (once, at the start) = <b>registration statement</b>. Yo
 </div>`
         },
         {
-          title: "Curriculum Knowledge Check: Sea Ltd's IPO",
+          title: "Try it: what is in a registration statement?",
           html: `
-<p>In 2017 Sea Ltd filed a registration statement with the SEC for its NYSE listing. Which would it most likely contain: an underwriters' fairness opinion, an assessment of risk factors, or projected cash flows and earnings?</p>
-<p><b>Answer: risk factors.</b> The registration statement lists the securities, their relationship to other securities, annual-filing information, recent audited statements and <b>risk factors</b>. Companies give information that helps you <i>build</i> projections, but they do not include the projections themselves, nor underwriters' opinions.</p>`
+<p><b>Lumen Mobility</b>, an e-scooter company based outside the US, plans to list its shares in New York and files a registration statement with the SEC. Which would it most likely contain: a bank's opinion that the offer price is fair, a discussion of the main risks to the business, or management's profit forecasts?</p>
+<p><b>Answer: the risks.</b> A registration statement describes the securities being offered and how they relate to the company's other securities, gives the information found in an annual filing, includes recent audited statements and sets out <b>risk factors</b>. It gives you what you need to <i>build</i> your own forecasts, but not the forecasts themselves, and not a bank's opinion.</p>`
         }
       ],
       traps: [
@@ -503,28 +491,25 @@ Applying for a passport (once, at the start) = <b>registration statement</b>. Yo
       ],
       quiz: [
         {
-          src: "CFA practice problem 10",
-          q: "Information about management and director compensation is most likely to be found in the:",
-          opts: ["auditor’s report.", "proxy statement.", "earnings release."],
+          q: "An investor wants to know how much the chief executive of a US-listed company was paid last year, including bonus and share awards. Which document should she open?",
+          opts: ["The latest Form 10-Q","The proxy statement","The auditor's report"],
           ans: 1,
-          hint: "Which document do shareholders receive before they vote on directors?",
-          why: "Executive and director compensation is disclosed in the <b>proxy statement</b>. The earnings release (C) is about the company's earnings, not managers' pay. The auditor's report (A) gives an opinion on the statements."
+          hint: "Which document goes to shareholders before they vote on directors and pay?",
+          why: "Executive and director pay is disclosed in the <b>proxy statement</b>. A 10-Q (A) is an interim financial report. The auditor's report (C) gives an opinion on the statements, not on pay."
         },
         {
-          src: "CFA practice problem 15",
-          q: "Interim financial reports released by a company are most likely to be:",
-          opts: ["monthly.", "unaudited.", "unqualified."],
+          q: "A company publishes a half-year report covering the first six months of its financial year. Which feature is that report most likely to have?",
+          opts: ["A full audit opinion on the statements","Financial statements that have not been audited","Sales broken down month by month for each store"],
           ans: 1,
-          hint: "Think about the 10-Q. How often, and does an auditor sign it off?",
-          why: "Interim reports (10-Q, 6-K) contain <b>unaudited</b> statements and an MD&amp;A, quarterly or semiannually. A is the wrong frequency. C is a type of audit opinion, which an unaudited report doesn't have."
+          hint: "Interim reports are about speed, not an auditor's sign-off.",
+          why: "Interim reports (quarterly or half-yearly) usually contain <b>unaudited</b> statements and management commentary. A full audit (A) is for the annual report. C is not a required feature."
         },
         {
-          src: "Curriculum knowledge check",
-          q: "Sea Ltd, based in Singapore, filed a registration statement with the US SEC to register its initial public offering on the New York Stock Exchange. Which of the following is most likely to have been included in the registration statement?",
-          opts: ["Underwriters’ fairness opinion of the offering", "Assessment of risk factors involved in the business", "Projected cash flows and earnings for the business"],
+          q: "Harbor Foods, a company based outside the US, files a registration statement with the SEC before listing its shares in New York. Which item would you most expect to find in it?",
+          opts: ["The underwriting bank's opinion that the offer price is fair","A discussion of the main risks facing the business","Management's five-year profit forecast"],
           ans: 1,
-          hint: "Recall the five typical items of a registration statement.",
-          why: "Registration statements typically include the securities offered, their relationship to other securities, annual-filing information, recent audited statements and <b>risk factors</b>. They don't include underwriters' opinions (A) or projections (C)."
+          hint: "A registration statement helps investors judge the securities; it doesn't do the forecasting for them.",
+          why: "Registration statements describe the securities, include recent audited statements and set out <b>risk factors</b>. They do not include a bank's fairness opinion (A) or management's forecasts (C)."
         },
         {
           q: "A German company with shares listed in New York completes a large acquisition in the middle of its financial year. To report this event promptly to the SEC, it would most likely file Form:",
@@ -549,7 +534,7 @@ Applying for a passport (once, at the start) = <b>registration statement</b>. Yo
         },
         {"q": "Which of the following is most likely included in a US company’s Form 10-K?", "opts": ["Unaudited quarterly financial statements only", "Audited financial statements and notes, the MD&A and the auditor’s report", "A notice of a proposed sale of restricted shares by a director"], "ans": 1, "hint": "The 10-K is the comprehensive annual filing.", "why": "The <b>10-K</b> includes the business, risk factors, legal proceedings, <b>audited</b> statements and notes, <b>MD&amp;A</b> and the <b>auditor’s report</b>. Unaudited interim statements (A) are in the 10-Q. A proposed sale of restricted shares (C) is Form 144."},
         {"q": "A French company whose shares trade on the New York Stock Exchange files its annual report with the SEC on Form:", "opts": ["10-K", "40-F", "20-F"], "ans": 2, "hint": "US, certain Canadian, or all other non-US?", "why": "<b>Form 20-F</b> is the annual filing for non-US registrants other than certain Canadian ones. 10-K (A) is for US registrants; 40-F (B) is for certain Canadian registrants."},
-        {"q": "An analyst notices that a company’s founder has filed a notice of a proposed sale of restricted shares. The form the analyst has seen is most likely Form:", "opts": ["144", "8-K", "DEF-14A"], "ans": 0, "hint": "One form is specifically a notice before a proposed sale.", "why": "<b>Form 144</b> is notice of the proposed sale of restricted securities or securities held by an affiliate. Form 8-K (B) reports material corporate events. DEF-14A (C) is the proxy statement."},
+        {"q": "An analyst notices that a company’s founder has filed a notice of a proposed sale of restricted shares. The form the analyst has seen is most likely Form:", "opts": ["144", "8-K", "DEF-14A"], "ans": 0, "hint": "One form is specifically a notice before a proposed sale.", "why": "<b>Form 144</b> is filed before someone sells restricted shares or shares held by an insider (an affiliate). Form 8-K (B) reports material corporate events. DEF-14A (C) is the proxy statement."},
         {"q": "An analyst wants to see the size of the chief executive’s bonus and stock awards. The document most likely to show this is the:", "opts": ["earnings release", "Form 10-Q", "proxy statement (DEF-14A)"], "ans": 2, "hint": "Shareholders receive this document before they vote at a meeting.", "why": "Executive compensation is disclosed in the <b>proxy statement</b>. An earnings release (A) is about the company’s earnings, not executives’ pay. The 10-Q (B) is the quarterly report."},
         {"q": "Which statement about a US company’s Form 10-Q is most accurate?", "opts": ["It contains unaudited interim financial statements and an MD&A for the quarter", "It contains audited statements and an unqualified audit opinion", "It is filed monthly"], "ans": 0, "hint": "Interim = between annual reports. Does an auditor sign it?", "why": "The 10-Q is filed <b>quarterly</b> and contains <b>unaudited</b> statements and an MD&amp;A. B describes the annual 10-K. C is the wrong frequency."}
       ]
@@ -565,7 +550,7 @@ Applying for a passport (once, at the start) = <b>registration statement</b>. Yo
         {
           title: "The idea in plain words",
           html: `
-<p>The four financial statements are the <b>headline numbers</b>. The <b>notes</b> are the small print that tells you how each number was made. Sea Ltd's 2021 statements came with more than 60 pages of notes. The notes are <b>required</b>, because without them the statements cannot be properly understood.</p>
+<p>The four financial statements are the <b>headline numbers</b>. The <b>notes</b> are the small print that tells you how each number was made. A large listed group can easily publish 60 or more pages of notes. The notes are <b>required</b>, because without them the statements cannot be properly understood.</p>
 <div class="callout analogy"><span class="label">Analogy</span>A recipe's photo is the financial statement. The notes are the ingredient list and method: two cakes can look the same in the photo but be made very differently.</div>
 <h3>What the notes tell you</h3>
 <div class="tiles">
@@ -624,19 +609,18 @@ For profit, use the <b>absolute value</b> of the segment's profit or loss, compa
 <p>Also: if any <b>single customer</b> is ≥ 10% of total revenue, the company must disclose <b>that fact</b> but <b>not who</b> the customer is. That tells you about concentration risk.</p>`
         },
         {
-          title: "Curriculum Exhibit 4, redrawn: Sea Ltd's segments (2021)",
+          title: "Example: reading a segment note",
           html: `
-<span class="exhibit-tag">Matches curriculum Exhibit 4 (Note 22, Sea Ltd 2021 Form 20-F)</span>
-<p>Operating income (loss) by segment, US$ billions, with revenue for comparison:</p>
+<p><b>Orbit Group</b> (made up) runs games, an online shop and a payments app. Its segment note shows operating profit (loss) by segment, $ billions, with revenue for comparison:</p>
 <figure class="diagram"><div class="bars">
-  <div class="bar"><span>Digital ent. (rev 4.32)</span><span class="track"><span class="fill pass" style="width:90%"></span></span><span class="val">+2.50</span></div>
-  <div class="bar"><span>E-commerce (rev 5.12)</span><span class="track"><span class="fill neg" style="width:99.6%"></span></span><span class="val">−2.77</span></div>
-  <div class="bar"><span>Fin. services (rev 0.47)</span><span class="track"><span class="fill neg" style="width:23%"></span></span><span class="val">−0.64</span></div>
-  <div class="bar"><span>Other (rev 0.04)</span><span class="track"><span class="fill neg" style="width:6.4%"></span></span><span class="val">−0.18</span></div>
-  <div class="bar"><span>Unallocated</span><span class="track"><span class="fill neg" style="width:18%"></span></span><span class="val">−0.50</span></div>
-</div><figcaption>Consolidated operating loss = 2.50 − 2.77 − 0.64 − 0.18 − 0.50 = −1.58 (US$ 9.96 bn revenue).</figcaption></figure>
-<p>In seconds you see that e-commerce is just over half of revenue but loses heavily, while digital entertainment is the only profitable segment. That is where an analyst would spend most of their time. The geographic table adds that Southeast Asia (6.32 bn) and Latin America (1.85 bn) are the key regions.</p>
-<p class="small muted">Segment definitions need significant management judgment and companies change them often, so check comparability across years.</p>`
+  <div class="bar"><span>Games (rev 3.0)</span><span class="track"><span class="fill pass" style="width:100%"></span></span><span class="val">+1.8</span></div>
+  <div class="bar"><span>Online shop (rev 4.0)</span><span class="track"><span class="fill neg" style="width:83%"></span></span><span class="val">−1.5</span></div>
+  <div class="bar"><span>Payments (rev 0.6)</span><span class="track"><span class="fill neg" style="width:22%"></span></span><span class="val">−0.4</span></div>
+  <div class="bar"><span>Other (rev 0.1)</span><span class="track"><span class="fill neg" style="width:6%"></span></span><span class="val">−0.1</span></div>
+  <div class="bar"><span>Unallocated</span><span class="track"><span class="fill neg" style="width:17%"></span></span><span class="val">−0.3</span></div>
+</div><figcaption>Group operating loss = 1.8 − 1.5 − 0.4 − 0.1 − 0.3 = −0.5, on revenue of 7.7.</figcaption></figure>
+<p>In seconds you see that the online shop brings in about half the revenue but loses heavily, while games is the only profitable segment. That is where an analyst would spend most of their time. A second table by region would show where the money is made.</p>
+<p class="small muted">Segment definitions need a lot of management judgment and companies change them often, so check that the years are comparable.</p>`
         },
         {
           title: "Management commentary (MD&A)",
@@ -660,28 +644,25 @@ For profit, use the <b>absolute value</b> of the segment's profit or loss, compa
       ],
       quiz: [
         {
-          src: "CFA practice problem 8",
-          q: "Which of the following best describes why the notes that accompany the financial statements are required? The notes:",
-          opts: ["permit flexibility in statement preparation.", "standardize financial reporting across companies.", "provide information necessary to understand the financial statements."],
+          q: "Why do companies have to publish notes alongside their financial statements?",
+          opts: ["To give companies flexibility in how they prepare the statements","To make every company's statements look the same","Because the numbers can't be properly understood without the explanations and detail the notes give"],
           ans: 2,
-          hint: "Flexibility exists, but where does it come from? And do notes make companies more alike?",
-          why: "The notes give information <b>essential to understanding</b> the statements. Flexibility (A) comes from the accounting standards, and the notes <i>disclose</i> the choices made. Notes don't standardise reporting (B); they reveal differences."
+          hint: "Flexibility does exist, but where does it come from?",
+          why: "The notes give information <b>needed to understand</b> the statements: policies, estimates and detail behind each line. Flexibility (A) comes from the standards; the notes only disclose the choices made. Notes reveal differences between companies rather than removing them (B)."
         },
         {
-          src: "CFA practice problem 9",
-          q: "Accounting policies, methods, and estimates used in preparing financial statements are most likely to be found in the:",
-          opts: ["auditor’s report.", "management commentary.", "notes to the financial statements."],
+          q: "An analyst wants to know over how many years a delivery company depreciates its vans. Where is she most likely to find this?",
+          opts: ["In the auditor's report","In the management commentary","In the notes, under accounting policies and estimates"],
           ans: 2,
-          hint: "Where did the bakery example find the useful-life estimate?",
-          why: "The <b>notes</b> disclose accounting policies, methods and estimates. MD&amp;A (B) discusses <i>critical</i> policies needing judgment, but the full disclosure is in the notes. The auditor's report (A) gives an opinion."
+          hint: "Useful lives are estimates used to prepare the numbers.",
+          why: "The <b>notes</b> disclose accounting policies, methods and estimates such as useful lives. Management commentary (B) may discuss <i>critical</i> estimates, but the full disclosure is in the notes. The auditor's report (A) is an opinion."
         },
         {
-          src: "CFA practice problem 11",
-          q: "Information about a company’s objectives, strategies, and significant risks are most likely to be found in the:",
-          opts: ["auditor’s report.", "management commentary.", "notes to the financial statements."],
+          q: "Where would you expect management to explain the company's goals for the next few years and the main risks to reaching them?",
+          opts: ["The auditor's report","The management commentary (MD&amp;A)","The notes to the financial statements"],
           ans: 1,
-          hint: "Recall the IASB's five content elements.",
-          why: "Objectives, strategies, and significant resources, risks and relationships are content elements of the <b>management commentary</b>. The notes (C) explain the numbers; the auditor's report (A) gives an opinion."
+          hint: "Goals and risks are management's own story, not an explanation of a number.",
+          why: "Objectives, strategies and significant risks belong in the <b>management commentary</b>. The notes (C) explain the figures; the auditor's report (A) gives an opinion on them."
         },
         {
           q: "A company has four operating segments with these results ($ millions): W profit 300, X profit 100, Y loss (60), Z loss (25). Based only on the profit or loss test, which segments must be reported?",
@@ -713,7 +694,7 @@ For profit, use the <b>absolute value</b> of the segment's profit or loss, compa
         },
         {"q": "A company states in its notes that its statements are consolidated. This most likely means that the statements:", "opts": ["combine the financial records of all subsidiaries it controls, after removing intercompany balances and transactions", "show the parent company only, with subsidiaries listed in the notes", "have been checked and combined by the auditor"], "ans": 0, "hint": "Consolidated is part of the basis of preparation. What is being added together?", "why": "<b>Consolidated</b> statements aggregate the records of all controlled subsidiaries and <b>eliminate intercompany</b> balances and transactions. B describes parent-only statements. C confuses preparation (management) with the audit."},
         {"q": "Accounting standards allow companies some flexibility in choosing policies, methods and estimates. For an analyst, the main challenge this creates is that:", "opts": ["the statements are no longer audited", "comparability across companies is reduced, so the notes must be read and adjustments made", "companies no longer need to disclose their accounting policies"], "ans": 1, "hint": "Recall the two bakeries with different useful lives.", "why": "Flexibility lets each company choose what fits its business, but it <b>reduces comparability</b>; analysts must read the notes and <b>adjust</b>. Statements are still audited (A), and policies must still be disclosed (C)."},
-        {"q": "A company has just launched a new division that has not yet earned any revenue. Its results are reviewed monthly by senior management and it has its own financial information. Can it be an operating segment?", "opts": ["No, because an operating segment must already earn revenue", "No, because start-up activities are always included in “all other segments”", "Yes, because a start-up that may earn revenue in future can still be an operating segment"], "ans": 2, "hint": "Re-read the first part of the definition: activities that <i>may</i> generate revenue.", "why": "An operating segment engages in activities that <b>may</b> generate revenue and create expenses, <b>including a start-up segment</b> with no revenue yet, if its results are reviewed by senior management and discrete information exists. A and B ignore the start-up wording."},
+        {"q": "A company has just launched a new division that has not yet earned any revenue. Its results are reviewed monthly by senior management and it has its own financial information. Can it be an operating segment?", "opts": ["No, because an operating segment must already earn revenue", "No, because start-up activities are always included in “all other segments”", "Yes, because a start-up that may earn revenue in future can still be an operating segment"], "ans": 2, "hint": "Re-read the first part of the definition: activities that <i>may</i> generate revenue.", "why": "An operating segment is a part of the business whose activities <b>may</b> earn revenue and incur expenses, <b>including a start-up segment</b> with no revenue yet, if its results are reviewed by senior management and discrete information exists. A and B ignore the start-up wording."},
         {"q": "An analyst wants to know the useful lives a company assumes when depreciating its equipment. The most likely place to find this is the:", "opts": ["auditor’s report", "notes to the financial statements", "earnings release"], "ans": 1, "hint": "A useful life is an accounting estimate.", "why": "Accounting policies, methods and <b>estimates</b> such as useful lives are disclosed in the <b>notes</b>. The auditor’s report (A) gives an opinion; the earnings release (C) summarises results."},
         {"q": "An analyst wants management’s own explanation of the company’s strategy, its key resources and the main risks it faces. The best place to look is the:", "opts": ["management commentary (MD&A)", "auditor’s report", "notes on segment reporting"], "ans": 0, "hint": "Which section is written by management in their own words?", "why": "The <b>management commentary</b> covers the nature of the business, objectives and strategies, significant resources, risks and relationships, results and key measures. The auditor’s report (B) is the auditor’s opinion; segment notes (C) give figures by segment."}
       ]
@@ -732,9 +713,9 @@ For profit, use the <b>absolute value</b> of the segment's profit or loss, compa
 <p>Management <b>prepares</b> the financial statements. An independent accounting firm <b>audits</b> them and writes an opinion: the <b>audit report</b>.</p>
 <div class="callout analogy"><span class="label">Analogy: a used-car inspection</span>A mechanic checks a sample of the important parts, not every bolt, and some answers depend on estimates (“the brakes have about a year left”). So the inspection gives <b>reasonable</b> assurance the car is sound, not a guarantee. An audit is the same: it uses <b>sampling</b>, and many numbers are <b>estimates</b>, so it gives <b>reasonable assurance</b>, never absolute assurance.</div>
 <div class="callout key"><span class="label">Auditor's objectives (International Standards on Auditing)</span>
-1. Obtain <b>reasonable assurance</b> that the statements as a whole are free from <b>material misstatement</b>, whether due to <b>fraud or error</b>, so the auditor can give an opinion on whether they follow the applicable framework in all material respects.<br>
+1. Obtain <b>reasonable assurance</b> that the statements, taken as a whole, contain no <b>material misstatement</b>, from <b>error or fraud</b>, so the auditor can give an opinion on whether they follow the applicable framework in all material respects.<br>
 2. Report on the statements and communicate as the ISAs require.</div>
-<p>Reasonable assurance means a <b>high probability</b> that the statements are free from material error, fraud or illegal acts that directly affect them.</p>
+<p>Reasonable assurance means a <b>high probability</b> that the statements contain no material mistakes, fraud or illegal acts with a direct effect on them.</p>
 <div class="table-wrap"><table>
 <tr><th>Who sets auditing standards?</th><th></th></tr>
 <tr><td>International Standards on Auditing (ISAs)</td><td>International Auditing and Assurance Standards Board (IAASB), which emerged from the International Federation of Accountants</td></tr>
@@ -770,19 +751,19 @@ For profit, use the <b>absolute value</b> of the segment's profit or loss, compa
 </table></div>`
         },
         {
-          title: "Curriculum Exhibit 5, redrawn: what is in Sea Ltd's audit report",
+          title: "Anatomy of an audit report",
           html: `
-<span class="exhibit-tag">Matches curriculum Exhibit 5 (Ernst &amp; Young, Sea Ltd 2021)</span>
+<p>Here is how the auditor's report on <b>Orbit Group</b> (made up, US-listed) would be laid out, top to bottom:</p>
 <div class="vflow">
-  <div class="node good"><b>Opinion</b>: statements “present fairly, in all material respects… in conformity with US GAAP” → unqualified. Also a separate unqualified opinion on internal control.</div><div class="arrow">⬇</div>
-  <div class="node"><b>Basis for opinion</b>: statements are management's responsibility; audit done under PCAOB standards to obtain reasonable assurance; tests on a <b>test basis</b>.</div><div class="arrow">⬇</div>
-  <div class="node warn"><b>Critical audit matters</b> (1) digital entertainment revenue: depends on estimating how long paying users stay; (2) impairment of e-commerce long-lived assets (75.7% of the group's long-lived assets), sensitive to forecasts.</div><div class="arrow">⬇</div>
-  <div class="node">Signed, place and date (Singapore, 22 April 2022); auditor since 2010.</div>
+  <div class="node good"><b>Opinion</b>: the statements are fairly presented, in all material respects, under the applicable standards → unqualified. US-listed companies also get an opinion on internal control.</div><div class="arrow">⬇</div>
+  <div class="node"><b>Basis for opinion</b>: the statements are management's responsibility; the audit followed auditing standards to get reasonable assurance; items were checked on a <b>sample</b> basis.</div><div class="arrow">⬇</div>
+  <div class="node warn"><b>Critical audit matters</b>: e.g. (1) revenue from in-game purchases, which depends on estimating how long paying players stay; (2) whether the loss-making online shop's assets are impaired, which depends on forecasts.</div><div class="arrow">⬇</div>
+  <div class="node">Auditor's signature, city and date, and how long they have audited the company.</div>
 </div>
 <div class="table-wrap"><table>
-<tr><th></th><th>Key Audit Matters (international, ISA 701)</th><th>Critical Audit Matters (US, AS 3101)</th></tr>
-<tr><td>What</td><td>Issues the auditor considers most important: higher risk of misstatement, significant management judgment, significant transactions</td><td>Issues involving “especially challenging, subjective, or complex auditor judgment”</td></tr>
-<tr><td>Effect on opinion</td><td colspan="2">None. They are not separate opinions, and they are not necessarily the most important factors for analysts.</td></tr>
+<tr><th></th><th>Key audit matters (international standards)</th><th>Critical audit matters (US standards)</th></tr>
+<tr><td>What they are</td><td>The areas the auditor judged most significant: higher risk of error, heavy management judgment, big transactions</td><td>Areas that needed especially difficult, subjective or complex judgment by the auditor</td></tr>
+<tr><td>Effect on the opinion</td><td colspan="2">None. They are not separate opinions, and they are not necessarily what matters most to an analyst, but they point to where the numbers are softest.</td></tr>
 </table></div>`
         },
         {
@@ -803,28 +784,25 @@ For profit, use the <b>absolute value</b> of the segment's profit or loss, compa
       ],
       quiz: [
         {
-          src: "CFA practice problem 12",
-          q: "What type of audit opinion is preferred when analyzing financial statements?",
-          opts: ["Adverse", "Qualified", "Unqualified"],
+          q: "You are comparing two companies. Which audit opinion should give you the most comfort about the reported numbers?",
+          opts: ["An adverse opinion","A qualified opinion","An unqualified (clean) opinion"],
           ans: 2,
-          hint: "Which opinion has no exceptions or reservations?",
-          why: "An <b>unqualified</b> (clean, unmodified) opinion says the statements are fairly presented under the applicable standards. Qualified (B) has an exception. Adverse (A) says they are not fairly presented."
+          hint: "Which opinion contains no exceptions?",
+          why: "An <b>unqualified</b> opinion says the statements are fairly presented with no exceptions. A qualified opinion (B) has an exception; an adverse opinion (A) says the statements are not fairly presented."
         },
         {
-          src: "CFA practice problem 13",
-          q: "An auditor determines that a company’s financial statements are prepared in accordance with applicable accounting standards except with respect to inventory reporting. This exception is most likely to result in an audit opinion that is:",
-          opts: ["adverse.", "qualified.", "unqualified."],
+          q: "An auditor finds a retailer's statements fairly presented in every respect except the way it measures its lease liabilities, which does not follow the standards. The opinion is most likely:",
+          opts: ["adverse","qualified","unqualified"],
           ans: 1,
-          hint: "One item is wrong; the rest is fine.",
-          why: "A specific exception to standards gives a <b>qualified</b> opinion, with the exception explained in extra paragraphs. Adverse (A) is for statements that materially depart from standards as a whole. Unqualified (C) would need no exceptions."
+          hint: "One area is wrong; the rest is fine.",
+          why: "One specific departure from the standards gives a <b>qualified</b> (“except for”) opinion. Adverse (A) is for statements that are not fairly presented overall. Unqualified (C) allows no exceptions."
         },
         {
-          src: "CFA practice problem 14",
-          q: "An independent audit report is most likely to provide:",
-          opts: ["absolute assurance about the accuracy of the financial statements.", "reasonable assurance that the financial statements are fairly presented.", "a qualified opinion with respect to the transparency of the financial statements."],
+          q: "What can an investor reasonably conclude from a clean audit opinion?",
+          opts: ["The statements are guaranteed to contain no errors or fraud","There is reasonable assurance that the statements are fairly presented in all material respects","The auditor has confirmed that management's strategy is sound"],
           ans: 1,
-          hint: "Audits use sampling, and many items are estimates.",
-          why: "The audit provides <b>reasonable assurance</b> that the statements are fairly presented. Absolute assurance (A) is impossible with sampling and estimates. C invents a “transparency” qualification; a qualified opinion is about exceptions to standards or scope."
+          hint: "Auditors test samples, and many numbers are estimates.",
+          why: "An audit gives <b>reasonable</b>, not absolute, assurance (A is wrong). It is about <b>fair presentation</b> of the statements, not the quality of the strategy (C)."
         },
         {
           q: "An auditor is unable to obtain sufficient evidence because the company’s accounting records for the year were destroyed. The auditor is most likely to issue:",
@@ -867,9 +845,8 @@ For profit, use the <b>absolute value</b> of the segment's profit or loss, compa
 <div class="callout analogy"><span class="label">Analogy: principles vs rules</span>“Drive at a safe speed for the conditions” is a <b>principle</b> (IFRS): it needs judgment. “Maximum 50 km/h” is a <b>rule</b> (US GAAP): it is precise, but needs many detailed rules to cover every case.</div>`
         },
         {
-          title: "Curriculum Exhibit 6, redrawn: selected differences",
+          title: "Selected differences between US GAAP and IFRS",
           html: `
-<span class="exhibit-tag">Matches curriculum Exhibit 6</span>
 <div class="table-wrap"><table>
 <tr><th>Basis</th><th>US GAAP</th><th>IFRS</th></tr>
 <tr><td>Developed by</td><td>FASB</td><td>IASB</td></tr>
@@ -911,10 +888,10 @@ For profit, use the <b>absolute value</b> of the segment's profit or loss, compa
 <p>Volunteer members sit on liaison committees that advise the IASB and FASB and write comment letters. Its 2007 position paper, <i>A Comprehensive Business Reporting Model</i>, says investors need timeliness, transparency, comparability and consistency, prefer <b>decision relevance over reliability</b>, and stresses <b>fair values</b>, <b>neutrality</b>, and the <b>direct format</b> for the cash flow statement.</p>`
         },
         {
-          title: "Note on your FSA notes (Pareto)",
+          title: "Gaps to watch in study notes",
           html: `
 <div class="callout fix"><span class="label">Gap, not an error</span>
-The Pareto notes' IFRS vs US GAAP table includes “revaluation of assets” (true in general, but not in this module's Exhibit 6) and leaves out two differences this module does list: <b>interest paid</b> classification and <b>reversal of inventory write-downs</b>. ✅ Learn all six rows of Exhibit 6 above.</div>`
+Some summary tables of IFRS vs US GAAP add “revaluation of assets” (true, but covered in a later module) and leave out two rows that matter here: where <b>interest paid</b> goes in the cash flow statement, and whether <b>inventory write-downs can be reversed</b>. Learn all six rows of the table above.</div>`
         }
       ],
       traps: [
@@ -960,10 +937,10 @@ The Pareto notes' IFRS vs US GAAP table includes “revaluation of assets” (tr
           opts: ["actions of accounting standard setters", "business journals and capital markets", "company management discussions about the transaction’s purpose"],
           ans: 0,
           hint: "Who reacts to new products only after a delay?",
-          why: "Standard setters and regulators <b>lag</b> new product development, so they are unlikely to help identify new products early. Business journals and markets (B) and management (C) are the curriculum's suggested sources."
+          why: "Standard setters and regulators <b>lag</b> new product development, so they are unlikely to help identify new products early. Business journals and markets (B) and management (C) are useful sources."
         },
         {
-          q: "According to the curriculum, an analyst monitors developments in financial reporting standards mainly in order to:",
+          q: "An analyst monitors developments in financial reporting standards mainly in order to:",
           opts: ["understand how the changes will affect financial reports and therefore analysis and valuation","prepare the company’s financial statements correctly","lobby standard setters to reduce disclosure requirements"],
           ans: 0,
           hint: "Preparer’s view vs user’s view.",
@@ -985,7 +962,7 @@ The Pareto notes' IFRS vs US GAAP table includes “revaluation of assets” (tr
         {
           title: "The idea in plain words",
           html: `
-<p>The annual and interim reports are the core, but they are written by the company about the company, and only a few times a year. To put the numbers in context (the economy, the industry, the competitors) and to judge the future, analysts use many other sources. The curriculum sorts them by <b>who produces the information</b>.</p>
+<p>The annual and interim reports are the core, but they are written by the company about the company, and only a few times a year. To put the numbers in context (the economy, the industry, the competitors) and to judge the future, analysts use many other sources. It helps to sort them by <b>who produces the information</b>.</p>
 <figure class="diagram">
 <div class="tiles">
   <div class="tile"><h4>1. Issuer sources</h4><ul><li><b>Earnings calls</b> (webcast Q&amp;A on results; not legally required)</li><li>Presentations and events, e.g. <b>investor days</b></li><li><b>Press releases</b></li><li>Speaking with management, investor relations, other staff</li><li>Company website; visiting stores or sites as a customer</li></ul></div>
@@ -1043,12 +1020,11 @@ The Pareto notes' IFRS vs US GAAP table includes “revaluation of assets” (tr
       ],
       quiz: [
         {
-          src: "CFA practice problem 16",
-          q: "Which of the following sources of information used by analysts is found outside a company’s annual report?",
-          opts: ["Auditor’s report", "Peer company analysis", "Management discussion and analysis"],
+          q: "Which information would an analyst have to get from outside the company's annual report?",
+          opts: ["The independent auditor's opinion","How the company's margins and growth compare with its competitors'","Management's discussion of the year's results"],
           ans: 1,
-          hint: "Which one does the company itself not publish about itself?",
-          why: "<b>Peer company analysis</b> comes from outside the company. The auditor's report (A) and MD&amp;A (C) are both part of the annual report."
+          hint: "Which item is about other companies?",
+          why: "<b>Comparison with peers</b> needs information from outside the company. The auditor's report (A) and MD&amp;A (C) are both inside the annual report."
         },
         {
           q: "An analyst reads a report from a credit rating agency, available through a paid subscription, about a company’s bonds. This is best classified as a:",
@@ -1079,7 +1055,7 @@ The Pareto notes' IFRS vs US GAAP table includes “revaluation of assets” (tr
           why: "Economic and industry indicators from governments are <b>public third-party</b> sources. The supermarket didn't produce them (B), and the analyst didn't collect them (C)."
         },
         {
-          q: "According to the curriculum, information from sources other than the company being analysed is best described as:",
+          q: "Information from sources other than the company being analysed is best described as:",
           opts: ["optional, because audited financial statements already contain everything needed", "useful only for credit analysts, not equity analysts", "in most cases crucial to an analyst’s effectiveness"],
           ans: 2,
           hint: "Can you judge performance without the economy, industry and peers?",
@@ -1104,12 +1080,11 @@ The Pareto notes' IFRS vs US GAAP table includes “revaluation of assets” (tr
     },
     {
       lesson: 1,
-      src: "CFA practice problem 4",
-      q: "The primary role of financial statement analysis is best described as:",
-      opts: ["providing information useful for making investment decisions.", "evaluating a company for the purpose of making economic decisions.", "using financial reports prepared by analysts to make economic decisions."],
+      q: "Which sentence best states the main role of financial statement analysis?",
+      opts: ["Publishing information that investors use when buying shares","Evaluating a company, using the reports it prepares and other information, to make economic decisions","Preparing financial reports on behalf of companies"],
       ans: 1,
-      hint: "Who prepares the reports? Is “investment” alone wide enough?",
-      why: "Analysis <b>evaluates</b> a company using reports prepared by companies, for investment, credit and other <b>economic decisions</b>. A is reporting's role and too narrow. C names the wrong preparer."
+      hint: "Who prepares, who evaluates, and for which decisions?",
+      why: "Analysis <b>evaluates</b> a company, using reports the <b>company</b> prepared, for investment, credit and other <b>economic decisions</b>. A describes reporting; C gets the preparer wrong."
     },
     {
       lesson: 2,
@@ -1121,12 +1096,11 @@ The Pareto notes' IFRS vs US GAAP table includes “revaluation of assets” (tr
     },
     {
       lesson: 3,
-      src: "CFA practice problem 7",
-      q: "A core objective of the International Organization of Securities Commissions is to:",
-      opts: ["eliminate systemic risk.", "protect users of financial statements.", "ensure that markets are fair, efficient, and transparent."],
+      q: "A speaker says IOSCO's goal is to “eliminate systemic risk”. What is wrong with this?",
+      opts: ["Nothing, it is correct","IOSCO has no objective about systemic risk","IOSCO's objective is to reduce systemic risk, not eliminate it"],
       ans: 2,
-      hint: "Each wrong option changes one word of a real objective.",
-      why: "IOSCO aims to protect <b>investors</b>, ensure markets are <b>fair, efficient and transparent</b>, and <b>reduce</b> systemic risk. A says eliminate; B says users of financial statements."
+      hint: "Can any body make risk disappear completely?",
+      why: "One of IOSCO's three core objectives is to <b>reduce</b> systemic risk. B is wrong: systemic risk is one of the three."
     },
     {
       lesson: 3,
@@ -1146,12 +1120,11 @@ The Pareto notes' IFRS vs US GAAP table includes “revaluation of assets” (tr
     },
     {
       lesson: 4,
-      src: "CFA practice problem 15",
-      q: "Interim financial reports released by a company are most likely to be:",
-      opts: ["monthly.", "unaudited.", "unqualified."],
+      q: "Which statement about a US company's Form 10-Q is most accurate?",
+      opts: ["It is filed every month","It contains unaudited financial statements","It always carries a qualified audit opinion"],
       ans: 1,
-      hint: "10-Q: how often, and is it audited?",
-      why: "Interim reports are quarterly or semiannual and contain <b>unaudited</b> statements. A is the wrong frequency. C describes an audit opinion."
+      hint: "10-Q = the quarterly report.",
+      why: "The 10-Q is a <b>quarterly</b>, <b>unaudited</b> interim report. It is not monthly (A) and has no audit opinion at all (C)."
     },
     {
       lesson: 4,
@@ -1171,12 +1144,11 @@ The Pareto notes' IFRS vs US GAAP table includes “revaluation of assets” (tr
     },
     {
       lesson: 5,
-      src: "CFA practice problem 9",
-      q: "Accounting policies, methods, and estimates used in preparing financial statements are most likely to be found in the:",
-      opts: ["auditor’s report.", "management commentary.", "notes to the financial statements."],
+      q: "A company changed how it estimates bad debts. Where would the details of the new method most likely be?",
+      opts: ["The auditor's report","The earnings press release","The notes to the financial statements"],
       ans: 2,
-      hint: "Where is the “how each number was made” information?",
-      why: "The <b>notes</b> disclose accounting policies, methods and estimates. MD&amp;A (B) discusses <i>critical</i> policies; the auditor's report (A) gives an opinion."
+      hint: "Methods and estimates.",
+      why: "Accounting methods and estimates are disclosed in the <b>notes</b>. A press release (B) may mention the change but does not give the full method; the auditor's report (A) gives an opinion."
     },
     {
       lesson: 5,
@@ -1188,12 +1160,11 @@ The Pareto notes' IFRS vs US GAAP table includes “revaluation of assets” (tr
     },
     {
       lesson: 6,
-      src: "CFA practice problem 13",
-      q: "An auditor determines that a company’s financial statements are prepared in accordance with applicable accounting standards except with respect to inventory reporting. This exception is most likely to result in an audit opinion that is:",
-      opts: ["adverse.", "qualified.", "unqualified."],
+      q: "An auditor writes that the statements are fairly presented “except for” the accounting for one subsidiary. This is:",
+      opts: ["an adverse opinion","a qualified opinion","an unqualified opinion"],
       ans: 1,
-      hint: "“Except for” one item.",
-      why: "A specific exception gives a <b>qualified</b> opinion. Adverse (A) is for statements that are not fairly presented as a whole. Unqualified (C) has no exceptions."
+      hint: "“Except for” is the signal.",
+      why: "“Except for” wording marks a <b>qualified</b> opinion. Adverse (A) means not fairly presented overall; unqualified (C) has no exceptions."
     },
     {
       lesson: 6,
