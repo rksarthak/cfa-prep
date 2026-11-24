@@ -212,7 +212,7 @@ Financial statement analysis takes the reports a <b>company has prepared</b>, ad
 <p>Statement data alone can be enough for a simple screen (e.g. “find all companies with sales growth above 10%”). Explaining <i>why</i> one company did better than another needs more information.</p>
 <h3>Step 3 – Processing includes comparability</h3>
 <p>Before comparing companies, understand what makes them hard to compare: business models, operating decisions (leasing vs buying assets), accounting policies (when revenue is recognised) and tax jurisdictions. Make adjustments where needed. Databases do <b>not</b> always make these adjustments for you.</p>
-<h3>Step 5 – Communicating, CFA Standard V(B)</h3>
+<h3>Step 5 – Communicating, Standard V(B) of the CFA Institute Standards of Professional Conduct</h3>
 <p>A typical equity report: summary and conclusion; industry and competitive analysis; financial model (perhaps several scenarios); valuation; investment risks. Standard V(B) requires you to communicate the factors behind the recommendation, to <b>distinguish facts from opinions</b>, and to disclose limitations and risks.</p>
 <h3>Step 6 – It never really ends</h3>
 <p>Follow-up applies even when the investment was <b>rejected</b>: if the price or business conditions change, the analysis may be repeated.</p>`

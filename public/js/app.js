@@ -1,4 +1,4 @@
-/* CFA Level I Prep – single-page app with hash routing. No build step, no dependencies. */
+/* FinPrepCamp (study notes for CFA® Program Level I) – single-page app with hash routing. No build step, no dependencies. */
 (function () {
   "use strict";
 
@@ -64,7 +64,7 @@
   }
   function render(html, title) {
     app.innerHTML = html;
-    document.title = (title ? title + " · " : "") + "CFA Level I Prep";
+    document.title = (title ? title + " · " : "") + ((window.CFA_CONFIG && CFA_CONFIG.brandName) || "FinPrepCamp");
     window.scrollTo(0, 0);
   }
   function moduleProgress(sid, mod) {
@@ -91,8 +91,8 @@
         : '<div class="subject locked" aria-disabled="true">' + inner + "</div>";
     }).join("");
     render(
-      '<section class="hero"><h1>CFA Level I, one idea at a time</h1>' +
-      "<p>Each subject is split into the curriculum's learning modules. Each module is a short series of lessons: the idea in plain words, a small worked example, a diagram, the exam traps, then a quiz. Every module ends with a mixed module quiz.</p></section>" +
+      '<section class="hero"><h1>CFA<sup>®</sup> Program Level I, one idea at a time</h1>' +
+      "<p>Each subject follows the learning modules of the CFA Program curriculum, explained in our own words with original examples and questions. These notes complement the curriculum issued by CFA Institute; they do not replace it. Each module is a short series of lessons: the idea in plain words, a small worked example, a diagram, the exam traps, then a quiz. Every module ends with a mixed module quiz.</p></section>" +
       '<div class="grid">' + cards + "</div>"
     );
   }
@@ -199,7 +199,7 @@
         var qr = upi.qrImage
           ? '<img class="qr" src="' + esc(upi.qrImage) + '" alt="UPI QR code to pay ₹' + PRICE + '">'
           : '<div class="qr placeholder">QR code<br><span class="small">added soon</span></div>';
-        var upiLink = upi.id ? "upi://pay?pa=" + encodeURIComponent(upi.id) + "&pn=" + encodeURIComponent(upi.payeeName || "CFA Level I Prep") +
+        var upiLink = upi.id ? "upi://pay?pa=" + encodeURIComponent(upi.id) + "&pn=" + encodeURIComponent(upi.payeeName || CONF.brandName || "FinPrepCamp") +
           "&am=" + PRICE + "&cu=INR&tn=" + encodeURIComponent(s.name) : "";
         body = (Account.enabled ? "" : '<div class="callout key"><span class="label">Preview</span>Payments switch on once accounts are connected (see SETUP.md).</div>') +
           '<div class="pay-card"><h2>Step 1: Pay ₹' + PRICE + ' with UPI</h2><div class="pay-row">' + qr +
@@ -255,11 +255,11 @@
       '<span class="right">' + (mq ? "Best " + mq.best + "/" + mq.total : "Take it after the lessons") + "</span></a>";
     var pct = Math.round((pr.done / pr.total) * 100);
     render(
-      '<div class="lesson-head"><span class="kicker">' + esc(s.name) + " · Learning Module " + num + "</span><h1>" + esc(mod.title) + "</h1>" +
+      '<div class="lesson-head"><span class="kicker">' + esc(s.name) + " · Module " + num + "</span><h1>" + esc(mod.title) + "</h1>" +
       "<p>" + mod.intro + "</p>" +
       '<div class="progress" aria-label="Lessons completed"><span style="width:' + pct + '%"></span></div>' +
       '<span class="small muted">' + pr.done + " of " + pr.total + " lesson quizzes done</span></div>" +
-      '<div class="los"><b>Learning outcomes.</b> The candidate should be able to:<ul>' +
+      '<div class="los"><b>What you will learn.</b> By the end of this module you should be able to:<ul>' +
       mod.los.map(function (x) { return "<li>" + esc(x) + "</li>"; }).join("") + "</ul></div>" +
       '<div class="list">' + rows + "</div>", mod.title
     );
@@ -294,7 +294,7 @@
 
     render(
       '<div class="lesson-head"><span class="kicker">Module ' + num + " · Lesson " + idx + " of " + mod.lessons.length + "</span><h1>" + esc(lesson.title) + "</h1>" +
-      '<div class="los"><b>LOS covered:</b> ' + lesson.los.map(function (i) { return esc(mod.los[i]); }).join("; ") + "</div>" +
+      '<div class="los"><b>Covers:</b> ' + lesson.los.map(function (i) { return esc(mod.los[i]); }).join("; ") + "</div>" +
       '<nav class="toc" aria-label="On this page">' + toc + "</nav></div>" +
       body +
       '<div id="sec-quiz"></div>' +
@@ -514,7 +514,7 @@
       '<nav class="toc"><a href="#/admin/pending"' + (filter === "pending" ? ' class="on"' : "") + '>Pending</a><a href="#/admin/all"' + (filter === "all" ? ' class="on"' : "") + ">All</a></nav>" +
       '<div id="admintable"><p class="muted">Loading…</p></div>', "Admin");
     var box = document.getElementById("admintable");
-    var label = { pending: "Pending", paid: "Approved", rejected: "Rejected" };
+    var label = { pending: "Pending", paid: "Unlocked", rejected: "Rejected" };
     function load() {
       Account.adminList().then(function (rows) {
         var list = (rows || []).filter(function (r) { return filter === "all" || r.status === "pending"; });

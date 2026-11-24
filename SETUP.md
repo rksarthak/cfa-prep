@@ -51,7 +51,7 @@ On by default (**Authentication → Providers → Email**). **Current choice (24
 2. Sign up at **resend.com** (free: 3,000 emails a month, 100 a day). **Domains → Add domain**, enter the domain (or a subdomain such as `mail.cfaprep.in`), and add the DNS records Resend lists at your domain registrar. Wait until Resend shows **Verified** (minutes to a few hours).
 3. Resend → **API Keys → Create API key** (permission: Sending access). Copy it; don't paste it anywhere else, including chats.
 4. Supabase → **Authentication → Emails → SMTP Settings** → turn on **Custom SMTP**:
-   - Sender email: `no-reply@yourdomain` · Sender name: `CFA Level I Prep`
+   - Sender email: `no-reply@yourdomain` · Sender name: `FinPrepCamp`
    - Host: `smtp.resend.com` · Port: `465` · Username: `resend` · Password: the Resend API key
 5. Save, then raise **Authentication → Rate Limits → emails sent per hour** (e.g. 100).
 6. Test: sign up with a new address and check the email arrives from your name and isn't in spam.
@@ -65,8 +65,8 @@ Brevo (300 emails a day free) works the same way if you prefer it; it also needs
 The sign-in page shows **Continue with Google** first, above the email form.
 
 **A. Google Cloud (console.cloud.google.com)**
-1. Top bar → project picker → **New project** (name: `CFA Level I Prep`) → Create, and make sure it is selected.
-2. **APIs & Services → OAuth consent screen** (newer console: **Google Auth Platform → Branding**). Get started: app name `CFA Level I Prep`, your support email, audience **External**, your contact email. Create.
+1. Top bar → project picker → **New project** (name: `FinPrepCamp`) → Create, and make sure it is selected.
+2. **APIs & Services → OAuth consent screen** (newer console: **Google Auth Platform → Branding**). Get started: app name `FinPrepCamp`, your support email, audience **External**, your contact email. Create.
 3. **Branding**: add the app domains if asked: home page `https://cfa-prep-0n6f.onrender.com`; authorised domain `onrender.com` is not allowed, so leave authorised domains empty for now (add your own domain later).
 4. **Audience** → **Publish app** (status "In production"). Basic sign-in (email, profile) needs no Google review. While it is still "Testing", only test users you list can sign in.
 5. **Clients** (or **Credentials → Create credentials → OAuth client ID**) → type **Web application**, name `Supabase`:

@@ -4,10 +4,10 @@ Four HTML emails in the site's style (blue "L1" mark, white card, one clear butt
 
 | File | Supabase template | Subject to use |
 |---|---|---|
-| `confirm-signup.html` | Confirm signup | Confirm your email for CFA Level I Prep |
-| `reset-password.html` | Reset Password | Reset your CFA Level I Prep password |
-| `magic-link.html` | Magic Link | Your CFA Level I Prep sign-in link |
-| `change-email.html` | Change Email Address | Confirm your new email for CFA Level I Prep |
+| `confirm-signup.html` | Confirm signup | Confirm your email for FinPrepCamp |
+| `reset-password.html` | Reset Password | Reset your FinPrepCamp password |
+| `magic-link.html` | Magic Link | Your FinPrepCamp sign-in link |
+| `change-email.html` | Change Email Address | Confirm your new email for FinPrepCamp |
 
 ## Paste them in (about 5 minutes)
 

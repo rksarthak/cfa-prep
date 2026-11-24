@@ -1,4 +1,4 @@
--- CFA Level I Prep: database setup.
+-- FinPrepCamp: database setup.
 -- Run once in Supabase: SQL Editor → New query → paste → Run.
 
 -- One row per student per quiz (lesson quiz or module quiz).

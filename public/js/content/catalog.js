@@ -1,5 +1,5 @@
 /*
- * Catalogue of CFA Level I subjects and their learning modules.
+ * Catalogue of CFA® Program Level I subjects and their learning modules.
  * A module is "live" when a content file registers it with CFA.registerModule(...).
  * To add a module: create js/content/<subject>/<file>.js, call CFA.registerModule,
  * and add a <script> tag for it in index.html.

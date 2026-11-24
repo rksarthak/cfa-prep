@@ -1,4 +1,4 @@
-# CFA Level I Prep – website
+# FinPrepCamp – study notes for CFA® Program Level I (website)
 
 A static website (plain HTML, CSS and JavaScript). No build step and no server code.
 Student sign-in, saved progress and subject purchases (₹399 via UPI QR, approved by an admin) use Supabase; see **SETUP.md** to switch them on.

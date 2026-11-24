@@ -76,6 +76,8 @@ p { margin: .6em 0; }
 .crumbs a:hover { color: var(--accent); }
 .crumbs .sep { opacity: .5; }
 .foot { text-align: center; color: var(--muted); font-size: .82rem; padding: 20px; border-top: 1px solid var(--line); }
+.foot p { margin: 0 auto 8px; max-width: 760px; }
+.foot .legal { font-size: .74rem; line-height: 1.5; }
 
 /* ---------- Home: subject cards ---------- */
 .hero { padding: 10px 0 8px; }
