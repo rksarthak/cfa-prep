@@ -164,6 +164,10 @@
         mod.lessons.length + " lessons + module quiz · " + pr.done + "/" + pr.total + " done</span></span>" +
         '<span class="right">' + tag + "</span></a>";
     }).join("");
+    // Every subject ends with a full subject test (first 10 questions free). Shown as coming soon until it is built.
+    rows += '<div class="row locked subject-test-row"><span class="num">✓</span><span class="body"><span class="title">' + esc(s.name) +
+      ' subject test</span><span class="sub">Coming soon · a full test across every module, all new questions · first 10 questions free</span></span>' +
+      '<span class="right"><span class="badge">10 free</span></span></div>';
     render(
       '<div class="lesson-head"><span class="kicker">Subject</span><h1>' + s.icon + " " + esc(s.name) + "</h1>" +
       '<p class="muted">' + esc(s.blurb) + "</p></div>" + subjectBanner(s) +
