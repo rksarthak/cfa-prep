@@ -1240,27 +1240,27 @@ Some summary tables of IFRS vs US GAAP add “revaluation of assets” (true, bu
     },
     {
       lesson: 1,
-      q: "Which statement best describes the main purpose of financial statement analysis?",
+      q: "Which user is most likely to focus on whether a company can repay what it owes over the next twelve months, rather than on its long-term growth?",
       opts: [
-        "To use a company's reported information, along with other data, to make economic decisions such as investing or lending",
-        "To check that the company's bookkeeping entries are arithmetically correct",
-        "To decide which accounting standards the company should adopt"
+        "A bank deciding on a one-year working capital loan",
+        "An investor buying shares to hold for ten years",
+        "A competitor studying the company's product strategy"
       ],
       ans: 0,
-      hint: "Think about who does the analysis and what they want out of it.",
-      why: "Analysts use financial reports and other information to judge past performance, current position and future prospects, so they can make <b>decisions</b> such as buying a share or extending credit. Checking bookkeeping (B) is the job of accountants and auditors. Choosing standards (C) is for standard setters and management, not analysts."
+      hint: "Whose money comes back within the year, and who only cares about getting it back?",
+      why: "A short-term <b>lender</b> mainly wants to know that the company can pay interest and principal on time, so it focuses on liquidity and near-term cash flow. A long-term equity investor (B) cares more about growth and value. A competitor (C) is not judging repayment at all."
     },
     {
       lesson: 2,
-      q: "Nadia has gathered three years of statements for a retailer and has already built common-size statements and ratios. Under the six-step framework, her next step is to:",
+      q: "In which step of the framework would an analyst adjust a company's statements, for example to put two competitors on the same accounting basis before comparing them?",
       opts: [
-        "collect more input data",
-        "analyse and interpret the processed data",
-        "state the purpose of the analysis"
+        "Collecting input data",
+        "Processing the data",
+        "Following up"
       ],
       ans: 1,
-      hint: "Processing the data turns raw numbers into ratios and charts. What comes after that?",
-      why: "The order is: purpose and context, collect data, process data, <b>analyse and interpret</b>, report conclusions, follow up. Ratios and common-size statements are the output of processing, so interpretation comes next. A and C belong to earlier steps."
+      hint: "Adjustments, common-size statements and ratios all turn raw data into something usable.",
+      why: "<b>Processing the data</b> covers adjusting the statements, preparing common-size statements, calculating ratios and building forecasts. Collecting data (A) comes before, and follow-up (C) is the final step after conclusions are reported."
     },
     {
       lesson: 2,
@@ -1348,15 +1348,15 @@ Some summary tables of IFRS vs US GAAP add “revaluation of assets” (true, bu
     },
     {
       lesson: 6,
-      q: "An auditor states that the statements are fairly presented except for the way inventory is valued, which does not follow the applicable standards. This is:",
+      q: "For a large listed US company, the auditor also gives an opinion on:",
       opts: [
-        "an adverse opinion",
-        "a qualified opinion",
-        "a disclaimer of opinion"
+        "the pay of the chief executive",
+        "the company's internal control over financial reporting",
+        "whether the share price is fair"
       ],
       ans: 1,
-      hint: "The words 'except for' are the clue.",
-      why: "An opinion that is fair <b>except for</b> one specific departure from standards is a <b>qualified</b> opinion. An adverse opinion (A) says the statements as a whole are not fairly presented. A disclaimer (C) means the auditor could not form an opinion at all."
+      hint: "What does the auditor test besides the statements themselves?",
+      why: "US rules require the auditor of a large listed company to report on the effectiveness of <b>internal control over financial reporting</b>. Auditors do not judge executive pay (A) or the share price (C)."
     },
     {
       lesson: 6,

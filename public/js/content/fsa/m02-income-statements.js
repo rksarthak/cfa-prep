@@ -1454,28 +1454,28 @@ CFA.registerModule("fsa", {
       why: "Licence share = 1,200 × 1,000/1,500 = $800, all earned on delivery. Support share = 1,200 × 500/1,500 = $400, earned evenly over two years, so $200 in year 1. Total = <b>$1,000</b>. A recognises everything at once. C forgets the support earned in year 1."
     },
     {
-      lesson: 2,
-      q: "A travel website sells a $500 airline ticket and keeps a $40 commission. The airline sets the price and bears the risk if the flight is cancelled. The website should report revenue of:",
+      lesson: 1,
+      q: "A fitness equipment maker sells a treadmill together with a three-year service plan that customers can also buy on its own. The service plan is:",
       opts: [
-        "$40",
-        "$460",
-        "$500"
+        "a separate performance obligation, recognised as revenue over the three years",
+        "part of the treadmill sale, recognised on delivery",
+        "recognised as revenue only when the customer makes a service claim"
       ],
       ans: 0,
-      hint: "Is the website acting for itself or for the airline?",
-      why: "The website does not control the ticket before it is sold, so it is an <b>agent</b> and reports revenue <b>net</b>: the $40 commission. $500 (C) would be correct only for a principal. $460 (B) is the amount passed on to the airline."
+      hint: "Can the customer benefit from the plan separately, and when is the service provided?",
+      why: "Because the plan is sold separately and is distinct, it is a <b>separate performance obligation</b>. Part of the price is allocated to it and recognised <b>over the three years</b> as the service is provided. B lumps it into the treadmill sale. C ignores that the company stands ready to service throughout."
     },
     {
       lesson: 2,
-      q: "Halden Build signs a $10 m contract and expects total costs of $8 m. It recognises revenue over time based on costs incurred. In year 1 it incurs $2 m of costs. Year 1 revenue is:",
+      q: "Rowan Data sells a three-year licence for $3 m, paid up front. The licence gives access to software that Rowan keeps running and updating throughout the three years. Revenue in year 1 is:",
       opts: [
-        "$2.0 m",
-        "$10.0 m",
-        "$2.5 m"
+        "$3 m",
+        "$0",
+        "$1 m"
       ],
       ans: 2,
-      hint: "What fraction of total expected cost has been incurred?",
-      why: "Progress = 2/8 = 25%. Revenue = 25% × $10 m = <b>$2.5 m</b>, giving a profit of $0.5 m. A records revenue equal to cost (no profit). B recognises the whole contract at once."
+      hint: "Is the customer getting a right to use the software as delivered, or ongoing access?",
+      why: "Ongoing access to software the provider keeps updating is a <b>right to access</b>, so revenue is recognised <b>over time</b>: $3 m / 3 = <b>$1 m</b> a year. A would fit a right to use software as delivered. B ignores the service already provided."
     },
     {
       lesson: 3,
@@ -1491,15 +1491,15 @@ CFA.registerModule("fsa", {
     },
     {
       lesson: 3,
-      q: "Over the whole life of an asset, capitalising a cost rather than expensing it immediately results in:",
+      q: "Compared with expensing a cost immediately, capitalising it as an asset makes year 1 cash flow from operations:",
       opts: [
-        "a higher total expense",
-        "the same total expense, with more profit in early years and less in later years",
-        "a lower total expense"
+        "lower, because depreciation is a cash cost",
+        "higher, because the payment is shown in investing activities instead",
+        "exactly the same, because the cash paid is the same"
       ],
       ans: 1,
-      hint: "The cost does not disappear; it is only spread out.",
-      why: "Capitalising <b>spreads</b> the same cost over the asset's life through depreciation. Total expense is unchanged, but early profits are higher and later profits are lower than if the cost had been expensed at once."
+      hint: "Total cash paid is the same, but which section of the cash flow statement holds it?",
+      why: "A capitalised cost is paid in <b>investing activities</b>, so <b>operating cash flow is higher</b> than if it were expensed. Total cash is unchanged, which is why C is a trap. Depreciation is non-cash (A)."
     },
     {
       lesson: 4,
@@ -1527,15 +1527,15 @@ CFA.registerModule("fsa", {
     },
     {
       lesson: 5,
-      q: "A company sold a business unit during the year and reports it as a discontinued operation. To forecast next year's earnings, an analyst should usually:",
+      q: "A company has reported a 'one-off' restructuring charge in four of the last five years. For forecasting, the analyst should most likely:",
       opts: [
-        "include the unit's profit because it was profitable this year",
-        "add back the loss on disposal to income from continuing operations",
-        "focus on income from continuing operations"
+        "ignore the charges because management labels them non-recurring",
+        "move the charges into discontinued operations",
+        "treat the charges as at least partly recurring and include them in forecasts"
       ],
       ans: 2,
-      hint: "Will the unit produce earnings next year?",
-      why: "Discontinued operations will <b>not continue</b>, so the forecast should start from <b>income from continuing operations</b>. A includes earnings that will not recur. B mixes a discontinued item into continuing results."
+      hint: "How 'one-off' is something that happens almost every year?",
+      why: "Charges that come back year after year are part of how the company actually runs, so the analyst should treat them as <b>largely recurring</b>. A trusts management's label. B is wrong because restructuring is part of continuing operations."
     },
     {
       lesson: 5,
@@ -1563,15 +1563,15 @@ CFA.registerModule("fsa", {
     },
     {
       lesson: 6,
-      q: "A company had 1.2 m shares outstanding all year and did a 2-for-1 stock split on 1 November. The weighted average number of shares for the year's EPS is:",
+      q: "Linden Co had 2.0 m shares outstanding all year and paid a 10% stock dividend on 1 September. Net income was $4.4 m and there are no preferred shares. Basic EPS is:",
       opts: [
-        "2.4 m",
-        "1.4 m",
-        "1.2 m"
+        "$2.00",
+        "$2.13",
+        "$2.20"
       ],
       ans: 0,
-      hint: "Stock splits are applied as if they happened at the start of the period.",
-      why: "A split is applied <b>retroactively</b> to the start of the year, so all 1.2 m shares become 2.4 m for the whole year: <b>2.4 m</b>. B wrongly time-weights the split. C ignores it."
+      hint: "Stock dividends, like splits, are applied as if they happened at the start of the year.",
+      why: "The 10% stock dividend adds 0.2 m shares, applied <b>retroactively</b>: 2.2 m shares for the whole year. EPS = 4.4 / 2.2 = <b>$2.00</b>. B time-weights the new shares from September. C ignores the stock dividend."
     },
     {
       lesson: 7,
@@ -1587,15 +1587,15 @@ CFA.registerModule("fsa", {
     },
     {
       lesson: 7,
-      q: "A company has 100,000 options with an exercise price of $20. The average share price for the year was $25. Using the treasury stock method, how many extra shares are added to the diluted share count?",
+      q: "A company reports a net loss for the year. It has in-the-money stock options outstanding. Its diluted EPS will:",
       opts: [
-        "20,000",
-        "100,000",
-        "80,000"
+        "equal basic EPS",
+        "show a smaller loss per share than basic EPS",
+        "show a larger loss per share than basic EPS"
       ],
       ans: 0,
-      hint: "The exercise cash is assumed to buy back shares at the average price.",
-      why: "Cash from exercise = 100,000 × $20 = $2,000,000, which buys back 2,000,000 / 25 = 80,000 shares. Net new shares = 100,000 − 80,000 = <b>20,000</b>. B ignores the buyback. C is the number bought back."
+      hint: "What happens to a loss per share if you add more shares to the denominator?",
+      why: "With a loss, adding shares makes the loss per share <b>smaller</b>, which is <b>antidilutive</b>, so the options are left out and diluted EPS <b>equals basic EPS</b>. B is the antidilutive result the rules forbid. C cannot happen from adding shares."
     },
     {
       lesson: 8,
