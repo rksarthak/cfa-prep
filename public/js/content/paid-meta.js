@@ -683,5 +683,185 @@ CFA.paidMeta = {
    }
   ],
   "moduleQuiz": 36
+ },
+ "pm/3": {
+  "title": "Portfolio Management: An Overview",
+  "lessons": [
+   {
+    "id": "l1",
+    "title": "The portfolio approach: don't put all your eggs in one basket",
+    "summary": "Judging each investment by what it adds to the whole portfolio; the diversification ratio; risk falls more than return; why diversification gives less protection in crises; the roots of modern portfolio theory.",
+    "questions": 9
+   },
+   {
+    "id": "l2",
+    "title": "The portfolio management process: plan, execute, give feedback",
+    "summary": "Planning (client needs, IPS); execution (asset allocation, security analysis, portfolio construction; top-down vs bottom-up); feedback (monitoring and rebalancing, performance measurement and reporting).",
+    "questions": 9
+   },
+   {
+    "id": "l3",
+    "title": "Who invests: individuals and institutions",
+    "summary": "Individual investors; endowments and foundations (perpetual horizon, spending rules); banks; insurers (life vs property and casualty); investment companies; sovereign wealth funds; comparing horizon, risk tolerance, income and liquidity needs.",
+    "questions": 10
+   },
+   {
+    "id": "l4",
+    "title": "Pension plans: defined benefit vs defined contribution",
+    "summary": "Who promises what, who bears the investment risk, who decides how to invest; mature vs young DB plans; portability and longevity risk.",
+    "questions": 9
+   },
+   {
+    "id": "l5",
+    "title": "The asset management industry",
+    "summary": "Buy-side vs sell-side; active vs passive and smart beta; traditional vs alternative managers and their fees; full-service, specialist and multi-boutique firms; ownership; trends: passive growth, big data, robo-advisers.",
+    "questions": 10
+   },
+   {
+    "id": "l6",
+    "title": "Pooled products: mutual funds, ETFs and the rest",
+    "summary": "Open-end and closed-end funds and NAV; load and no-load; money market, bond, equity and hybrid funds; separately managed accounts; ETFs; hedge funds; buyout and venture capital funds.",
+    "questions": 10
+   }
+  ],
+  "moduleQuiz": 36
+ },
+ "pm/4": {
+  "title": "Basics of Portfolio Planning and Construction",
+  "lessons": [
+   {
+    "id": "l1",
+    "title": "The investment policy statement: why write it and what goes in it",
+    "summary": "The IPS as the plan and communication tool for investment success; built with the client after fact-finding; regular review; its typical sections and which ones sit in appendices.",
+    "questions": 9
+   },
+   {
+    "id": "l2",
+    "title": "Return and risk objectives",
+    "summary": "Absolute vs relative return and risk objectives; VaR and tracking error; liability-driven objectives; calculating a required return; keeping return and risk objectives consistent.",
+    "questions": 9
+   },
+   {
+    "id": "l3",
+    "title": "Ability vs willingness to take risk",
+    "summary": "Ability (capacity): objective, from horizon, wealth, income stability and needs. Willingness: subjective attitude, measured with questionnaires. What to do when they disagree.",
+    "questions": 9
+   },
+   {
+    "id": "l4",
+    "title": "The five constraints",
+    "summary": "Liquidity, time horizon (single or multi-stage), tax status, legal and regulatory factors, unique circumstances; internal vs external constraints; what each means for the choice of assets.",
+    "questions": 9
+   },
+   {
+    "id": "l5",
+    "title": "Asset classes and the strategic asset allocation",
+    "summary": "What makes a good asset class (homogeneous inside, distinct from others, driven by systematic factors); capital market expectations; SAA = IPS + capital market expectations; most return variation comes from the SAA.",
+    "questions": 9
+   },
+   {
+    "id": "l6",
+    "title": "Building the portfolio: risk budget, tactical allocation, security selection and rebalancing",
+    "summary": "Three sources of risk (SAA, tactical asset allocation, security selection); active vs passive and why security selection is zero-sum; drift, bandwidths and rebalancing; core–satellite.",
+    "questions": 9
+   },
+   {
+    "id": "l7",
+    "title": "Building ESG considerations into the plan",
+    "summary": "Responsible investing in the IPS; six approaches: negative screening, positive (best-in-class) screening, ESG integration, thematic investing, engagement/active ownership, impact investing; effects on the universe, benchmark and risk.",
+    "questions": 9
+   }
+  ],
+  "moduleQuiz": 36
+ },
+ "pm/5": {
+  "title": "The Behavioral Biases of Individuals",
+  "lessons": [
+   {
+    "id": "l1",
+    "title": "Cognitive errors vs emotional biases: moderate or adapt?",
+    "summary": "Why behaviour departs from rational models; cognitive errors (belief perseverance and information processing) vs emotional biases; moderating vs adapting.",
+    "questions": 9
+   },
+   {
+    "id": "l2",
+    "title": "Belief perseverance: conservatism, confirmation, representativeness, illusion of control, hindsight",
+    "summary": "Five ways people cling to what they already believe, with consequences and remedies for each.",
+    "questions": 10
+   },
+   {
+    "id": "l3",
+    "title": "Information processing: anchoring, mental accounting, framing, availability",
+    "summary": "Four ways information is used illogically, with consequences and remedies.",
+    "questions": 10
+   },
+   {
+    "id": "l4",
+    "title": "Emotional biases I: loss aversion and overconfidence",
+    "summary": "Loss aversion and the disposition effect; overconfidence (illusion of knowledge, self-attribution); consequences and remedies.",
+    "questions": 10
+   },
+   {
+    "id": "l5",
+    "title": "Emotional biases II: self-control, status quo, endowment, regret aversion",
+    "summary": "Four more emotional biases: lack of discipline for long-term goals, preferring no change, overvaluing what you own, avoiding decisions that might cause regret.",
+    "questions": 10
+   },
+   {
+    "id": "l6",
+    "title": "Biases and market behaviour: anomalies, momentum, bubbles, value and home bias",
+    "summary": "What counts as an anomaly and when an apparent one isn't; momentum (availability/recency, hindsight and regret); bubbles and crashes (overconfidence, confirmation, self-attribution, regret aversion, anchoring); value vs growth (halo effect, risk explanation); home bias.",
+    "questions": 10
+   }
+  ],
+  "moduleQuiz": 36
+ },
+ "pm/6": {
+  "title": "Introduction to Risk Management",
+  "lessons": [
+   {
+    "id": "l1",
+    "title": "What risk management is (and isn't)",
+    "summary": "Risk and risk exposure; risk management as defining tolerance and measuring, monitoring and modifying risks; controlling risk rather than returns; risk management for individuals.",
+    "questions": 8
+   },
+   {
+    "id": "l2",
+    "title": "The risk management framework",
+    "summary": "The seven elements: governance; identification and measurement; infrastructure; policies and processes; mitigation and management; communication; strategic analysis and integration.",
+    "questions": 9
+   },
+   {
+    "id": "l3",
+    "title": "Risk governance: board, committee and CRO",
+    "summary": "Top-down governance aligned with enterprise goals; enterprise risk management; the governing body's role; risk management committee; chief risk officer.",
+    "questions": 9
+   },
+   {
+    "id": "l4",
+    "title": "Risk tolerance and risk budgeting",
+    "summary": "Setting risk tolerance (inside view: goals, risk drivers, shortfalls; outside view: environment); what should and shouldn't affect it; risk budgeting by metric and allocation; sequence: tolerance → budget → exposures.",
+    "questions": 10
+   },
+   {
+    "id": "l5",
+    "title": "Sources of risk: financial, non-financial and how they interact",
+    "summary": "Financial risks (market, credit, liquidity); non-financial risks (settlement, legal, regulatory, accounting, tax, model, tail, operational, solvency); risks of individuals; risk interactions.",
+    "questions": 10
+   },
+   {
+    "id": "l6",
+    "title": "Measuring risk: from standard deviation to VaR and stress tests",
+    "summary": "Standard deviation, beta, duration; option sensitivities (delta, gamma, vega, rho); tail measures: VaR, CVaR; expected loss for credit; scenario analysis and stress tests.",
+    "questions": 10
+   },
+   {
+    "id": "l7",
+    "title": "Modifying risk: avoid, accept, transfer or shift",
+    "summary": "Prevention and avoidance; acceptance (self-insurance, reserves, diversification); risk transfer (insurance); risk shifting (derivatives); choosing by weighing costs and benefits against risk tolerance.",
+    "questions": 10
+   }
+  ],
+  "moduleQuiz": 35
  }
 };
