@@ -5,8 +5,8 @@
  * Leave both empty to run the site without sign-in (progress stays in the browser).
  */
 window.CFA_CONFIG = {
-  supabaseUrl: "",        // e.g. "https://abcdefghijkl.supabase.co"
-  supabaseAnonKey: "",    // the "anon public" key
+  supabaseUrl: "https://iiywhafsndhnjlboosre.supabase.co",        // e.g. "https://abcdefghijkl.supabase.co"
+  supabaseAnonKey: "sb_publishable_PZ6jhcCnrp3B_j6KbEvGcg_W82UMP6W",    // the "anon public" key
   googleLogin: true,      // show "Continue with Google" (turn on the Google provider in Supabase first)
 
   // Access and pricing
