@@ -196,14 +196,22 @@
         body = '<div class="callout trap"><span class="label">Payment being checked</span>We have your UPI transaction ID <b>' + esc(pend.reference || "") +
           "</b>. The subject unlocks as soon as the payment is confirmed. You don't need to pay again.</div>";
       } else {
-        var qr = upi.qrImage
+        // UPI link with the amount set: used for the QR code (scanning pre-fills the price) and the phone button.
+        var upiLink = upi.id ? "upi://pay?pa=" + encodeURIComponent(upi.id) + "&pn=" + encodeURIComponent(upi.payeeName || CONF.brandName || "FinPrepCamp") +
+          "&am=" + Number(PRICE).toFixed(2) + "&cu=INR&tn=" + encodeURIComponent(s.name) : "";
+        var qr = "";
+        if (upiLink && typeof window.qrcode === "function") {
+          try {
+            var code = window.qrcode(0, "M"); code.addData(upiLink); code.make();
+            qr = '<div class="qr qr-live" role="img" aria-label="UPI QR code to pay ₹' + PRICE + '">' + code.createSvgTag({ cellSize: 4, margin: 2, scalable: true }) + "</div>";
+          } catch (e) { qr = ""; }
+        }
+        if (!qr) qr = upi.qrImage
           ? '<img class="qr" src="' + esc(upi.qrImage) + '" alt="UPI QR code to pay ₹' + PRICE + '">'
           : '<div class="qr placeholder">QR code<br><span class="small">added soon</span></div>';
-        var upiLink = upi.id ? "upi://pay?pa=" + encodeURIComponent(upi.id) + "&pn=" + encodeURIComponent(upi.payeeName || CONF.brandName || "FinPrepCamp") +
-          "&am=" + PRICE + "&cu=INR&tn=" + encodeURIComponent(s.name) : "";
         body = (Account.enabled ? "" : '<div class="callout key"><span class="label">Preview</span>Payments switch on once accounts are connected (see SETUP.md).</div>') +
           '<div class="pay-card"><h2>Step 1: Pay ₹' + PRICE + ' with UPI</h2><div class="pay-row">' + qr +
-          '<div><p>Scan the QR code with any UPI app (Google Pay, PhonePe, Paytm, BHIM) and pay <b>₹' + PRICE + "</b>.</p>" +
+          '<div><p>Scan the QR code with any UPI app (Google Pay, PhonePe, Paytm, BHIM). The amount, <b>₹' + PRICE + "</b>, fills in by itself; please don't change it.</p>" +
           (upi.id ? '<p class="small">UPI ID: <b>' + esc(upi.id) + "</b>" + (upi.payeeName ? " · " + esc(upi.payeeName) : "") + "</p>" +
             '<a class="btn ghost mobile-only" href="' + esc(upiLink) + '">Open my UPI app</a>' : "") +
           '<p class="small muted">Add your email in the payment note if your app allows it.</p></div></div></div>' +
