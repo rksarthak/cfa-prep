@@ -204,7 +204,7 @@
     var upi = CONF.upi || {};
     var head = '<div class="buy-head"><span class="kicker">Unlock a subject</span><h1>' + s.icon + " " + esc(s.name) + "</h1>" +
       '<div class="price">₹' + PRICE + '<span> one-time</span></div>' +
-      '<ul class="ticks"><li>All ' + s.modules.length + " learning modules of " + esc(s.name) + " (" + built + " ready now, the rest added as they are written)</li>" +
+      '<ul class="ticks"><li>All ' + s.modules.length + " learning modules of " + esc(s.name) + (built >= s.modules.length ? "" : " (" + built + " ready now, the rest added as they are written)") + "</li>" +
       "<li>Every lesson, diagram, worked example and quiz</li><li>End-of-module quizzes, the full subject test and your saved progress</li>" +
       "<li>Each subject is bought separately: this unlocks " + esc(s.name) + " only</li></ul></div>";
     var body = "";
