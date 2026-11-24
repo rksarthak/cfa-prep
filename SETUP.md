@@ -43,7 +43,7 @@ Without this, confirmation emails, password-reset links and Google sign-in send 
 
 ## 5. Email sign-in
 
-On by default (**Authentication → Providers → Email**). Keep **Confirm email** on so students verify their address.
+On by default (**Authentication → Providers → Email**). **Current choice (24 Nov 2026): Confirm email is OFF**, so email sign-ups start studying at once and no email is needed (Supabase's built-in sender only manages a few per hour). Password-reset emails still use the built-in sender. Turn Confirm email back on once your own sender (below) is set up.
 
 **Your own sender (needed before real students sign up).** Supabase's built-in sender shows "Supabase Auth <noreply@mail.app.supabase.io>" and sends only a few emails per hour. Sending from your own address needs a domain you own (Gmail addresses can't be used as the sender through these services; mail would land in spam).
 
@@ -60,11 +60,26 @@ Brevo (300 emails a day free) works the same way if you prefer it; it also needs
 
 **Branded emails (after custom SMTP is on).** Supabase only lets you edit email subjects and bodies once custom SMTP is set up; before that, the editor shows "Set up custom SMTP to edit templates". Ready-made HTML emails in the site's style are in `supabase/email-templates/` (confirm signup, reset password, magic link, change email). Paste them in under **Authentication → Emails**; the README in that folder has the subjects and steps.
 
-## 6. Google sign-in (optional)
+## 6. Google sign-in (main sign-in option)
 
-1. In Google Cloud Console create a project, set up the **OAuth consent screen** (app name, support email), then **Credentials → Create credentials → OAuth client ID → Web application**.
-2. Under **Authorized redirect URIs** add: `https://<your-project-ref>.supabase.co/auth/v1/callback` (Supabase shows the exact address on its Google provider page).
-3. Copy the **Client ID** and **Client secret** into Supabase **Authentication → Providers → Google** and enable it.
+The sign-in page shows **Continue with Google** first, above the email form.
+
+**A. Google Cloud (console.cloud.google.com)**
+1. Top bar → project picker → **New project** (name: `CFA Level I Prep`) → Create, and make sure it is selected.
+2. **APIs & Services → OAuth consent screen** (newer console: **Google Auth Platform → Branding**). Get started: app name `CFA Level I Prep`, your support email, audience **External**, your contact email. Create.
+3. **Branding**: add the app domains if asked: home page `https://cfa-prep-0n6f.onrender.com`; authorised domain `onrender.com` is not allowed, so leave authorised domains empty for now (add your own domain later).
+4. **Audience** → **Publish app** (status "In production"). Basic sign-in (email, profile) needs no Google review. While it is still "Testing", only test users you list can sign in.
+5. **Clients** (or **Credentials → Create credentials → OAuth client ID**) → type **Web application**, name `Supabase`:
+   - Authorised JavaScript origins: `https://cfa-prep-0n6f.onrender.com`
+   - Authorised redirect URIs: `https://iiywhafsndhnjlboosre.supabase.co/auth/v1/callback`
+   - Create, then copy the **Client ID** and **Client secret**. Don't paste the secret into chats or the site; it goes only into Supabase.
+
+**B. Supabase**
+1. **Authentication → Sign In / Providers → Google** → enable.
+2. Paste the Client ID and Client secret → Save.
+3. Check **Authentication → URL Configuration** has the Render address as Site URL and in Redirect URLs (step 4).
+
+**C. Test**: open the site in a private window → Sign in → Continue with Google. You should come back signed in, with your name top right.
 
 Don't want Google sign-in? Set `googleLogin: false` in `js/config.js` and the button disappears.
 

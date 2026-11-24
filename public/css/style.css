@@ -295,8 +295,10 @@ caption { caption-side: bottom; font-size: .8rem; color: var(--muted); padding-t
 .auth-card input { font: inherit; font-size: 16px; padding: 10px 12px; border-radius: 10px; border: 1px solid var(--line); background: var(--bg); color: var(--ink); }
 .auth-card input:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
 .btn.wide { width: 100%; margin-top: 12px; padding: 11px; }
-.btn.google { width: 100%; padding: 11px; background: var(--card); color: var(--ink); border-color: var(--line); display: flex; justify-content: center; align-items: center; gap: 10px; }
-.btn.google .g { font-weight: 800; color: #4285f4; }
+.btn.google { width: 100%; padding: 13px; font-size: 1.02rem; font-weight: 600; background: var(--card); color: var(--ink); border: 1.5px solid var(--accent); display: flex; justify-content: center; align-items: center; gap: 12px; box-shadow: var(--shadow); }
+.btn.google:hover { background: var(--accent-soft); }
+.btn.google .g { flex: none; }
+.google-hint { text-align: center; margin: 6px 0 0; }
 .or { display: flex; align-items: center; gap: 10px; color: var(--muted); font-size: .85rem; margin: 14px 0 4px; }
 .or::before, .or::after { content: ""; flex: 1; height: 1px; background: var(--line); }
 .form-msg { min-height: 1.2em; font-size: .9rem; margin-top: 6px; }
