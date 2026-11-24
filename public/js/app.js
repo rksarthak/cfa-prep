@@ -76,7 +76,16 @@
   /* ---------- Views ---------- */
   function viewHome() {
     setCrumbs([{ label: "Subjects" }]);
-    var cards = CFA.subjects.map(function (s) {
+    // Order: FSA first, then finished subjects (every module and the subject test ready), then partly ready ones, then coming soon.
+    function rank(s) {
+      if (s.id === "fsa") return 0;
+      var live = liveCount(s);
+      if (live && live === s.modules.length && CFA.tests && CFA.tests[s.id]) return 1;
+      return live ? 2 : 3;
+    }
+    var ordered = CFA.subjects.map(function (s, i) { return { s: s, i: i, r: rank(s) }; })
+      .sort(function (a, b) { return a.r - b.r || a.i - b.i; }).map(function (x) { return x.s; });
+    var cards = ordered.map(function (s) {
       var live = liveCount(s);
       var active = live > 0;
       var meta = active
