@@ -93,8 +93,8 @@ Modules 1 and 2 of every subject are free and open without signing in (guests se
    ```js
    upi: { id: "yourname@okhdfcbank", payeeName: "Your name", qrImage: "assets/upi-qr.png" }
    ```
-   Best: in your UPI app, make a QR **with the amount set to ₹399** and save it as `assets/upi-qr-399.png`, with `qrAmountInr: 399` in `js/config.js` (done 24 Nov 2026; this signed QR is what students see). If you change `subjectPriceInr` without a new QR, the page automatically draws its own QR with the new amount instead (made in the student's browser by `js/vendor/qrcode-generator-1.4.4.js`, no outside service). On phones, an "Open my UPI app" button also fills in the amount.
-   Some UPI apps still let the payer edit the amount, so when approving, check the payment in your bank app is exactly ₹399.
+   Best: in your UPI app, make a QR **with the amount set to ₹399** and save it as `assets/upi-qr-399.png`, with `qrAmountInr: 399` in `js/config.js` (done 24 Nov 2026; this signed QR is what students see). If you change `subjectPriceInr` without a new QR, the page automatically draws its own QR with the new amount instead (made in the student's browser by `js/vendor/qrcode-generator-1.4.4.js`, no outside service). On phones, an "Open my UPI app" button also fills in the amount. The price is now ₹199, so until a ₹199 QR is saved as `assets/upi-qr-199.png` (and `qrImage`/`qrAmountInr` updated), students see the self-drawn ₹199 QR.
+   Some UPI apps still let the payer edit the amount, so when approving, check the payment in your bank app is exactly ₹199.
 
 **Make yourself the admin** (once, after you have created your own account on the site)
 In Supabase **SQL Editor** run, with your own email:
@@ -104,8 +104,8 @@ insert into public.admins (user_id) select id from auth.users where email = 'you
 Sign out and in again: an **Admin** link appears next to your name (payments to approve, and visitor numbers).
 
 **Daily routine**
-1. A student pays ₹399 to your QR and types the 12-digit UPI transaction ID (UTR) on the "Unlock subject" page. It shows up under **Payments → Pending** with their email.
-2. Check your bank or UPI app for a ₹399 payment with that transaction ID.
+1. A student pays ₹199 to your QR and types the 12-digit UPI transaction ID (UTR) on the "Unlock subject" page. It shows up under **Payments → Pending** with their email.
+2. Check your bank or UPI app for a ₹199 payment with that transaction ID.
 3. Press **Approve**: the subject unlocks for that student at once. If nothing matches, press **Reject** and add a reason. **Revoke** undoes an approval.
 
 The database enforces the rules: students can only create *pending* requests for themselves, a transaction ID can only be used once, and only accounts in the `admins` table can approve.
@@ -116,7 +116,7 @@ The database enforces the rules: students can only create *pending* requests for
 
 1. Open the Render address, press **Sign in → Create a free account**, and confirm the email.
 2. Take a lesson quiz, then open **My progress** (click your name, top right).
-3. Open a locked module: you land on the ₹399 page. Submit a test transaction ID, approve it from **Admin** with your admin account, and check the subject unlocks. Reject the test afterwards.
+3. Open a locked module: you land on the ₹199 page. Submit a test transaction ID, approve it from **Admin** with your admin account, and check the subject unlocks. Reject the test afterwards.
 4. In Supabase **Table Editor → progress** you should see your row.
 5. Sign in from another device or browser: the same progress appears.
 

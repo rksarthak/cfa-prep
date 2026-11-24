@@ -1,7 +1,7 @@
 # FinPrepCamp – study notes for CFA® Program Level I (website)
 
 A static website (plain HTML, CSS and JavaScript). No build step and no server code.
-Student sign-in, saved progress and subject purchases (₹399 via UPI QR, approved by an admin) use Supabase; see **SETUP.md** to switch them on.
+Student sign-in, saved progress and subject purchases (₹199 per subject via UPI QR, approved by an admin) use Supabase; see **SETUP.md** to switch them on.
 
 Access: modules 1–2 of every subject are free and open without an account (guests are told their progress is not saved to an account); other modules are locked until the student's purchase of that subject is approved.
 
