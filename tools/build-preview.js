@@ -24,6 +24,9 @@ for (const subject of fs.readdirSync(src)) {
     tags.push(`  <script src="js/content/${subject}/${f}"></script>`);
   }
 }
+// The review copy never talks to the real accounts database: switch accounts off.
+const cfgPath = path.join(out, "js", "config.js");
+fs.writeFileSync(cfgPath, fs.readFileSync(cfgPath, "utf8").replace(/supabaseUrl:\s*"[^"]*"/, 'supabaseUrl: ""'));
 let html = fs.readFileSync(path.join(out, "index.html"), "utf8");
 html = html.replace('  <script src="js/app.js"></script>',
   tags.join("\n") + '\n  <script>window.CFA_CONFIG.previewAllContent = true;</script>\n  <script src="js/app.js"></script>');
