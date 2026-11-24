@@ -18,8 +18,8 @@ window.CFA_CONFIG = {
 
   // UPI payment details shown on the "Buy subject" page
   upi: {
-    id: "",                   // your UPI ID, e.g. "yourname@okhdfcbank"
-    payeeName: "",            // name shown to students
-    qrImage: ""               // path to your QR image, e.g. "assets/upi-qr.png"
+    id: "9415115418@superyes", // your UPI ID, e.g. "yourname@okhdfcbank"
+    payeeName: "RAVINDRA KUMAR AGRAWAL", // name shown to students
+    qrImage: "assets/upi-qr.png" // path to your QR image, e.g. "assets/upi-qr.png"
   }
 };
