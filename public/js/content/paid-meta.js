@@ -179,5 +179,53 @@ CFA.paidMeta = {
    }
   ],
   "moduleQuiz": 38
+ },
+ "fsa/7": {
+  "title": "Analysis of Long-Term Assets",
+  "lessons": [
+   {
+    "id": "l1",
+    "title": "Intangible assets: bought, built or acquired",
+    "summary": "What makes an intangible asset; purchased intangibles at cost; internally developed intangibles mostly expensed; intangibles and goodwill in a business combination.",
+    "questions": 9
+   },
+   {
+    "id": "l2",
+    "title": "Research, development and software: capitalise or expense?",
+    "summary": "IFRS research vs development; US GAAP R&D and software rules; how capitalising versus expensing affects profit, assets, cash flow sections and ratios over time.",
+    "questions": 10
+   },
+   {
+    "id": "l3",
+    "title": "Depreciation and amortisation choices",
+    "summary": "Straight-line, accelerated and units-of-production methods; useful life and residual value estimates; finite versus indefinite-life intangibles; effects on profit, margins, taxes and cash flow.",
+    "questions": 10
+   },
+   {
+    "id": "l4",
+    "title": "Impairment: when assets lose value",
+    "summary": "Indicators of impairment; the IFRS one-step test (recoverable amount) and the US GAAP two-step test (undiscounted cash flows, then fair value); indefinite-life intangibles; held for sale; reversals; effects on statements and ratios.",
+    "questions": 10
+   },
+   {
+    "id": "l5",
+    "title": "Selling, abandoning and revaluing assets",
+    "summary": "Gain or loss on sale; finding the sale price from the gain; abandonment and exchange; the IFRS revaluation model and its effects on equity and ratios.",
+    "questions": 10
+   },
+   {
+    "id": "l6",
+    "title": "What the notes tell you",
+    "summary": "Required IFRS and US GAAP disclosures for PP&E, intangibles and impairments; what is not required; where to find the details.",
+    "questions": 10
+   },
+   {
+    "id": "l7",
+    "title": "Using the notes: turnover, asset age and reinvestment",
+    "summary": "Fixed asset turnover; average age, remaining life and total useful life from depreciation figures; capital expenditure versus depreciation; capitalised interest and interest coverage.",
+    "questions": 10
+   }
+  ],
+  "moduleQuiz": 37
  }
 };
