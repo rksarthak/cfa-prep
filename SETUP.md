@@ -122,7 +122,7 @@ The database enforces the rules: students can only create *pending* requests for
 
 ## 9. Load the paid modules (each time a new one is ready)
 
-Paid modules (3 onward) are not public files. Each one comes as an SQL file, e.g. `fsa-m03.sql`, which Claude attaches in the project thread (the files are kept out of the public GitHub repo on purpose).
+Paid modules (3 onward) are not public files. Each one comes as an SQL file, e.g. `fsa-m03.sql`, which Claude attaches in the project thread (the files are kept out of the public GitHub repo on purpose). The paid part of each subject test (questions 11 onward) comes the same way, e.g. `fsa-test.sql` (stored as module 99); its first 10 questions are a public file and need no SQL.
 
 1. In Supabase open **SQL Editor → New query**.
 2. Paste the whole SQL file and press **Run**. It adds or updates that module in the `module_content` table; running it twice is safe.
