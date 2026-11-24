@@ -131,5 +131,53 @@ CFA.paidMeta = {
    }
   ],
   "moduleQuiz": 36
+ },
+ "fsa/6": {
+  "title": "Analysis of Inventories",
+  "lessons": [
+   {
+    "id": "l1",
+    "title": "What goes into the cost of inventory",
+    "summary": "Costs of purchase and conversion that are added to inventory; costs that are always expensed; why the split matters.",
+    "questions": 9
+   },
+   {
+    "id": "l2",
+    "title": "Cost formulas: FIFO, weighted average, LIFO and specific identification",
+    "summary": "How each formula splits goods available for sale between cost of sales and ending inventory; periodic versus perpetual systems; which formulas IFRS and US GAAP allow.",
+    "questions": 10
+   },
+   {
+    "id": "l3",
+    "title": "When inventory is worth less than it cost",
+    "summary": "Lower of cost and net realisable value; reversals under IFRS but not US GAAP; the US GAAP market rule for LIFO and retail; commodity exceptions; effects of write-downs on ratios.",
+    "questions": 10
+   },
+   {
+    "id": "l4",
+    "title": "Rising and falling prices: how each formula changes the numbers",
+    "summary": "Effects of FIFO, weighted average and LIFO on cost of sales, gross profit, inventory, taxes and cash flow, and on profitability, liquidity, activity and solvency ratios, when costs rise and when they fall.",
+    "questions": 10
+   },
+   {
+    "id": "l5",
+    "title": "The LIFO reserve and LIFO liquidations",
+    "summary": "Using the LIFO reserve to restate inventory, cost of sales, net income and equity on a FIFO basis; what a LIFO liquidation is and why it flatters profit.",
+    "questions": 10
+   },
+   {
+    "id": "l6",
+    "title": "Inventory ratios and disclosures",
+    "summary": "Inventory turnover, days of inventory on hand and gross margin; what high and low values can mean; reading raw materials, work in progress and finished goods; required disclosures and other sources.",
+    "questions": 10
+   },
+   {
+    "id": "l7",
+    "title": "Adjusting for comparison",
+    "summary": "Restating LIFO companies to FIFO before comparing ratios; removing inventory write-down charges from margins; choosing which margin best reflects current conditions.",
+    "questions": 10
+   }
+  ],
+  "moduleQuiz": 38
  }
 };
