@@ -164,10 +164,20 @@
         mod.lessons.length + " lessons + module quiz · " + pr.done + "/" + pr.total + " done</span></span>" +
         '<span class="right">' + tag + "</span></a>";
     }).join("");
-    // Every subject ends with a full subject test (first 10 questions free). Shown as coming soon until it is built.
-    rows += '<div class="row locked subject-test-row"><span class="num">✓</span><span class="body"><span class="title">' + esc(s.name) +
-      ' subject test</span><span class="sub">Coming soon · a full test across every module, all new questions · first 10 questions free</span></span>' +
-      '<span class="right"><span class="badge">10 free</span></span></div>';
+    // Every subject ends with a full subject test (first questions free). Coming soon until its file is loaded.
+    var test = CFA.tests && CFA.tests[sid];
+    if (test) {
+      var tp = testParts(sid);
+      var tr = result(sid + "/test/free");
+      rows += '<a class="row subject-test-row live" href="#/s/' + sid + '/test"><span class="num">✓</span><span class="body"><span class="title">' + esc(s.name) +
+        ' subject test</span><span class="sub">' + tp.total + " new questions across every module · first " + tp.free.length + " free" +
+        (tr ? " · free part best " + tr.best + "/" + tr.total : "") + '</span></span><span class="right"><span class="badge">' + tp.free.length + " free</span></span></a>";
+    } else {
+      rows += '<div class="row locked subject-test-row"><span class="num">✓</span><span class="body"><span class="title">' + esc(s.name) +
+        ' subject test</span><span class="sub">Coming soon · a full test across every module, all new questions · first 10 questions free</span></span>' +
+        '<span class="right"><span class="badge">10 free</span></span></div>';
+    }
+
     render(
       '<div class="lesson-head"><span class="kicker">Subject</span><h1>' + s.icon + " " + esc(s.name) + "</h1>" +
       '<p class="muted">' + esc(s.blurb) + "</p></div>" + subjectBanner(s) +
@@ -347,6 +357,68 @@
       lessons: mod.lessons,
       lessonBase: base + "/l/"
     });
+  }
+
+  /* ---------- End-of-subject test ---------- */
+  function testParts(sid) {
+    var t = CFA.tests[sid];
+    var n = t.freeCount || 10;
+    var free = t.questions ? t.questions.slice(0, n) : (t.free || []);
+    var paid = t.questions ? t.questions.slice(n) : (CFA.testPaid[sid] || null);
+    var paidCount = t.questions ? t.questions.length - n : (t.paidCount || 0);
+    return { free: free, paid: paid, paidCount: paidCount, total: free.length + paidCount };
+  }
+  var testLoading = {};
+  function viewTest(sid) {
+    var s = subjectById(sid);
+    var t = s && CFA.tests && CFA.tests[sid];
+    if (!t) return viewNotFound();
+    gated = false;
+    guestNote = "";
+    if (Account.enabled && !Account.isReady()) { gated = true; render('<p class="muted">Loading…</p>'); return; }
+    var signedIn = Account.enabled && Account.user();
+    if (Account.enabled && !signedIn) {
+      guestNote = '<div class="callout trap guest-note"><span class="label">Trying it without an account</span>You are not signed in, so your progress will not be saved to an account. ' +
+        'It stays only in this browser and can be lost. <a href="#/signup">Create a free account</a> or <a href="#/login">sign in</a> to keep your quiz scores.</div>';
+    }
+    var p = testParts(sid);
+    var subj = "#/s/" + sid;
+    setCrumbs([{ label: "Subjects", href: "#/" }, { label: s.name, href: subj }, { label: "Subject test" }]);
+    var paidHtml;
+    var needFetch = false;
+    if (!owns(sid)) {
+      paidHtml = '<div class="buy-banner"><div><b>Questions ' + (p.free.length + 1) + "–" + p.total + "</b> are part of the full " + esc(s.name) +
+        " subject (₹" + PRICE + ').</div><a class="btn" href="#/buy/' + sid + '">Unlock</a></div>';
+    } else if (p.paid) {
+      paidHtml = '<div id="tq2"></div>';
+    } else {
+      paidHtml = '<p class="muted">Loading questions ' + (p.free.length + 1) + "–" + p.total + "…</p>";
+      needFetch = true;
+    }
+    render(
+      '<div class="lesson-head"><span class="kicker">' + esc(s.name) + " · Subject test</span><h1>" + esc(t.title) + "</h1>" +
+      '<p class="muted">' + esc(t.intro) + "</p></div>" +
+      "<h2>Part 1: questions 1–" + p.free.length + ' <span class="badge">Free</span></h2><div id="tq1"></div>' +
+      "<h2>Part 2: questions " + (p.free.length + 1) + "–" + p.total + "</h2>" + paidHtml +
+      '<nav class="pager"><a href="' + subj + '"><small>← Back</small>All ' + esc(s.name) + " modules</a></nav>",
+      t.title
+    );
+    var moduleBase = subj + "/m/";
+    mountQuiz(document.getElementById("tq1"), { title: "Subject test: part 1 (free)", questions: p.free, key: sid + "/test/free", moduleBase: moduleBase });
+    if (document.getElementById("tq2")) {
+      mountQuiz(document.getElementById("tq2"), { title: "Subject test: part 2", questions: p.paid, key: sid + "/test/paid", moduleBase: moduleBase });
+    }
+    if (needFetch && !testLoading[sid] && signedIn) {
+      testLoading[sid] = true;
+      Account.fetchModule(sid, 99).then(function (c) {
+        testLoading[sid] = false;
+        if (c && c.questions) { CFA.testPaid[sid] = c.questions; route(); }
+        else render('<h1>Test not available yet</h1><p class="muted">The rest of this test has not been uploaded yet, or your purchase is still being checked. Please try again later.</p>');
+      }).catch(function (e) {
+        testLoading[sid] = false;
+        render('<h1>Could not load the test</h1><p class="muted">' + esc(e.message || String(e)) + "</p>");
+      });
+    }
   }
 
   function viewNotFound() {
@@ -598,6 +670,7 @@
     var state = { cur: 0, picked: qs.map(function () { return null; }), hint: qs.map(function () { return false; }), finished: false };
 
     function lessonLink(q) {
+      if (q.module && cfg.moduleBase) return ' <a href="' + cfg.moduleBase + q.module + '">Review Module ' + q.module + "</a>";
       if (!cfg.lessons || !q.lesson) return "";
       var l = cfg.lessons[q.lesson - 1];
       return ' <a href="' + cfg.lessonBase + q.lesson + '">Reread Lesson ' + q.lesson + ": " + esc(l.title) + "</a>";
@@ -704,6 +777,7 @@
     if (parts[0] === "s") {
       var sid = parts[1];
       if (parts.length === 2) return viewSubject(sid);
+      if (parts[2] === "test") return viewTest(sid);
       if (parts[2] === "m") {
         var num = Number(parts[3]);
         if (parts.length === 4) return viewModule(sid, num);

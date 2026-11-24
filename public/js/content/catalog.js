@@ -35,7 +35,12 @@ window.CFA = {
     { id: "pm", name: "Portfolio Management", icon: "🧺", blurb: "Risk and return, CAPM, planning, behavioural finance, risk management.", modules: [] }
   ],
   content: {},
+  tests: {},     // end-of-subject tests: the free part is a public file; the paid part loads from the database
+  testPaid: {},
   registerModule: function (subjectId, mod) {
     this.content[subjectId + "/" + mod.num] = mod;
+  },
+  registerTest: function (subjectId, test) {
+    this.tests[subjectId] = test;
   }
 };
