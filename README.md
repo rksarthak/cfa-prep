@@ -34,7 +34,7 @@ Subject → Module → Lessons (each with a quiz) → Module quiz.
 
 **Free module (1–2 of a subject):** put the file in `public/js/content/<subject>/` and add a `<script>` tag for it in `public/index.html`, after `paid-meta.js`.
 
-**Subject test:** write all questions in `content-paid/<subject>/test.js` with `CFA.registerTest(...)` (`freeCount: 10`, each question has a `module` number). `node tools/build-content.js` writes the free part to `public/js/content/<subject>/test-free.js` (add its `<script>` tag to `index.html`) and the rest to `supabase/paid-content/<subject>-test.sql` (module 99 in `module_content`). The page is `#/s/<subject>/test`.
+**Subject test:** write all questions in `content-paid/<subject>/test.js` with `CFA.registerTest(...)` (`freeCount: 25`, each question has a `module` number). `node tools/build-content.js` writes the free part to `public/js/content/<subject>/test-free.js` (add its `<script>` tag to `index.html`) and the rest to `supabase/paid-content/<subject>-test.sql` (module 99 in `module_content`). The page is `#/s/<subject>/test`: one continuous test; a visitor who has not bought the subject sees a lock screen after the last free question (Next on question 25), with an Unlock button.
 
 **Paid module (3 onward):** put the file in `content-paid/<subject>/`, then run `node tools/build-content.js`. This writes `supabase/paid-content/<subject>-mNN.sql` and refreshes `public/js/content/paid-meta.js`. Run the SQL file in Supabase (SETUP.md step 9) and push `paid-meta.js`. Only buyers and admins can read the module, because it is fetched from the `module_content` table under row-level security.
 

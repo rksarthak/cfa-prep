@@ -358,3 +358,8 @@ table.admin .reason { font: inherit; font-size: 14px; padding: 6px 8px; border-r
 .stat { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 14px 16px; box-shadow: var(--shadow); }
 .stat-label { font-size: .85rem; font-weight: 600; color: var(--muted, inherit); text-transform: uppercase; letter-spacing: .04em; }
 .stat-num { font-size: 2rem; font-weight: 700; color: var(--accent); line-height: 1.2; margin: 4px 0; }
+.qtab.locked { color: var(--muted, #888); background: var(--bg); border-style: dashed; opacity: .7; }
+.test-lock { text-align: center; padding: 24px 16px; margin: 12px 0; border: 1px dashed var(--line); border-radius: 12px; }
+.test-lock .lock-icon { font-size: 34px; line-height: 1; margin-bottom: 8px; }
+.test-lock h3 { margin: 4px 0 8px; }
+.test-lock p { max-width: 520px; margin: 0 auto 14px; }

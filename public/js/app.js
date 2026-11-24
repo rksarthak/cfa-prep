@@ -178,10 +178,10 @@
     var test = CFA.tests && CFA.tests[sid];
     if (test) {
       var tp = testParts(sid);
-      var tr = result(sid + "/test/free");
+      var tr = result(sid + (owns(sid) ? "/test/full" : "/test/free"));
       rows += '<a class="row subject-test-row live" href="#/s/' + sid + '/test"><span class="num">✓</span><span class="body"><span class="title">' + esc(s.name) +
         ' subject test</span><span class="sub">' + tp.total + " new questions across every module · first " + tp.free.length + " free" +
-        (tr ? " · free part best " + tr.best + "/" + tr.total : "") + '</span></span><span class="right"><span class="badge">' + tp.free.length + " free</span></span></a>";
+        (tr ? " · best " + tr.best + "/" + tr.total : "") + '</span></span><span class="right"><span class="badge">' + tp.free.length + " free</span></span></a>";
     } else {
       rows += '<div class="row locked subject-test-row"><span class="num">✓</span><span class="body"><span class="title">' + esc(s.name) +
         ' subject test</span><span class="sub">Coming soon · a full test across every module, all new questions · first ' + TESTFREE + ' questions free</span></span>' +
@@ -395,29 +395,25 @@
     var p = testParts(sid);
     var subj = "#/s/" + sid;
     setCrumbs([{ label: "Subjects", href: "#/" }, { label: s.name, href: subj }, { label: "Subject test" }]);
-    var paidHtml;
-    var needFetch = false;
-    if (!owns(sid)) {
-      paidHtml = '<div class="buy-banner"><div><b>Questions ' + (p.free.length + 1) + "–" + p.total + "</b> are part of the full " + esc(s.name) +
-        " subject (₹" + PRICE + ').</div><a class="btn" href="#/buy/' + sid + '">Unlock</a></div>';
-    } else if (p.paid) {
-      paidHtml = '<div id="tq2"></div>';
-    } else {
-      paidHtml = '<p class="muted">Loading questions ' + (p.free.length + 1) + "–" + p.total + "…</p>";
-      needFetch = true;
-    }
+    var full = owns(sid);
+    var needFetch = full && !p.paid;
+    var lockHtml = '<div class="test-lock"><div class="lock-icon">🔒</div><h3>Questions ' + (p.free.length + 1) + "–" + p.total + " are locked</h3>" +
+      "<p>You have reached the end of the free questions. Unlock the full " + esc(s.name) + " subject (₹" + PRICE + ") to continue the test from question " +
+      (p.free.length + 1) + ", along with every paid module and its quiz.</p>" +
+      '<a class="btn" href="#/buy/' + sid + '">Unlock ' + esc(s.name) + "</a></div>";
     render(
       '<div class="lesson-head"><span class="kicker">' + esc(s.name) + " · Subject test</span><h1>" + esc(t.title) + "</h1>" +
       '<p class="muted">' + esc(t.intro) + "</p></div>" +
-      "<h2>Part 1: questions 1–" + p.free.length + ' <span class="badge">Free</span></h2><div id="tq1"></div>' +
-      "<h2>Part 2: questions " + (p.free.length + 1) + "–" + p.total + "</h2>" + paidHtml +
+      (needFetch ? '<p class="muted">Loading the test…</p>' : '<div id="tq"></div>') +
       '<nav class="pager"><a href="' + subj + '"><small>← Back</small>All ' + esc(s.name) + " modules</a></nav>",
       t.title
     );
     var moduleBase = subj + "/m/";
-    mountQuiz(document.getElementById("tq1"), { title: "Subject test: part 1 (free)", questions: p.free, key: sid + "/test/free", moduleBase: moduleBase });
-    if (document.getElementById("tq2")) {
-      mountQuiz(document.getElementById("tq2"), { title: "Subject test: part 2", questions: p.paid, key: sid + "/test/paid", moduleBase: moduleBase });
+    if (!needFetch) {
+      mountQuiz(document.getElementById("tq"), full
+        ? { title: "Subject test", questions: p.free.concat(p.paid), key: sid + "/test/full", moduleBase: moduleBase }
+        : { title: "Subject test", questions: p.free, key: sid + "/test/free", moduleBase: moduleBase,
+            locked: { count: p.paidCount, html: lockHtml } });
     }
     if (needFetch && !testLoading[sid] && signedIn) {
       testLoading[sid] = true;
@@ -737,6 +733,8 @@
   /* ---------- Quiz engine ---------- */
   function mountQuiz(root, cfg) {
     var qs = cfg.questions;
+    var locked = cfg.locked && cfg.locked.count > 0 ? cfg.locked : null;   // questions after the free ones, shown as locked
+    var lockAt = qs.length;
     var state = { cur: 0, picked: qs.map(function () { return null; }), hint: qs.map(function () { return false; }), finished: false };
 
     function lessonLink(q) {
@@ -757,9 +755,15 @@
       html += '<div class="qtabs" role="tablist">' + qs.map(function (q, i) {
         var cls = state.picked[i] === null ? "" : (state.picked[i] === q.ans ? " right" : " wrong");
         return '<button class="qtab' + cls + (i === state.cur && !state.finished ? " current" : "") + '" data-tab="' + i + '" aria-label="Question ' + (i + 1) + '">' + (i + 1) + "</button>";
-      }).join("") + "</div>";
+      }).join("") + (locked ? Array.apply(null, Array(locked.count)).map(function (_, k) {
+        var n = lockAt + k;
+        return '<button class="qtab locked' + (state.cur === lockAt && !state.finished && k === 0 ? " current" : "") + '" data-tab="' + lockAt + '" aria-label="Question ' + (n + 1) + ' (locked)">' + (n + 1) + "</button>";
+      }).join("") : "") + "</div>";
 
-      if (state.finished) {
+      if (!state.finished && locked && state.cur >= lockAt) {
+        html += locked.html + '<div class="qactions"><button class="btn ghost" data-act="prev">← Prev</button>' +
+          '<button class="btn ghost" data-act="finish"' + (answered < qs.length ? " disabled title=\"Answer every free question first\"" : "") + ">See my score so far</button></div>";
+      } else if (state.finished) {
         var pct = Math.round(score / qs.length * 100);
         var msg = pct >= 80 ? "Strong. You are ready to move on." : pct >= 60 ? "Close. Reread the explanations for the ones you missed, then retry." : "Worth another pass: reread the sections linked below, then retry.";
         html += '<div class="score"><div class="big">' + score + " / " + qs.length + "</div><p>" + msg + "</p></div>";
@@ -771,6 +775,7 @@
         }
         html += '<div class="qactions"><button class="btn ghost" data-act="retry">Retry quiz</button>' +
           (cfg.nextHref ? '<a class="btn" href="' + cfg.nextHref + '">Continue: ' + esc(cfg.nextLabel) + " →</a>" : "") + "</div>";
+        if (locked) html += locked.html;
       } else {
         var q = qs[state.cur];
         var picked = state.picked[state.cur];
@@ -789,7 +794,7 @@
           html += '<div class="feedback ' + (ok ? "right" : "wrong") + '"><span class="verdict">' +
             (ok ? "✓ Correct – " + LETTERS[q.ans] : "✗ Not quite – the answer is " + LETTERS[q.ans]) + "</span>" + q.why + lessonLink(q) + "</div>";
         }
-        var isLast = state.cur === qs.length - 1;
+        var isLast = state.cur === qs.length - 1 && !locked;
         html += '<div class="qactions">' +
           (picked === null ? '<button class="btn ghost" data-act="hint">' + (state.hint[state.cur] ? "Hide hint" : "Show hint") + "</button>" : "") +
           '<button class="btn ghost" data-act="prev"' + (state.cur === 0 ? " disabled" : "") + ">← Prev</button>" +
@@ -816,7 +821,7 @@
         var act = t.getAttribute("data-act");
         if (act === "hint") state.hint[state.cur] = !state.hint[state.cur];
         if (act === "prev" && state.cur > 0) state.cur--;
-        if (act === "next" && state.cur < qs.length - 1) state.cur++;
+        if (act === "next" && state.cur < qs.length - (locked ? 0 : 1)) state.cur++;
         if (act === "finish") {
           state.finished = true;
           var sc = state.picked.filter(function (p, i) { return p === qs[i].ans; }).length;
