@@ -101,7 +101,7 @@ In Supabase **SQL Editor** run, with your own email:
 ```sql
 insert into public.admins (user_id) select id from auth.users where email = 'you@example.com';
 ```
-Sign out and in again: a **Payments** link appears next to your name.
+Sign out and in again: an **Admin** link appears next to your name (payments to approve, and visitor numbers).
 
 **Daily routine**
 1. A student pays ₹399 to your QR and types the 12-digit UPI transaction ID (UTR) on the "Unlock subject" page. It shows up under **Payments → Pending** with their email.
@@ -116,7 +116,7 @@ The database enforces the rules: students can only create *pending* requests for
 
 1. Open the Render address, press **Sign in → Create a free account**, and confirm the email.
 2. Take a lesson quiz, then open **My progress** (click your name, top right).
-3. Open a locked module: you land on the ₹399 page. Submit a test transaction ID, approve it from **Payments** with your admin account, and check the subject unlocks. Reject the test afterwards.
+3. Open a locked module: you land on the ₹399 page. Submit a test transaction ID, approve it from **Admin** with your admin account, and check the subject unlocks. Reject the test afterwards.
 4. In Supabase **Table Editor → progress** you should see your row.
 5. Sign in from another device or browser: the same progress appears.
 
@@ -127,6 +127,15 @@ Paid modules (3 onward) are not public files. Each one comes as an SQL file, e.g
 1. In Supabase open **SQL Editor → New query**.
 2. Paste the whole SQL file and press **Run**. It adds or updates that module in the `module_content` table; running it twice is safe.
 3. Check: signed in with your admin account, open the module on the site. It should load. A student without a purchase sees the lock and the ₹399 page.
+
+## 10. Visitor counter (once)
+
+Counts everyone who opens the site, including guests who never sign in. No cookies, no consent banner needed, free.
+
+1. In Supabase open **SQL Editor → New query**, paste everything from `supabase/visitor-stats.sql`, and press **Run**. Running it again later is safe.
+2. Sign in on the site with your admin account and click **Admin** (top right) → **Visitors**.
+
+You see visitors and pages opened for today, the last 7 and 30 days and all time, how many were guests (no account), new sign-ups, a day-by-day table for the last 14 days, and the most opened pages. Your own visits as admin are not counted, and bots are skipped. A "visitor" is one device and browser on one day: the database keeps a one-way daily fingerprint (IP + browser + date + a secret), never the IP itself, so nobody can be followed from one day to the next.
 
 ---
 

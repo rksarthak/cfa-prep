@@ -352,3 +352,9 @@ table.admin .reason { font: inherit; font-size: 14px; padding: 6px 8px; border-r
 .row .title, .row .sub { display: block; }
 .pay-row > .qr { flex: 0 0 200px; }
 @media (max-width: 640px) { .crumbs { order: 3; width: 100%; } }
+
+/* Admin: visitor counter */
+.stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; margin: 16px 0 8px; }
+.stat { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 14px 16px; box-shadow: var(--shadow); }
+.stat-label { font-size: .85rem; font-weight: 600; color: var(--muted, inherit); text-transform: uppercase; letter-spacing: .04em; }
+.stat-num { font-size: 2rem; font-weight: 700; color: var(--accent); line-height: 1.2; margin: 4px 0; }

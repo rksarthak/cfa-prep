@@ -437,7 +437,7 @@
     if (foot) foot.textContent = u ? "Your progress is saved to your account." : "Progress is saved in this browser" + (Account.enabled ? " until you sign in." : ".");
     if (u) {
       var name = Account.displayName();
-      accountEl.innerHTML = (Account.isAdmin() ? '<a class="admin-link" href="#/admin">Payments</a>' : "") + '<a class="avatar-link" href="#/account" title="My progress"><span class="avatar">' +
+      accountEl.innerHTML = (Account.isAdmin() ? '<a class="admin-link" href="#/admin">Admin</a>' : "") + '<a class="avatar-link" href="#/account" title="My progress"><span class="avatar">' +
         esc(name.charAt(0).toUpperCase()) + '</span><span class="avatar-name">' + esc(name) + "</span></a>";
     } else {
       accountEl.innerHTML = '<a class="btn small-btn" href="#/login">Sign in</a>';
@@ -594,9 +594,10 @@
     if (!Account.user()) { location.hash = "#/login"; return; }
     if (!Account.isAdmin()) { render("<h1>Not available</h1><p class=\"muted\">This page is only for site admins.</p>", "Admin"); return; }
     filter = filter || "pending";
+    if (filter === "visitors") return viewVisitors();
     render('<div class="account-head"><h1>Payments to check</h1><button class="btn ghost" id="reload" type="button">Refresh</button></div>' +
       '<p class="muted">Match each UPI transaction ID with your bank or UPI app, then approve it. Approving unlocks the subject for that student straight away.</p>' +
-      '<nav class="toc"><a href="#/admin/pending"' + (filter === "pending" ? ' class="on"' : "") + '>Pending</a><a href="#/admin/all"' + (filter === "all" ? ' class="on"' : "") + ">All</a></nav>" +
+      '<nav class="toc"><a href="#/admin/pending"' + (filter === "pending" ? ' class="on"' : "") + '>Pending</a><a href="#/admin/all"' + (filter === "all" ? ' class="on"' : "") + '>All</a><a href="#/admin/visitors">Visitors</a></nav>' +
       '<div id="admintable"><p class="muted">Loading…</p></div>', "Admin");
     var box = document.getElementById("admintable");
     var label = { pending: "Pending", paid: "Unlocked", rejected: "Rejected" };
@@ -643,6 +644,64 @@
     function alertBox(err) { box.insertAdjacentHTML("afterbegin", '<p class="form-msg bad">' + esc(friendlyError(err)) + "</p>"); }
     document.getElementById("reload").addEventListener("click", load);
     load();
+  }
+
+  function viewVisitors() {
+    setCrumbs([{ label: "Subjects", href: "#/" }, { label: "Admin: visitors" }]);
+    render('<div class="account-head"><h1>Visitors</h1><button class="btn ghost" id="reload" type="button">Refresh</button></div>' +
+      '<nav class="toc"><a href="#/admin/pending">Pending</a><a href="#/admin/all">All</a><a href="#/admin/visitors" class="on">Visitors</a></nav>' +
+      '<div id="visitbox"><p class="muted">Loading…</p></div>', "Admin");
+    var box = document.getElementById("visitbox");
+    function n(x) { return Number(x || 0).toLocaleString("en-IN"); }
+    function load() {
+      Account.visitorStats().then(function (st) {
+        var t = st.totals || {}, su = st.signups || {};
+        function tile(label, k, signups) {
+          var v = t[k] || {};
+          return '<div class="stat"><div class="stat-label">' + label + '</div><div class="stat-num">' + n(v.visitors) + '</div><div class="small muted">visitors · ' +
+            n(v.guests) + " without an account<br>" + n(v.views) + " pages opened" + (signups != null ? " · " + n(signups) + " new sign-ups" : "") + "</div></div>";
+        }
+        var tiles = '<div class="stat-grid">' + tile("Today", "today") + tile("Last 7 days", "last7", su.last7) + tile("Last 30 days", "last30", su.last30) + tile("All time", "all", su.all) + "</div>";
+        var days = (st.days || []).map(function (d) {
+          return "<tr><td>" + esc(new Date(d.day + "T00:00:00").toLocaleDateString("en-IN", { weekday: "short", day: "numeric", month: "short" })) +
+            '</td><td class="num">' + n(d.visitors) + '</td><td class="num">' + n(d.guests) + '</td><td class="num">' + n(d.views) + "</td></tr>";
+        }).join("");
+        var pages = (st.pages || []).map(function (p) {
+          return "<tr><td>" + esc(pageName(p.path)) + '</td><td class="num">' + n(p.visitors) + '</td><td class="num">' + n(p.views) + "</td></tr>";
+        }).join("");
+        box.innerHTML = tiles +
+          '<p class="small muted">A visitor is one person (one device and browser) on one day, so someone who comes back on 3 days counts 3 times in the longer totals. Your own visits as admin are not counted. ' +
+          (st.since ? "Counting since " + esc(new Date(st.since + "T00:00:00").toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" })) + "." : "No visits recorded yet.") + "</p>" +
+          '<section class="section"><h2>Last 14 days</h2><div class="table-wrap"><table><tr><th>Day</th><th class="num">Visitors</th><th class="num">Without an account</th><th class="num">Pages opened</th></tr>' + days + "</table></div></section>" +
+          (pages ? '<section class="section"><h2>Most opened pages (last 30 days)</h2><div class="table-wrap"><table><tr><th>Page</th><th class="num">Visitors</th><th class="num">Opened</th></tr>' + pages + "</table></div></section>" : "");
+      }).catch(function (e) {
+        var missing = /visitor_stats|function|schema cache/i.test((e && e.message) || "");
+        box.innerHTML = missing
+          ? '<div class="callout key"><span class="label">One step left</span>The visitor counter isn\'t switched on in the database yet. In Supabase open <b>SQL Editor → New query</b>, paste everything from <code>supabase/visitor-stats.sql</code> and press <b>Run</b>.</div>'
+          : '<p class="form-msg bad">' + esc(friendlyError(e)) + "</p>";
+      });
+    }
+    document.getElementById("reload").addEventListener("click", load);
+    load();
+  }
+
+  // Turn "/s/fsa/m/3/l/2" into "FSA · Module 3 · Lesson 2" for the admin visitor table.
+  function pageName(path) {
+    var p = String(path || "/").split("/").filter(Boolean);
+    if (!p.length) return "Home page";
+    var names = { login: "Sign in", signup: "Create account", forgot: "Forgot password", reset: "Reset password", account: "My progress" };
+    if (names[p[0]]) return names[p[0]];
+    if (p[0] === "buy") { var b = subjectById(p[1]); return "Buy: " + (b ? b.name : p[1]); }
+    if (p[0] !== "s") return path;
+    var sj = subjectById(p[1]);
+    var out = [sj ? sj.name : p[1]];
+    if (p[2] === "test") out.push("Subject test");
+    if (p[2] === "m" && p[3]) {
+      out.push("Module " + p[3]);
+      if (p[4] === "quiz") out.push("Module quiz");
+      if (p[4] === "l" && p[5]) out.push("Lesson " + p[5]);
+    }
+    return out.join(" · ");
   }
 
   // Remember where a student was, so signing in brings them back there.
@@ -761,11 +820,23 @@
     draw();
   }
 
+  /* ---------- Visitor counter: one count per page opened (no cookies; see supabase/visitor-stats.sql) ---------- */
+  var lastCounted = null;
+  function countVisit(parts) {
+    var clean = [];
+    for (var i = 0; i < parts.length && i < 6; i++) { if (!/^[a-z0-9-]{1,24}$/i.test(parts[i])) break; clean.push(parts[i]); }
+    var path = "/" + clean.join("/");
+    if (path === lastCounted || clean[0] === "admin") return;   // re-draws of the same page don't count twice
+    lastCounted = path;
+    if (Account.enabled) Account.logVisit(path);
+  }
+
   /* ---------- Router ---------- */
   function route() {
     var h = location.hash.replace(/^#\/?/, "");
     var parts = h.split("/").filter(Boolean);
     rememberPlace();
+    countVisit(parts);
     if (!parts.length) return viewHome();
     if (parts[0] === "login") return viewLogin("signin");
     if (parts[0] === "signup") return viewLogin("signup");

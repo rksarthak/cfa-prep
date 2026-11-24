@@ -198,7 +198,14 @@
     },
     adminSetStatus: function (id, status, note) {
       return wrap(sb.from("purchases").update({ status: status, note: note || null, reviewed_at: new Date().toISOString() }).eq("id", id).select());
-    }
+    },
+    /* Visitor counter (supabase/visitor-stats.sql). No cookies, nothing stored in the browser:
+       the page path is the only thing sent. Failures are ignored so the site never breaks over it. */
+    logVisit: function (path) {
+      if (!sb || navigator.webdriver) return;
+      try { sb.rpc("log_visit", { p_path: path }).then(function () {}, function () {}); } catch (e) { /* ignore */ }
+    },
+    visitorStats: function () { return wrap(sb.rpc("visitor_stats")); }
   };
 
   window.Account = Account;

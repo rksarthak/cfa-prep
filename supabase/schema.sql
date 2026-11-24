@@ -97,3 +97,5 @@ create policy "buyers read paid content" on public.module_content for select usi
   )
 );
 -- No insert/update policies: content is only changed from the SQL Editor (which bypasses these rules).
+
+-- Visitor counter: run supabase/visitor-stats.sql too (SETUP.md step 10).

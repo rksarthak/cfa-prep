@@ -20,6 +20,7 @@ public/                         the site Render serves (publish directory)
   js/content/fsa/m01-…, m02-…   free modules (1–2), served as normal files
   assets/upi-qr.png             your UPI QR image (SETUP.md step 7)
 supabase/schema.sql             tables and security rules (run in Supabase)
+supabase/visitor-stats.sql      cookie-free visitor counter (run once; numbers on Admin → Visitors)
 supabase/email-templates/       branded emails to paste into Supabase
 tools/build-content.js          turns paid module sources into SQL + paid-meta.js
 tools/build-preview.js          makes a private review copy with every module unlocked
