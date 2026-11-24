@@ -26,7 +26,7 @@ for (const subject of fs.readdirSync(srcDir).sort()) {
     vm.runInNewContext(fs.readFileSync(path.join(dir, file), "utf8"), sandbox, { filename: file });
     // End-of-subject test: the first freeCount questions become a public file; the rest go to the database as module 99.
     for (const [sid, t] of tests) {
-      const n = t.freeCount || 10;
+      const n = t.freeCount || 25;
       const free = { title: t.title, intro: t.intro, freeCount: n, free: t.questions.slice(0, n), paidCount: t.questions.length - n };
       fs.mkdirSync(path.join(root, "public", "js", "content", sid), { recursive: true });
       fs.writeFileSync(path.join(root, "public", "js", "content", sid, "test-free.js"),

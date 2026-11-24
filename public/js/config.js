@@ -14,13 +14,17 @@ window.CFA_CONFIG = {
 
   // Access and pricing
   freeModulesPerSubject: 2,   // modules 1..N of every subject are free (sign-in still required)
-  subjectPriceInr: 399,       // price to unlock one whole subject
+  subjectPriceInr: 199,       // price to unlock one whole subject (each subject is bought separately)
+  testFreeQuestions: 25,      // default number of free questions in a subject test (a test file can set its own freeCount)
 
   // UPI payment details shown on the "Buy subject" page
   upi: {
     id: "9415115418@superyes", // your UPI ID, e.g. "yourname@okhdfcbank"
     payeeName: "RAVINDRA KUMAR AGRAWAL", // name shown to students
-    qrImage: "assets/upi-qr-399.png", // your signed QR from the UPI app, with the amount built in
+    // Your signed QR from the UPI app, with the amount built in. The saved one is for ₹399, so while the price is ₹199
+    // the site draws its own QR with ₹199 filled in. To use a signed ₹199 QR instead, save it as assets/upi-qr-199.png
+    // and set qrImage to that file and qrAmountInr to 199.
+    qrImage: "assets/upi-qr-399.png",
     qrAmountInr: 399          // amount inside that QR. If it differs from subjectPriceInr, the site draws its own QR with the right amount instead
   }
 };

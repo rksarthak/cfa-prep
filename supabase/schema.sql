@@ -49,7 +49,7 @@ create table if not exists public.purchases (
   user_id     uuid        not null default auth.uid() references auth.users (id) on delete cascade,
   email       text,
   subject_id  text        not null,                 -- e.g. "fsa"
-  amount_inr  integer     not null default 399,
+  amount_inr  integer     not null default 199,
   method      text        not null default 'upi_qr',
   reference   text,                                 -- UPI transaction ID (UTR) typed by the student
   status      text        not null default 'pending' check (status in ('pending', 'paid', 'rejected')),
@@ -57,6 +57,9 @@ create table if not exists public.purchases (
   created_at  timestamptz not null default now(),
   reviewed_at timestamptz
 );
+
+-- Price change (₹399 → ₹199, 24 Nov 2026): also update an existing table's default.
+alter table public.purchases alter column amount_inr set default 199;
 
 -- One open (pending or paid) purchase per student per subject, and a UTR can only be used once.
 create unique index if not exists purchases_one_open_per_subject on public.purchases (user_id, subject_id) where status <> 'rejected';

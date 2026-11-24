@@ -101,7 +101,8 @@
   /* ---------- Access: free modules, purchases, sign-in ---------- */
   var CONF = window.CFA_CONFIG || {};
   var FREE = CONF.freeModulesPerSubject || 2;
-  var PRICE = CONF.subjectPriceInr || 399;
+  var PRICE = CONF.subjectPriceInr || 199;
+  var TESTFREE = CONF.testFreeQuestions || 25;
   var gated = false;   // true while a sign-in gate or loading screen is shown
   var guestNote = ""; // notice shown above free content to visitors who aren't signed in
 
@@ -174,8 +175,8 @@
         (tr ? " · free part best " + tr.best + "/" + tr.total : "") + '</span></span><span class="right"><span class="badge">' + tp.free.length + " free</span></span></a>";
     } else {
       rows += '<div class="row locked subject-test-row"><span class="num">✓</span><span class="body"><span class="title">' + esc(s.name) +
-        ' subject test</span><span class="sub">Coming soon · a full test across every module, all new questions · first 10 questions free</span></span>' +
-        '<span class="right"><span class="badge">10 free</span></span></div>';
+        ' subject test</span><span class="sub">Coming soon · a full test across every module, all new questions · first ' + TESTFREE + ' questions free</span></span>' +
+        '<span class="right"><span class="badge">' + TESTFREE + ' free</span></span></div>';
     }
 
     render(
@@ -195,7 +196,8 @@
     var head = '<div class="buy-head"><span class="kicker">Unlock a subject</span><h1>' + s.icon + " " + esc(s.name) + "</h1>" +
       '<div class="price">₹' + PRICE + '<span> one-time</span></div>' +
       '<ul class="ticks"><li>All ' + s.modules.length + " learning modules of " + esc(s.name) + " (" + built + " ready now, the rest added as they are written)</li>" +
-      "<li>Every lesson, diagram, worked example and quiz</li><li>End-of-module quizzes and your saved progress</li></ul></div>";
+      "<li>Every lesson, diagram, worked example and quiz</li><li>End-of-module quizzes, the full subject test and your saved progress</li>" +
+      "<li>Each subject is bought separately: this unlocks " + esc(s.name) + " only</li></ul></div>";
     var body = "";
     if (owns(sid)) {
       body = '<div class="callout key"><span class="label">Already unlocked</span>You own this subject. <a href="#/s/' + sid + '">Go to the modules</a></div>';
@@ -362,7 +364,7 @@
   /* ---------- End-of-subject test ---------- */
   function testParts(sid) {
     var t = CFA.tests[sid];
-    var n = t.freeCount || 10;
+    var n = t.freeCount || TESTFREE;
     var free = t.questions ? t.questions.slice(0, n) : (t.free || []);
     var paid = t.questions ? t.questions.slice(n) : (CFA.testPaid[sid] || null);
     var paidCount = t.questions ? t.questions.length - n : (t.paidCount || 0);
