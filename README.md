@@ -38,5 +38,5 @@ Open `index.html` in a browser, or run `python3 -m http.server` in this folder a
 
 ## Deploy on Render
 
-Full steps, including accounts, are in **SETUP.md**. Short version: New → Static Site → pick the repository, no build command, publish directory `.`.
+Full steps, including accounts, are in **SETUP.md**. Short version: New → Static Site → pick the repository, no build command, publish directory `public`.
 `render.yaml` in this folder does the same as a Blueprint. Netlify, GitHub Pages, Cloudflare Pages and Vercel also work with the same settings (no build, publish this folder).

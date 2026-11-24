@@ -9,8 +9,8 @@ Until step 2 is done, the site still works: the sign-in page shows a "Preview" n
 
 ## 1. Put the code on GitHub
 
-1. Create a GitHub account if you don't have one, then create a new repository (e.g. `cfa-level1-prep`). Private is fine.
-2. Upload the contents of this `Website` folder to it (Add file → Upload files, or ask Claude to push it once the repository exists).
+1. Done: the code lives in the private repository `rksarthak/cfa-prep` (branch `main`). The Claude GitHub App is installed on it so Claude can push updates.
+2. Claude keeps the repository in sync with this `Website` folder. Every push to `main` redeploys the site on Render.
 
 ## 2. Create the Supabase project
 
@@ -30,7 +30,7 @@ Until step 2 is done, the site still works: the sign-in page shows a "Preview" n
 
 1. Sign up at render.com with your GitHub account.
 2. **New → Static Site**, choose the repository.
-3. Build command: leave empty. Publish directory: `.`
+3. Build command: leave empty. Publish directory: `public` (only that folder is served; paid lesson sources in `content-paid/` stay private)
 4. Create. Render gives you an address like `https://cfa-level1-prep.onrender.com`. Every push to GitHub redeploys automatically.
 
 ## 4. Tell Supabase where the site lives
