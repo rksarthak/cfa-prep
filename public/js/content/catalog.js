@@ -6,10 +6,6 @@
  */
 window.CFA = {
   subjects: [
-    { id: "ethics", name: "Ethical and Professional Standards", icon: "⚖️", blurb: "Code of Ethics, Standards of Professional Conduct, GIPS.", modules: [] },
-    { id: "quant", name: "Quantitative Methods", icon: "📐", blurb: "Rates of return, time value of money, statistics, hypothesis testing, regression.", modules: [] },
-    { id: "econ", name: "Economics", icon: "🌐", blurb: "Firms and market structures, business cycles, monetary and fiscal policy, currencies.", modules: [] },
-    { id: "corp", name: "Corporate Issuers", icon: "🏢", blurb: "Governance, capital investment, working capital, capital structure.", modules: [] },
     {
       id: "fsa", name: "Financial Statement Analysis", icon: "📊",
       blurb: "Read, analyse and adjust income statements, balance sheets and cash flow statements.",
@@ -28,6 +24,10 @@ window.CFA = {
         { num: 12, title: "Introduction to Financial Statement Modeling" }
       ]
     },
+    { id: "ethics", name: "Ethical and Professional Standards", icon: "⚖️", blurb: "Code of Ethics, Standards of Professional Conduct, GIPS.", modules: [] },
+    { id: "quant", name: "Quantitative Methods", icon: "📐", blurb: "Rates of return, time value of money, statistics, hypothesis testing, regression.", modules: [] },
+    { id: "econ", name: "Economics", icon: "🌐", blurb: "Firms and market structures, business cycles, monetary and fiscal policy, currencies.", modules: [] },
+    { id: "corp", name: "Corporate Issuers", icon: "🏢", blurb: "Governance, capital investment, working capital, capital structure.", modules: [] },
     { id: "equity", name: "Equity Investments", icon: "📈", blurb: "Market organisation, indexes, efficiency, industry analysis, equity valuation.", modules: [] },
     { id: "fixed", name: "Fixed Income", icon: "🏦", blurb: "Bond features, pricing, yields, duration, credit risk, securitisation.", modules: [] },
     { id: "deriv", name: "Derivatives", icon: "🔁", blurb: "Forwards, futures, swaps and options: pricing and uses.", modules: [] },
