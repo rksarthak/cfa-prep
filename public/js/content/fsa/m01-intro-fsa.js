@@ -1,6 +1,6 @@
 /*
  * FSA · Module 1 – Introduction to Financial Statement Analysis
- * Original teaching text, examples and questions. The CFA curriculum is used only as a private
+ * Original teaching text, examples and questions. The CFA Program curriculum is used only as a private
  * benchmark of topics and level; none of its text, exhibits or practice problems is reproduced.
  *
  * Question format: { q, opts:[A,B,C], ans:0|1|2, hint, why, lesson? }
