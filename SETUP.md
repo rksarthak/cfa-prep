@@ -31,12 +31,12 @@ Until step 2 is done, the site still works: the sign-in page shows a "Preview" n
 1. Sign up at render.com with your GitHub account.
 2. **New → Static Site**, choose the repository.
 3. Build command: leave empty. Publish directory: `public` (only that folder is served; paid lesson sources in `content-paid/` stay private)
-4. Create. Render gives you an address like `https://cfa-level1-prep.onrender.com`. Every push to GitHub redeploys automatically.
+4. Create. Render gives you an address (ours: `https://finprepcamp.onrender.com`; the earlier `cfa-prep-0n6f` service is suspended). Every push to GitHub redeploys automatically.
 
 ## 4. Tell Supabase where the site lives
 
 In Supabase: **Authentication → URL Configuration**
-- **Site URL:** your Render address, e.g. `https://cfa-level1-prep.onrender.com`
+- **Site URL:** your Render address, e.g. `https://finprepcamp.onrender.com`
 - **Redirect URLs:** add the same address. Add `http://localhost:8000` too if you want to test on your own computer.
 
 Without this, confirmation emails, password-reset links and Google sign-in send students to the wrong place.
@@ -67,10 +67,10 @@ The sign-in page shows **Continue with Google** first, above the email form.
 **A. Google Cloud (console.cloud.google.com)**
 1. Top bar → project picker → **New project** (name: `FinPrepCamp`) → Create, and make sure it is selected.
 2. **APIs & Services → OAuth consent screen** (newer console: **Google Auth Platform → Branding**). Get started: app name `FinPrepCamp`, your support email, audience **External**, your contact email. Create.
-3. **Branding**: add the app domains if asked: home page `https://cfa-prep-0n6f.onrender.com`; authorised domain `onrender.com` is not allowed, so leave authorised domains empty for now (add your own domain later).
+3. **Branding**: add the app domains if asked: home page `https://finprepcamp.onrender.com`; authorised domain `onrender.com` is not allowed, so leave authorised domains empty for now (add your own domain later).
 4. **Audience** → **Publish app** (status "In production"). Basic sign-in (email, profile) needs no Google review. While it is still "Testing", only test users you list can sign in.
 5. **Clients** (or **Credentials → Create credentials → OAuth client ID**) → type **Web application**, name `Supabase`:
-   - Authorised JavaScript origins: `https://cfa-prep-0n6f.onrender.com`
+   - Authorised JavaScript origins: `https://finprepcamp.onrender.com`
    - Authorised redirect URIs: `https://iiywhafsndhnjlboosre.supabase.co/auth/v1/callback`
    - Create, then copy the **Client ID** and **Client secret**. Don't paste the secret into chats or the site; it goes only into Supabase.
 
