@@ -45,7 +45,20 @@ Without this, confirmation emails, password-reset links and Google sign-in send 
 
 On by default (**Authentication → Providers → Email**). Keep **Confirm email** on so students verify their address.
 
-Supabase's built-in email sender is only for testing and sends just a few emails per hour. Before real students sign up, connect your own email service under **Authentication → Emails → SMTP settings** (for example Resend, Brevo or Amazon SES; most have a free tier). You can also edit the email wording there.
+**Branded emails.** Ready-made HTML emails in the site's style are in `supabase/email-templates/` (confirm signup, reset password, magic link, change email). Paste them in under **Authentication → Emails**; the README in that folder has the subjects and steps.
+
+**Your own sender (needed before real students sign up).** Supabase's built-in sender shows "Supabase Auth <noreply@mail.app.supabase.io>" and sends only a few emails per hour. Sending from your own address needs a domain you own (Gmail addresses can't be used as the sender through these services; mail would land in spam).
+
+1. Buy a domain, e.g. `cfaprep.in` (about ₹500–1,000 a year at Cloudflare, Namecheap, GoDaddy or Hostinger). The same domain can later become the site address (Render → your site → **Settings → Custom Domains**).
+2. Sign up at **resend.com** (free: 3,000 emails a month, 100 a day). **Domains → Add domain**, enter the domain (or a subdomain such as `mail.cfaprep.in`), and add the DNS records Resend lists at your domain registrar. Wait until Resend shows **Verified** (minutes to a few hours).
+3. Resend → **API Keys → Create API key** (permission: Sending access). Copy it; don't paste it anywhere else, including chats.
+4. Supabase → **Authentication → Emails → SMTP Settings** → turn on **Custom SMTP**:
+   - Sender email: `no-reply@yourdomain` · Sender name: `CFA Level I Prep`
+   - Host: `smtp.resend.com` · Port: `465` · Username: `resend` · Password: the Resend API key
+5. Save, then raise **Authentication → Rate Limits → emails sent per hour** (e.g. 100).
+6. Test: sign up with a new address and check the email arrives from your name and isn't in spam.
+
+Brevo (300 emails a day free) works the same way if you prefer it; it also needs your own domain for good delivery.
 
 ## 6. Google sign-in (optional)
 

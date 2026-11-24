@@ -16,6 +16,7 @@ js/account.js                  sign-in, sign-up, Google, password reset, progres
 js/app.js                      router, pages (sign-in, My progress, Unlock subject, admin Payments), locks, quiz engine
 assets/upi-qr.png              your UPI QR image (add it; see SETUP.md step 7)
 supabase/schema.sql            tables (progress, purchases, admins) and security rules (run in Supabase)
+supabase/email-templates/      branded sign-in emails to paste into Supabase (see its README)
 SETUP.md                       step-by-step: GitHub, Supabase, Render, email, Google
 js/content/catalog.js          list of subjects and their modules
 js/content/fsa/m01-intro-fsa.js  FSA Module 1: lessons, diagrams, quizzes, module quiz

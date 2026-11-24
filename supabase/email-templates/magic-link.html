@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Your sign-in link</title></head>
+<body style="margin:0;padding:0;background:#f6f7fb;">
+<div style="display:none;max-height:0;overflow:hidden;opacity:0;">Your sign-in link for CFA Level I Prep.</div>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#f6f7fb;">
+<tr><td align="center" style="padding:32px 16px;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width:520px;">
+    <tr><td style="padding:0 4px 18px 4px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;">
+      <table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr>
+        <td style="background:#1f4e8c;border-radius:7px;width:32px;height:32px;text-align:center;vertical-align:middle;color:#ffffff;font-weight:700;font-size:14px;font-family:Arial,sans-serif;">L1</td>
+        <td style="padding-left:10px;font-size:17px;font-weight:700;color:#1b2233;">CFA Level I Prep</td>
+      </tr></table>
+    </td></tr>
+    <tr><td style="background:#ffffff;border:1px solid #e2e6ef;border-radius:14px;padding:32px 28px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;color:#1b2233;font-size:16px;line-height:1.6;">
+      <h1 style="margin:0 0 14px 0;font-size:22px;line-height:1.3;color:#1b2233;">Your sign-in link</h1>
+      <p style="margin:0 0 12px 0;">Hi{{ if .Data.full_name }} {{ .Data.full_name }}{{ end }},</p>
+      <p style="margin:0 0 24px 0;">Press the button to sign in to CFA Level I Prep. No password needed.</p>
+      <table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr>
+        <td style="background:#1f4e8c;border-radius:10px;">
+          <a href="{{ .ConfirmationURL }}" style="display:inline-block;padding:13px 26px;font-size:16px;font-weight:600;color:#ffffff;text-decoration:none;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;">Sign in</a>
+        </td>
+      </tr></table>
+      <p style="margin:24px 0 0 0;color:#5d6679;font-size:14px;">This link works once and expires in 1 hour.</p>
+      <p style="margin:16px 0 0 0;color:#5d6679;font-size:13px;word-break:break-all;">Button not working? Copy this link into your browser:<br><a href="{{ .ConfirmationURL }}" style="color:#1f4e8c;">{{ .ConfirmationURL }}</a></p>
+    </td></tr>
+    <tr><td style="padding:18px 8px 0 8px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;color:#5d6679;font-size:12px;line-height:1.5;text-align:center;">
+      Didn't try to sign in? Ignore this email: nobody can sign in without this link.<br>
+      CFA Level I Prep · <a href="{{ .SiteURL }}" style="color:#5d6679;">{{ .SiteURL }}</a>
+    </td></tr>
+  </table>
+</td></tr>
+</table>
+</body>
+</html>
