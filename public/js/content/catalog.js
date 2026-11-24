@@ -39,7 +39,18 @@ window.CFA = {
       ]
     },
     { id: "quant", name: "Quantitative Methods", icon: "📐", blurb: "Rates of return, time value of money, statistics, hypothesis testing, regression.", modules: [] },
-    { id: "econ", name: "Economics", icon: "🌐", blurb: "Firms and market structures, business cycles, monetary and fiscal policy, currencies.", modules: [] },
+    {
+      id: "econ", name: "Economics", icon: "🌐", blurb: "Firms and market structures, business cycles, fiscal and monetary policy, geopolitics, trade and currencies.", modules: [
+        { num: 1, title: "The Firm and Market Structures" },
+        { num: 2, title: "Understanding Business Cycles" },
+        { num: 3, title: "Fiscal Policy" },
+        { num: 4, title: "Monetary Policy" },
+        { num: 5, title: "Introduction to Geopolitics" },
+        { num: 6, title: "International Trade" },
+        { num: 7, title: "Capital Flows and the FX Market" },
+        { num: 8, title: "Exchange Rate Calculations" }
+      ]
+    },
     {
       id: "corp", name: "Corporate Issuers", icon: "🏢", blurb: "Ownership, stakeholders, governance, working capital, capital investment, capital structure and business models.", modules: [
         { num: 1, title: "Organizational Forms, Corporate Issuer Features, and Ownership" },
