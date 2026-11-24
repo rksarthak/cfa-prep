@@ -305,5 +305,53 @@ CFA.paidMeta = {
    }
   ],
   "moduleQuiz": 36
+ },
+ "fsa/10": {
+  "title": "Financial Reporting Quality",
+  "lessons": [
+   {
+    "id": "l1",
+    "title": "Good reporting vs good results",
+    "summary": "Financial reporting quality (is the information useful and faithful?) vs earnings quality (are the results sustainable and adequate?); why both matter; the two can differ.",
+    "questions": 10
+   },
+   {
+    "id": "l2",
+    "title": "The quality spectrum, and conservative vs aggressive accounting",
+    "summary": "Six levels from high-quality reporting of sustainable results down to fiction; biased choices within the rules; earnings management through real actions; conservative vs aggressive accounting and why neither is neutral.",
+    "questions": 10
+   },
+   {
+    "id": "l3",
+    "title": "Why numbers get bent, and what keeps them straight",
+    "summary": "Motivations (meeting expectations, pay, debt covenants, careers); the three conditions for low-quality or fraudulent reporting (motivation, opportunity, rationalisation); markets, regulators, auditors, contracts and boards as disciplining forces, and their limits.",
+    "questions": 10
+   },
+   {
+    "id": "l4",
+    "title": "Presentation choices and non-GAAP measures",
+    "summary": "How 'adjusted' profit, the choice of what counts as non-recurring, classification and emphasis can shape an analyst's view; the reconciliation and prominence rules for non-GAAP measures under the SEC and IFRS.",
+    "questions": 10
+   },
+   {
+    "id": "l5",
+    "title": "Choices and estimates that shape earnings and the balance sheet",
+    "summary": "Revenue timing (channel stuffing, bill-and-hold, gross vs net), estimates (bad debts, inventory write-downs, useful lives, warranties, valuation allowances), capitalising costs, impairments and goodwill, and keeping obligations off the balance sheet.",
+    "questions": 10
+   },
+   {
+    "id": "l6",
+    "title": "Choices that shape operating cash flow",
+    "summary": "Stretching payables, selling or factoring receivables, delaying purchases, capitalising spending (moving it to investing), and IFRS classification choices for interest and dividends; why each boosts operating cash flow without improving the business.",
+    "questions": 9
+   },
+   {
+    "id": "l7",
+    "title": "Warning signs and how to detect them",
+    "summary": "Red flags in revenue, receivables, inventory, cash flow vs profit, capitalisation, non-recurring items and the wider context; simple ratios that help (days sales outstanding, inventory turnover, CFO/net income, accruals); what to do with what you find.",
+    "questions": 10
+   }
+  ],
+  "moduleQuiz": 36
  }
 };
