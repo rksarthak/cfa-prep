@@ -102,7 +102,9 @@
     }).join("");
     render(
       '<section class="hero"><h1>CFA<sup>®</sup> Program Level I, one idea at a time</h1>' +
-      "<p>Each subject follows the learning modules of the CFA Program curriculum, explained in our own words with original examples and questions. These notes complement the curriculum issued by CFA Institute; they do not replace it. Each module is a short series of lessons: the idea in plain words, a small worked example, a diagram, the exam traps, then a quiz. Every module ends with a mixed module quiz.</p></section>" +
+      "<p>Each subject follows the learning modules of the CFA Program curriculum, explained in our own words with original examples and questions. These notes complement the curriculum issued by CFA Institute; they do not replace it. Each module is a short series of lessons: the idea in plain words, a small worked example, a diagram, the exam traps, then a quiz. Every module ends with a mixed module quiz.</p>" +
+      '<p class="hero-free"><b>No sign-up needed to start.</b> Modules 1–' + (CONF.freeModulesPerSubject || 2) + " of every subject and the first " +
+      (CONF.testFreeQuestions || 25) + " questions of each subject test are free. You only need an account when you buy a subject.</p></section>" +
       '<div class="grid">' + cards + "</div>"
     );
   }
@@ -112,31 +114,31 @@
   var FREE = CONF.freeModulesPerSubject || 2;
   var PRICE = CONF.subjectPriceInr || 199;
   var TESTFREE = CONF.testFreeQuestions || 25;
-  var gated = false;   // true while a sign-in gate or loading screen is shown
-  var guestNote = ""; // notice shown above free content to visitors who aren't signed in
+  var gated = false;   // true while a loading screen is shown
+  var guestNote = ""; // short line shown above free content to visitors who aren't signed in
+  // Free content never asks for an account. Guests get one quiet line saying where their progress is kept.
+  function guestLine() {
+    if (!Account.enabled || !Account.isReady() || Account.user()) return "";
+    return '<div class="guest-note"><b>No account needed.</b> Your progress is saved in this browser. ' +
+      '<a href="#/signup">Create a free account</a> if you want to keep it on every device.</div>';
+  }
 
   function owns(sid) { return !!CONF.previewAllContent || (Account.enabled && Account.hasSubject(sid)); }
   function isFree(num) { return num <= FREE; }
   function canAccess(sid, num) { return isFree(num) || owns(sid); }
   function lockTip(s) { return "Buy " + s.name + " for ₹" + PRICE + " to unlock all its modules"; }
 
-  // Returns true when the page was replaced by a redirect, loading screen or sign-in gate.
+  // Returns true when the page was replaced by a redirect or loading screen.
+  // Free modules open at once for everyone, signed in or not, without waiting for the account check.
   function guard(sid, num, what) {
     gated = false;
     guestNote = "";
-    var s = subjectById(sid);
     if (!canAccess(sid, num)) {
       if (Account.enabled && !Account.isReady()) { gated = true; render('<p class="muted">Loading…</p>'); return true; }
       location.replace("#/buy/" + sid);
       return true;
     }
-    if (!Account.enabled) return false;              // preview copy without accounts
-    if (!Account.isReady()) { gated = true; render('<p class="muted">Loading…</p>'); return true; }
-    if (!Account.user()) {
-      // Free content is open without an account; tell guests their progress isn't saved to one.
-      guestNote = '<div class="callout trap guest-note"><span class="label">Trying it without an account</span>You are not signed in, so your progress will not be saved to an account. ' +
-        'It stays only in this browser and can be lost. <a href="#/signup">Create a free account</a> or <a href="#/login">sign in</a> to keep your quiz scores.</div>';
-    }
+    guestNote = guestLine();
     return false;
   }
 
@@ -147,6 +149,14 @@
     if (pend && pend.status === "pending") return '<div class="callout trap"><span class="label">Payment being checked</span>We received your payment reference ' + esc(pend.reference || "") + ". Modules unlock as soon as it is confirmed.</div>";
     return '<div class="buy-banner"><div><b>Modules 1–' + FREE + " are free.</b> Unlock all " + total + " modules of " + esc(s.name) + " for <b>₹" + PRICE + "</b>.</div>" +
       '<a class="btn" href="#/buy/' + s.id + '">Unlock subject</a></div>';
+  }
+
+  // Big call to action at the top of a subject: straight into Module 1, Lesson 1, no account needed.
+  function startFree(s) {
+    var m1 = outline(s.id, 1);
+    if (!m1 || !m1.lessons || !m1.lessons.length) return "";
+    return '<a class="start-free" href="#/s/' + s.id + '/m/1/l/1"><span class="start-main">▶ Start free lesson</span>' +
+      '<span class="start-sub">Module 1, Lesson 1: ' + esc(m1.lessons[0].title) + " · no sign-up needed</span></a>";
   }
 
   function viewSubject(sid) {
@@ -190,7 +200,7 @@
 
     render(
       '<div class="lesson-head"><span class="kicker">Subject</span><h1>' + s.icon + " " + esc(s.name) + "</h1>" +
-      '<p class="muted">' + esc(s.blurb) + "</p></div>" + subjectBanner(s) +
+      '<p class="muted">' + esc(s.blurb) + "</p>" + startFree(s) + "</div>" + subjectBanner(s) +
       '<div class="list">' + rows + "</div>", s.name
     );
   }
@@ -384,14 +394,11 @@
     var s = subjectById(sid);
     var t = s && CFA.tests && CFA.tests[sid];
     if (!t) return viewNotFound();
-    gated = false;
-    guestNote = "";
-    if (Account.enabled && !Account.isReady()) { gated = true; render('<p class="muted">Loading…</p>'); return; }
+    // The free questions open at once, without an account. Until the account check finishes the
+    // free version is shown; it re-draws for buyers once their purchase has loaded.
+    gated = Account.enabled && !Account.isReady();
+    guestNote = guestLine();
     var signedIn = Account.enabled && Account.user();
-    if (Account.enabled && !signedIn) {
-      guestNote = '<div class="callout trap guest-note"><span class="label">Trying it without an account</span>You are not signed in, so your progress will not be saved to an account. ' +
-        'It stays only in this browser and can be lost. <a href="#/signup">Create a free account</a> or <a href="#/login">sign in</a> to keep your quiz scores.</div>';
-    }
     var p = testParts(sid);
     var subj = "#/s/" + sid;
     setCrumbs([{ label: "Subjects", href: "#/" }, { label: s.name, href: subj }, { label: "Subject test" }]);
@@ -426,6 +433,46 @@
         render('<h1>Could not load the test</h1><p class="muted">' + esc(e.message || String(e)) + "</p>");
       });
     }
+  }
+
+  /* ---------- Contact ---------- */
+  // The form opens the visitor's own email app with the message filled in (a mailto: link), so the site
+  // needs no mail server or secret keys. The address is also shown, with a copy button, for visitors without an email app.
+  function viewContact() {
+    gated = false;
+    var to = CONF.contactEmail || "";
+    setCrumbs([{ label: "Subjects", href: "#/" }, { label: "Contact" }]);
+    var u = Account.enabled ? Account.user() : null;
+    render('<div class="auth-card contact-card"><h1>Contact us</h1>' +
+      '<p class="muted">Questions about a lesson, a payment or anything else? Send a message and we will reply by email.</p>' +
+      '<form id="contactform" novalidate>' +
+      '<label for="cname">Your name</label><input id="cname" name="cname" autocomplete="name" value="' + esc(u ? Account.displayName() : "") + '">' +
+      '<label for="cemail">Your email</label><input id="cemail" name="cemail" type="email" autocomplete="email" value="' + esc(u && u.email ? u.email : "") + '">' +
+      '<label for="ctopic">Topic</label><select id="ctopic" name="ctopic"><option>Question about a lesson</option><option>Payment or unlocking a subject</option>' +
+      '<option>Found a mistake</option><option>Suggestion</option><option>Something else</option></select>' +
+      '<label for="cmsg">Message</label><textarea id="cmsg" name="cmsg" rows="6" maxlength="1500"></textarea>' +
+      '<div class="form-msg" id="msg" role="status"></div>' +
+      '<button class="btn wide" type="submit">Send message</button></form>' +
+      '<p class="small muted contact-alt">This opens your email app with the message ready to send. No email app? Write to us at ' +
+      '<a href="mailto:' + esc(to) + '"><b>' + esc(to) + '</b></a> <button class="btn ghost tiny-btn" id="copymail" type="button">Copy address</button></p></div>', "Contact");
+    var f = document.getElementById("contactform");
+    f.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var msg = document.getElementById("msg");
+      var name = f.cname.value.trim(), email = f.cemail.value.trim(), text = f.cmsg.value.trim();
+      if (!text) { msg.className = "form-msg bad"; msg.textContent = "Please write a message."; return; }
+      if (email && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) { msg.className = "form-msg bad"; msg.textContent = "That email address doesn't look right."; return; }
+      var subject = (CONF.brandName || "FinPrepCamp") + ": " + f.ctopic.value;
+      var body = text + "\n\n---\nName: " + (name || "(not given)") + "\nEmail: " + (email || "(not given)") + "\nPage: " + location.href.split("#")[0] + "#/contact";
+      location.href = "mailto:" + to + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
+      msg.className = "form-msg good";
+      msg.textContent = "Your email app should open with the message ready. Press Send there to deliver it.";
+    });
+    var cp = document.getElementById("copymail");
+    if (cp) cp.addEventListener("click", function () {
+      var done = function () { cp.textContent = "Copied"; };
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(to).then(done, function () {});
+    });
   }
 
   function viewNotFound() {
@@ -696,7 +743,7 @@
   function pageName(path) {
     var p = String(path || "/").split("/").filter(Boolean);
     if (!p.length) return "Home page";
-    var names = { login: "Sign in", signup: "Create account", forgot: "Forgot password", reset: "Reset password", account: "My progress" };
+    var names = { login: "Sign in", signup: "Create account", forgot: "Forgot password", reset: "Reset password", account: "My progress", contact: "Contact" };
     if (names[p[0]]) return names[p[0]];
     if (p[0] === "buy") { var b = subjectById(p[1]); return "Buy: " + (b ? b.name : p[1]); }
     if (p[0] !== "s") return path;
@@ -859,6 +906,7 @@
     if (parts[0] === "forgot") return viewForgot();
     if (parts[0] === "reset") return viewReset();
     if (parts[0] === "account") return viewAccount();
+    if (parts[0] === "contact") return viewContact();
     if (parts[0] === "buy" && parts[1]) return viewBuy(parts[1]);
     if (parts[0] === "admin") return viewAdmin(parts[1]);
     if (parts[0] === "s") {
