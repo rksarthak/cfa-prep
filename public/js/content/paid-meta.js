@@ -432,6 +432,258 @@ CFA.paidMeta = {
   ],
   "moduleQuiz": 31
  },
+ "econ/3": {
+  "title": "Fiscal Policy",
+  "lessons": [
+   {
+    "id": "l1",
+    "title": "Fiscal vs monetary policy, and what fiscal policy is for",
+    "summary": "Who runs each policy and what it acts on; the three roles of fiscal policy; automatic stabilisers vs discretionary policy.",
+    "questions": 9
+   },
+   {
+    "id": "l2",
+    "title": "The tools: spending and taxes",
+    "summary": "Transfers, current and capital spending; direct and indirect taxes; the qualities of a good tax; how fast each tool works.",
+    "questions": 10
+   },
+   {
+    "id": "l3",
+    "title": "The fiscal multiplier and the balanced budget multiplier",
+    "summary": "How one extra rupee of government spending becomes several rupees of income: MPC, tax rate, the multiplier 1/[1 − c(1 − t)], and why a balanced budget increase still raises output.",
+    "questions": 9
+   },
+   {
+    "id": "l4",
+    "title": "Deficits and the national debt: does it matter?",
+    "summary": "Deficits vs debt, debt-to-GDP, the case for and against concern, and Ricardian equivalence.",
+    "questions": 9
+   },
+   {
+    "id": "l5",
+    "title": "Fiscal stance and the difficulties of fiscal policy",
+    "summary": "Expansionary vs contractionary policy, the structural (cyclically adjusted) balance, the three lags, and other reasons fiscal policy cannot fine-tune demand.",
+    "questions": 10
+   }
+  ],
+  "moduleQuiz": 35
+ },
+ "econ/4": {
+  "title": "Monetary Policy",
+  "lessons": [
+   {
+    "id": "l1",
+    "title": "What central banks do, and why inflation matters",
+    "summary": "The six jobs of a central bank; monetary policy as control of money and credit; price stability as the main goal; the costs of expected and unexpected inflation, and why deflation is feared.",
+    "questions": 10
+   },
+   {
+    "id": "l2",
+    "title": "The tools: policy rate, open market operations, reserve requirements and QE",
+    "summary": "How a central bank sets its policy rate with repos, how buying and selling bonds changes bank reserves and money, how reserve ratios work, and quantitative easing as open market buying on a huge scale.",
+    "questions": 10
+   },
+   {
+    "id": "l3",
+    "title": "The transmission mechanism: from the policy rate to prices",
+    "summary": "Four channels (market rates, asset prices, expectations, exchange rate) carry a policy change to demand, output and inflation; what a cut or hike does to investment, bond prices and the currency.",
+    "questions": 10
+   },
+   {
+    "id": "l4",
+    "title": "Effective central banks and inflation targeting",
+    "summary": "Independence, credibility and transparency; how an inflation-targeting regime works (target, band, horizon, accountability); central banks without a formal target; extra difficulties in developing economies.",
+    "questions": 10
+   },
+   {
+    "id": "l5",
+    "title": "Exchange rate targeting, pegs, currency boards and dollarisation",
+    "summary": "How a peg imports a partner's low inflation, why domestic interest rates must then follow the peg, defending a peg with reserves, currency boards vs conventional pegs, dollarisation, and speculative attacks.",
+    "questions": 10
+   },
+   {
+    "id": "l6",
+    "title": "Policy stance, the neutral rate and the limits of monetary policy",
+    "summary": "Neutral rate = real trend growth + inflation target; judging expansionary vs contractionary stance; why central banks cannot fully control money; bond market vigilantes; deflation, the zero bound, liquidity traps and what QE can and cannot do.",
+    "questions": 10
+   },
+   {
+    "id": "l7",
+    "title": "How monetary and fiscal policy interact",
+    "summary": "Four policy-mix combinations and what each does to output, interest rates and the public/private split; what shapes the mix; Ricardian equivalence; monetary accommodation and fiscal multipliers; QE and deficit monetisation; credibility.",
+    "questions": 10
+   }
+  ],
+  "moduleQuiz": 36
+ },
+ "econ/5": {
+  "title": "Introduction to Geopolitics",
+  "lessons": [
+   {
+    "id": "l1",
+    "title": "Actors and political cooperation",
+    "summary": "State and non-state actors; what a cooperative country looks like; the drivers of cooperation (national interest, resources, standardisation, culture and soft power, institutions); the hierarchy of interests and the cost of cooperating.",
+    "questions": 10
+   },
+   {
+    "id": "l2",
+    "title": "Globalisation vs nationalism",
+    "summary": "What globalisation and nationalism mean; why firms go global (profits, resources and markets, intrinsic gains); the costs (unequal gains, lower standards, political backlash, interdependence); and three ways firms protect supply chains when cooperation weakens.",
+    "questions": 10
+   },
+   {
+    "id": "l3",
+    "title": "The IMF, the World Bank and the WTO",
+    "summary": "Why the post-war institutions were created; the IMF (monetary stability, balance-of-payments lending), the World Bank (poverty and development: IBRD and IDA) and the WTO (rules of world trade, GATT and GATS, disputes).",
+    "questions": 10
+   },
+   {
+    "id": "l4",
+    "title": "Four archetypes of country behaviour",
+    "summary": "Put the two axes together (cooperation and globalisation) to get autarky, hegemony, multilateralism and bilateralism, plus regionalism; why interconnected countries face less likely but more far-reaching risk; why movement between quadrants matters.",
+    "questions": 10
+   },
+   {
+    "id": "l5",
+    "title": "The tools of geopolitics",
+    "summary": "National security, economic and financial tools, each with cooperative and non-cooperative versions; multifaceted tools such as cabotage and regional bodies; how risk and tools tilt comparative advantage and discount rates.",
+    "questions": 10
+   },
+   {
+    "id": "l6",
+    "title": "Types of geopolitical risk and how to size them",
+    "summary": "What geopolitical risk is; event, exogenous and thematic risk and how predictable each is; assessing likelihood, velocity and size/nature of impact; matching velocity to investor reaction; deciding which risks deserve attention.",
+    "questions": 10
+   },
+   {
+    "id": "l7",
+    "title": "Scenarios, signposts and the effect on portfolios",
+    "summary": "Scenario analysis (qualitative and quantitative) and the danger of groupthink; signposts as a traffic light and politics vs policy; how high- and low-velocity risks show up in prices and valuations; what the Geopolitical Risk Index found; acting on risk according to goals, tolerance and horizon.",
+    "questions": 10
+   }
+  ],
+  "moduleQuiz": 36
+ },
+ "econ/6": {
+  "title": "International Trade",
+  "lessons": [
+   {
+    "id": "l1",
+    "title": "Why trade? Absolute and comparative advantage",
+    "summary": "Gains from exchange and specialisation; absolute vs comparative advantage with a two-country example; opportunity cost and the range of mutually beneficial prices; Ricardian and Heckscher–Ohlin explanations.",
+    "questions": 10
+   },
+   {
+    "id": "l2",
+    "title": "More gains from trade, and who pays the cost",
+    "summary": "Economies of scale, product variety, competition and learning by doing; intra-industry trade; adjustment costs, job losses and income inequality; what 'gains from trade' really means.",
+    "questions": 10
+   },
+   {
+    "id": "l3",
+    "title": "Tariffs: small and large countries, and the welfare arithmetic",
+    "summary": "What a tariff does to price, production, consumption and imports; consumer and producer surplus; government revenue and deadweight loss with numbers; why a large country can gain.",
+    "questions": 10
+   },
+   {
+    "id": "l4",
+    "title": "Quotas, VERs, export subsidies and why countries protect",
+    "summary": "Import quotas and quota rents; voluntary export restraints (rent goes abroad, biggest loss for the importer); export subsidies in small and large countries; domestic content rules, countervailing duties and the reasons given for protection.",
+    "questions": 10
+   },
+   {
+    "id": "l5",
+    "title": "Trading blocs and regional integration",
+    "summary": "Free trade area, customs union, common market, economic union, monetary union; trade creation vs trade diversion with numbers; why regional deals are popular; benefits, costs, challenges and investment implications.",
+    "questions": 10
+   }
+  ],
+  "moduleQuiz": 36
+ },
+ "econ/7": {
+  "title": "Capital Flows and the FX Market",
+  "lessons": [
+   {
+    "id": "l1",
+    "title": "The FX market: what it does and who trades in it",
+    "summary": "Why currencies are traded (trade, investment, hedging, speculation); spot, forwards and FX swaps; the sell side and the buy side, including real money vs leveraged accounts.",
+    "questions": 10
+   },
+   {
+    "id": "l2",
+    "title": "Reading an exchange rate quote",
+    "summary": "Base vs price currency, direct vs indirect quotes, inverting a quote, market codes and two-sided bid/offer prices.",
+    "questions": 10
+   },
+   {
+    "id": "l3",
+    "title": "Calculating appreciation and depreciation",
+    "summary": "The % change of the base currency from a quote, the different % change of the other currency, reversing a % change, and finding the starting rate.",
+    "questions": 10
+   },
+   {
+    "id": "l4",
+    "title": "Nominal and real exchange rates",
+    "summary": "What a real exchange rate measures, the formula R = S(d/f) × Pf ÷ Pd, the % change version, and what a rise means for purchasing power and competitiveness.",
+    "questions": 10
+   },
+   {
+    "id": "l5",
+    "title": "Exchange rate regimes",
+    "summary": "Why no regime can have it all; a short history; the regimes from dollarization to independent float; currency board vs fixed parity; what each means for monetary policy and the lender of last resort.",
+    "questions": 10
+   },
+   {
+    "id": "l6",
+    "title": "Trade balance, capital flows and capital restrictions",
+    "summary": "X − M = (S − I) + (T − G); a trade deficit must be matched by a capital account surplus; how prices adjust; why governments restrict capital flows, how, and at what cost.",
+    "questions": 10
+   }
+  ],
+  "moduleQuiz": 36
+ },
+ "econ/8": {
+  "title": "Exchange Rate Calculations",
+  "lessons": [
+   {
+    "id": "l1",
+    "title": "Reading a quote and measuring a currency's move",
+    "summary": "Price currency over base currency; inverting a quote; converting amounts; percentage change for the base currency vs the price currency.",
+    "questions": 10
+   },
+   {
+    "id": "l2",
+    "title": "Calculating cross-rates",
+    "summary": "Chain two quotes so the shared currency cancels; when to multiply, when to invert and divide; yen quotes.",
+    "questions": 10
+   },
+   {
+    "id": "l3",
+    "title": "Checking dealer cross quotes: triangular arbitrage",
+    "summary": "Compare a dealer's cross quote with the implied rate; buy the base where it is cheap and sell where it is dear; profit is in the price currency.",
+    "questions": 9
+   },
+   {
+    "id": "l4",
+    "title": "Expected percentage changes in cross-rates",
+    "summary": "Build today's and the expected cross-rate, then compute the change; percentages compound, they do not add; choose the right base currency; ranking currencies.",
+    "questions": 10
+   },
+   {
+    "id": "l5",
+    "title": "Forward points and forward percentages",
+    "summary": "Points = (forward − spot) scaled to the last decimal of spot; ×10,000 for four-decimal quotes, ×100 for yen; percentage form; premium vs discount; backing out spot or forward.",
+    "questions": 10
+   },
+   {
+    "id": "l6",
+    "title": "Pricing a forward: covered interest rate parity",
+    "summary": "Two riskless routes must earn the same; F = S × (1 + i_price × τ) ÷ (1 + i_base × τ) with actual/360; the higher-rate currency trades at a forward discount; points grow with term and the rate gap.",
+    "questions": 10
+   }
+  ],
+  "moduleQuiz": 36
+ },
  "ethics/3": {
   "title": "Guidance for Standard I: Professionalism",
   "lessons": [
