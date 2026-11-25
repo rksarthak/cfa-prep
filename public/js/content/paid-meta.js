@@ -240,6 +240,312 @@ CFA.paidMeta = {
   ],
   "moduleQuiz": 31
  },
+ "ethics/3": {
+  "title": "Guidance for Standard I: Professionalism",
+  "lessons": [
+   {
+    "id": "l1",
+    "title": "I(A) Knowledge of the Law: follow the stricter rule",
+    "summary": "What you must know, which rule wins when law and the Code and Standards differ, and the cross-border grid.",
+    "questions": 9
+   },
+   {
+    "id": "l2",
+    "title": "I(A) in practice: dissociating from violations",
+    "summary": "What to do when others break the law or the Standards: the steps to dissociate, reporting, and whistle-blowing.",
+    "questions": 9
+   },
+   {
+    "id": "l3",
+    "title": "I(B) Independence and Objectivity",
+    "summary": "Gifts, entertainment, paid travel, pressure from bankers, issuers and sales, issuer-paid research and manager selection.",
+    "questions": 10
+   },
+   {
+    "id": "l4",
+    "title": "I(C) Misrepresentation",
+    "summary": "Guarantees, opinion presented as fact, misleading performance, third-party and outsourced work, benchmarks, valuations, omissions and plagiarism.",
+    "questions": 10
+   },
+   {
+    "id": "l5",
+    "title": "I(D) Misconduct",
+    "summary": "Dishonesty, fraud and deceit in professional conduct, what counts as “professional”, and personal behaviour.",
+    "questions": 9
+   },
+   {
+    "id": "l6",
+    "title": "I(E) Competence",
+    "summary": "Knowledge, skills and abilities for the role, keeping them current, role changes, and why a loss is not proof of incompetence.",
+    "questions": 9
+   }
+  ],
+  "moduleQuiz": 35
+ },
+ "ethics/4": {
+  "title": "Guidance for Standard II: Integrity of Capital Markets",
+  "lessons": [
+   {
+    "id": "l1",
+    "title": "II(A): Is it material? Is it nonpublic?",
+    "summary": "The two tests that decide whether information is off limits, and what “acting on it” covers.",
+    "questions": 9
+   },
+   {
+    "id": "l2",
+    "title": "Mosaic theory, social media, experts and research",
+    "summary": "How analysts may legitimately build insight from many small pieces, and where experts and online groups become dangerous.",
+    "questions": 9
+   },
+   {
+    "id": "l3",
+    "title": "Compliance practices: firewalls, lists and press releases",
+    "summary": "What a member does on receiving inside information, and how firms stop it leaking from one department to another.",
+    "questions": 9
+   },
+   {
+    "id": "l4",
+    "title": "II(B): Market manipulation",
+    "summary": "False information and deceptive trades, the warning signs, and why intent separates manipulation from legitimate trading.",
+    "questions": 9
+   },
+   {
+    "id": "l5",
+    "title": "Putting Standard II together: mixed cases",
+    "summary": "A quick method for spotting which part of Standard II applies, worked through short cases.",
+    "questions": 8
+   }
+  ],
+  "moduleQuiz": 37
+ },
+ "ethics/5": {
+  "title": "Guidance for Standard III: Duties to Clients",
+  "lessons": [
+   {
+    "id": "l1",
+    "title": "III(A) Loyalty, prudence and care: who is the client?",
+    "summary": "The order of loyalty, the prudent-person idea, identifying the real client, custody and good practice.",
+    "questions": 9
+   },
+   {
+    "id": "l2",
+    "title": "III(A) in practice: brokerage, best execution and proxies",
+    "summary": "Client brokerage is the client's asset: soft dollars, directed brokerage, best execution and responsible proxy voting.",
+    "questions": 8
+   },
+   {
+    "id": "l3",
+    "title": "III(B) Fair dealing",
+    "summary": "Fair, not equal: getting recommendations and their changes to all clients, allocating trades and new issues, and levels of service.",
+    "questions": 9
+   },
+   {
+    "id": "l4",
+    "title": "III(C) Suitability",
+    "summary": "Know the client, judge each idea in the context of the whole portfolio, handle unsuitable client requests, and stick to a fund's mandate.",
+    "questions": 9
+   },
+   {
+    "id": "l5",
+    "title": "III(D) Performance presentation",
+    "summary": "Fair, accurate and complete results: composites, terminated accounts, disclosures and the GIPS standards.",
+    "questions": 9
+   },
+   {
+    "id": "l6",
+    "title": "III(E) Confidentiality and vulnerable investors",
+    "summary": "What stays secret, the three exceptions, former clients, data security, investigations and protecting clients with declining capacity.",
+    "questions": 9
+   }
+  ],
+  "moduleQuiz": 36
+ },
+ "ethics/6": {
+  "title": "Guidance for Standard IV: Duties to Employers",
+  "lessons": [
+   {
+    "id": "l1",
+    "title": "IV(A) Loyalty to the employer and independent practice",
+    "summary": "What loyalty to an employer means and does not mean, following firm policies, and the rules for outside or independent work.",
+    "questions": 9
+   },
+   {
+    "id": "l2",
+    "title": "Leaving an employer, and whistle-blowing",
+    "summary": "Preparation versus solicitation, what you may tell clients, records and devices, agreements, social media, and when acting against the employer is justified.",
+    "questions": 10
+   },
+   {
+    "id": "l3",
+    "title": "IV(B) Additional compensation arrangements",
+    "summary": "Outside pay, gifts and benefits that could compete with or conflict with the employer's interest need written consent from all parties, before you accept.",
+    "questions": 9
+   },
+   {
+    "id": "l4",
+    "title": "IV(C) Responsibilities of supervisors",
+    "summary": "Reasonable efforts to prevent and detect violations, delegation, adequate compliance systems, responding to violations, and when to decline supervision.",
+    "questions": 10
+   },
+   {
+    "id": "l5",
+    "title": "Mixed cases: applying Standard IV",
+    "summary": "Combining loyalty, additional compensation and supervision with other Standards in realistic cases.",
+    "questions": 9
+   }
+  ],
+  "moduleQuiz": 35
+ },
+ "ethics/7": {
+  "title": "Guidance for Standard V: Investment Analysis, Recommendations, and Actions",
+  "lessons": [
+   {
+    "id": "l1",
+    "title": "V(A) Diligence and reasonable basis: sources and research",
+    "summary": "What a reasonable and adequate basis means, how to judge your sources, when you may rely on secondary and third-party research, and how group research works.",
+    "questions": 9
+   },
+   {
+    "id": "l2",
+    "title": "V(A) in practice: models, outside providers and external advisers",
+    "summary": "Understanding and testing quantitative models, the higher duty of model builders, choosing data providers, and selecting external advisers and sub-advisers with objective criteria.",
+    "questions": 9
+   },
+   {
+    "id": "l3",
+    "title": "V(B) Disclosing the nature of services and costs",
+    "summary": "The newest part of V(B): telling clients and prospects what you will and will not do, and what it will cost them, including costs from affiliates and third parties, and keeping it current.",
+    "questions": 9
+   },
+   {
+    "id": "l4",
+    "title": "V(B) The investment process, risks, key factors, and fact vs opinion",
+    "summary": "Describing the process and changes to it, disclosing significant risks and limitations, choosing what goes into a report, and keeping estimates clearly labelled as opinions.",
+    "questions": 10
+   },
+   {
+    "id": "l5",
+    "title": "V(C) Record retention",
+    "summary": "What records to keep, in any format, who owns them, what happens when you change firms, and how long to keep them.",
+    "questions": 9
+   },
+   {
+    "id": "l6",
+    "title": "Standard V: mixed cases",
+    "summary": "Exam-style cases that mix V(A), V(B) and V(C) with each other and with other Standards, plus a method for spotting which part of Standard V is at stake.",
+    "questions": 8
+   }
+  ],
+  "moduleQuiz": 36
+ },
+ "ethics/8": {
+  "title": "Guidance for Standard VI: Conflicts of Interest",
+  "lessons": [
+   {
+    "id": "l1",
+    "title": "VI(A) Avoid or disclose: the rule and what good disclosure looks like",
+    "summary": "What a conflict is, why avoiding comes first, how to disclose well, and who must be told.",
+    "questions": 9
+   },
+   {
+    "id": "l2",
+    "title": "VI(A) in practice: ownership, boards, firm business and pay",
+    "summary": "The common sources of conflict: beneficial ownership, board seats, pressure from other departments, and compensation.",
+    "questions": 9
+   },
+   {
+    "id": "l3",
+    "title": "VI(B) Priority of transactions",
+    "summary": "Clients first, then the employer, then you: front-running, personal trades against the advice, family accounts, and personal-trading controls.",
+    "questions": 10
+   },
+   {
+    "id": "l4",
+    "title": "VI(C) Referral fees",
+    "summary": "Any benefit paid or received for recommending products or services: who to tell, when, and what to say.",
+    "questions": 9
+   },
+   {
+    "id": "l5",
+    "title": "Standard VI: mixed cases",
+    "summary": "Putting VI(A), VI(B) and VI(C) together, and seeing where they meet other Standards.",
+    "questions": 9
+   }
+  ],
+  "moduleQuiz": 36
+ },
+ "ethics/9": {
+  "title": "Guidance for Standard VII: Responsibilities as a CFA Institute Member or CFA Candidate",
+  "lessons": [
+   {
+    "id": "l1",
+    "title": "VII(A) Conduct as participants in CFA Institute programs",
+    "summary": "Cheating, exam confidentiality, opinions versus content, social media, volunteers, misusing membership and misleading CFA Institute.",
+    "questions": 10
+   },
+   {
+    "id": "l2",
+    "title": "VII(B) Reference to CFA Institute, the CFA designation and the CFA Program",
+    "summary": "Membership requirements, using the designation correctly, who counts as a candidate, no partial designations and no expected dates.",
+    "questions": 10
+   },
+   {
+    "id": "l3",
+    "title": "The CFA Program and you: correct and incorrect wording",
+    "summary": "A wording clinic: cards, profiles, bios and adverts; facts versus opinions; and firm procedures that prevent mistakes.",
+    "questions": 9
+   },
+   {
+    "id": "l4",
+    "title": "Mixed cases: applying VII(A) and VII(B)",
+    "summary": "Spot which part of Standard VII applies, separate the acceptable part of a statement from the violation, and handle tricky timing.",
+    "questions": 9
+   }
+  ],
+  "moduleQuiz": 36
+ },
+ "ethics/10": {
+  "title": "Application of the Code and Standards: Level I",
+  "lessons": [
+   {
+    "id": "l1",
+    "title": "A method for solving ethics cases",
+    "summary": "Five steps that work for any case, how to read the question stem, when disclosure or consent fixes a problem, and the traps examiners use most.",
+    "questions": 9
+   },
+   {
+    "id": "l2",
+    "title": "Cases on Standards I and II",
+    "summary": "Six original cases on the law, independence, misrepresentation, misconduct, competence, inside information and market manipulation.",
+    "questions": 10
+   },
+   {
+    "id": "l3",
+    "title": "Cases on Standard III",
+    "summary": "Six original cases on brokerage and best execution, fair allocation, suitability and mandates, performance presentation and confidentiality.",
+    "questions": 10
+   },
+   {
+    "id": "l4",
+    "title": "Cases on Standards IV and V",
+    "summary": "Six original cases on leaving an employer, outside compensation, supervision, reasonable basis, communicating with clients and keeping records.",
+    "questions": 10
+   },
+   {
+    "id": "l5",
+    "title": "Cases on Standards VI and VII",
+    "summary": "Six original cases on conflicts of interest, priority of transactions, referral fees, conduct in the CFA Program and correct use of the designation.",
+    "questions": 10
+   },
+   {
+    "id": "l6",
+    "title": "Multi-Standard cases",
+    "summary": "Five integrated cases where several Standards meet, each worked through with the five-step method.",
+    "questions": 10
+   }
+  ],
+  "moduleQuiz": 36
+ },
  "fsa/3": {
   "title": "Analyzing Balance Sheets",
   "lessons": [
