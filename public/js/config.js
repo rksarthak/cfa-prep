@@ -12,8 +12,11 @@ window.CFA_CONFIG = {
   supabaseAnonKey: "sb_publishable_PZ6jhcCnrp3B_j6KbEvGcg_W82UMP6W",    // the "anon public" key
   googleLogin: true,      // show "Continue with Google" (turn on the Google provider in Supabase first)
 
+  // Contact page (#/contact): the form opens the visitor's email app addressed to this inbox. It is shown on the page.
+  contactEmail: "rk.sarthak01@gmail.com",
+
   // Access and pricing
-  freeModulesPerSubject: 2,   // modules 1..N of every subject are free (sign-in still required)
+  freeModulesPerSubject: 2,   // modules 1..N of every subject are free and open without an account (an account is needed only to buy)
   subjectPriceInr: 199,       // price to unlock one whole subject (each subject is bought separately)
   testFreeQuestions: 25,      // default number of free questions in a subject test (a test file can set its own freeCount)
 

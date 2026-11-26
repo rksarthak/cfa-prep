@@ -3,7 +3,9 @@
 A static website (plain HTML, CSS and JavaScript). No build step and no server code.
 Student sign-in, saved progress and subject purchases (₹199 per subject via UPI QR, approved by an admin) use Supabase; see **SETUP.md** to switch them on.
 
-Access: modules 1–2 of every subject are free and open without an account (guests are told their progress is not saved to an account); other modules are locked until the student's purchase of that subject is approved.
+Access: modules 1–2 of every subject and the first 25 questions of each subject test are free and open at once, with no account and no wait for the sign-in check. Guests see one quiet line saying their progress is kept in this browser. An account is asked for only on the Unlock (purchase) page. Other modules are locked until the student's purchase of that subject is approved.
+
+Every subject page starts with a large green **Start free lesson** button that goes straight to Module 1, Lesson 1. The **Contact** page (`#/contact`, linked in the top bar and footer) has a short form that opens the visitor's email app with the message addressed to `contactEmail` in `js/config.js`; the address is also shown with a Copy button for visitors without an email app. No mail server or secret key is involved.
 
 ## Structure
 
@@ -11,7 +13,7 @@ Access: modules 1–2 of every subject are free and open without an account (gue
 public/                         the site Render serves (publish directory)
   index.html                    page shell, loads the scripts below
   css/style.css                 all styling (light and dark mode)
-  js/config.js                  brand, Supabase URL and public key, price, UPI details
+  js/config.js                  brand, Supabase URL and public key, contact email, price, UPI details
   js/vendor/supabase-2.118.0.js Supabase client library, bundled so the site needs no CDN
   js/account.js                 sign-in, sign-up, Google, password reset, progress sync, purchases
   js/app.js                     router, pages, locks, quiz engine
