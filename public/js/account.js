@@ -65,7 +65,7 @@
 
   function loadPurchases() {
     if (!user || !sb) { purchases = []; return Promise.resolve(); }
-    return sb.from("purchases").select("id,subject_id,status,reference,amount_inr,created_at").order("created_at", { ascending: false }).then(function (res) {
+    return sb.from("purchases").select("*").order("created_at", { ascending: false }).then(function (res) {
       if (res.error) { console.warn("Could not load purchases:", res.error.message); purchases = []; return; }
       purchases = res.data || [];
     }).then(function () {
@@ -112,7 +112,8 @@
 
   function cleanUrl() {
     // After a Google sign-in or email link, Supabase returns with ?code=… in the address. Remove it.
-    if (/[?&](code|error|error_description)=/.test(location.search)) {
+    // After a card payment, Polar returns with ?checkout_id=… (app.js reads it first).
+    if (/[?&](code|error|error_description|checkout_id)=/.test(location.search)) {
       history.replaceState(null, "", location.pathname + location.hash);
     }
   }
@@ -184,6 +185,20 @@
         amount_inr: amount, method: "upi_qr", reference: reference, status: "pending"
       }).select().single()).then(function (row) { purchases.unshift(row); notify(); return row; });
     },
+    /* Card payment (USD, through Polar): the polar-checkout Edge Function returns the Polar payment page. */
+    startCardCheckout: function (subjectId) {
+      return sb.functions.invoke("polar-checkout", { body: { subject_id: subjectId } }).then(function (res) {
+        if (res.error) {
+          var ctx = res.error.context;
+          if (ctx && typeof ctx.json === "function") {
+            return ctx.json().then(function (b) { throw new Error((b && b.error) || res.error.message); }, function () { throw res.error; });
+          }
+          throw res.error;
+        }
+        if (!res.data || !res.data.url) throw new Error("The payment page could not be opened. Please try again.");
+        return res.data.url;
+      });
+    },
     /* Paid module content: the database only returns it to buyers of the subject (and admins). */
     fetchModule: function (subjectId, num) {
       return wrap(sb.from("module_content").select("content").eq("subject_id", subjectId).eq("num", num).maybeSingle())
@@ -194,7 +209,7 @@
     /* ----- Admin (only works for accounts listed in the admins table; enforced by the database) ----- */
     isAdmin: function () { return admin; },
     adminList: function () {
-      return wrap(sb.from("purchases").select("id,email,subject_id,amount_inr,reference,status,note,created_at,reviewed_at").order("created_at", { ascending: false }).limit(500));
+      return wrap(sb.from("purchases").select("*").order("created_at", { ascending: false }).limit(500));
     },
     adminSetStatus: function (id, status, note) {
       return wrap(sb.from("purchases").update({ status: status, note: note || null, reviewed_at: new Date().toISOString() }).eq("id", id).select());

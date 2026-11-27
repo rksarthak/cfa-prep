@@ -20,7 +20,16 @@ window.CFA_CONFIG = {
   subjectPriceInr: 199,       // price to unlock one whole subject (each subject is bought separately)
   testFreeQuestions: 25,      // default number of free questions in a subject test (a test file can set its own freeCount)
 
-  // UPI payment details shown on the "Buy subject" page
+  // Card payments in US dollars through Polar (merchant of record: Polar charges the buyer, handles VAT
+  // and sales tax, and pays out to you). Needs the Supabase Edge Functions in supabase/functions/ (SETUP.md step 11).
+  // priceUsd is only the price shown on the site: the real price is the one set on the Polar product, so keep them equal.
+  cardPayments: {
+    enabled: false,     // set to true once SETUP.md step 11 is done
+    priceUsd: 9
+  },
+
+  // UPI payment details shown on the "Buy subject" page (with card payments on, UPI is offered as "Paying from India?").
+  // Leave id empty to hide UPI.
   upi: {
     id: "9415115418@superyes", // your UPI ID, e.g. "yourname@okhdfcbank"
     payeeName: "RAVINDRA KUMAR AGRAWAL", // name shown to students

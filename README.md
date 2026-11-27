@@ -1,7 +1,7 @@
 # FinPrepCamp – study notes for CFA® Program Level I (website)
 
 A static website (plain HTML, CSS and JavaScript). No build step and no server code.
-Student sign-in, saved progress and subject purchases (₹199 per subject via UPI QR, approved by an admin) use Supabase; see **SETUP.md** to switch them on.
+Student sign-in, saved progress and subject purchases use Supabase; see **SETUP.md** to switch them on. Students pay per subject either by card in US dollars through **Polar** (merchant of record, handles VAT; unlocks automatically through a Supabase Edge Function webhook, SETUP.md step 11) or ₹199 by UPI QR in India (approved by an admin).
 
 Access: modules 1–2 of every subject and the first 25 questions of each subject test are free and open at once, with no account and no wait for the sign-in check. Guests see one quiet line saying their progress is kept in this browser. An account is asked for only on the Unlock (purchase) page. Other modules are locked until the student's purchase of that subject is approved.
 
@@ -13,7 +13,7 @@ Every subject page starts with a large green **Start free lesson** button that g
 public/                         the site Render serves (publish directory)
   index.html                    page shell, loads the scripts below
   css/style.css                 all styling (light and dark mode)
-  js/config.js                  brand, Supabase URL and public key, contact email, price, UPI details
+  js/config.js                  brand, Supabase URL and public key, contact email, prices, card payments switch, UPI details
   js/vendor/supabase-2.118.0.js Supabase client library, bundled so the site needs no CDN
   js/account.js                 sign-in, sign-up, Google, password reset, progress sync, purchases
   js/app.js                     router, pages, locks, quiz engine
@@ -24,6 +24,7 @@ public/                         the site Render serves (publish directory)
 supabase/schema.sql             tables and security rules (run in Supabase)
 supabase/visitor-stats.sql      cookie-free visitor counter (run once; numbers on Admin → Visitors)
 supabase/email-templates/       branded emails to paste into Supabase
+supabase/functions/             Edge Functions: polar-checkout (opens a card payment) and polar-webhook (unlocks after payment)
 tools/build-content.js          turns paid module sources into SQL + paid-meta.js
 tools/build-preview.js          makes a private review copy with every module unlocked
 content-paid/                   paid module sources (NOT in the public repo; kept in the project files)
