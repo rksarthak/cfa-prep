@@ -114,6 +114,36 @@
   var FREE = CONF.freeModulesPerSubject || 2;
   var PRICE = CONF.subjectPriceInr || 199;
   var TESTFREE = CONF.testFreeQuestions || 25;
+  // Card payments in USD through Polar (js/config.js → cardPayments). UPI in rupees stays available for India.
+  var CARD = CONF.cardPayments && CONF.cardPayments.enabled ? CONF.cardPayments : null;
+  var USD = CARD ? Number(CARD.priceUsd) || 9 : 0;
+  function priceText() { return CARD ? "$" + USD : "₹" + PRICE; }
+  // Amount of one purchase row, in its own currency.
+  function amountText(b) {
+    if (b.currency && b.currency !== "INR" && b.amount_cents != null) return (b.currency === "USD" ? "$" : b.currency + " ") + (b.amount_cents / 100).toFixed(2);
+    return b.amount_inr == null ? "" : "₹" + b.amount_inr;
+  }
+  function referenceText(b) { return b.method === "polar" ? "Card (Polar)" : (b.reference || ""); }
+  // Back from a Polar payment page: ?checkout_id=… is in the address. The subject unlocks when Polar's
+  // webhook reaches the database (a few seconds), so the Unlock page checks again every few seconds.
+  var checkoutMatch = /[?&]checkout_id=/.test(location.search) && /^#\/buy\/([\w-]+)/.exec(location.hash);
+  var checkoutSid = checkoutMatch ? checkoutMatch[1] : null;
+  var checkoutSlow = false;
+  var pollTimer = null;
+  function waitForUnlock(sid) {
+    if (pollTimer) return;
+    var tries = 0;
+    pollTimer = setInterval(function () {
+      tries++;
+      var stop = owns(sid) || location.hash !== "#/buy/" + sid || tries > 20;
+      if (stop) {
+        clearInterval(pollTimer); pollTimer = null;
+        if (!owns(sid) && tries > 20) { checkoutSlow = true; route(); }
+        return;
+      }
+      Account.refreshPurchases();
+    }, 3000);
+  }
   var gated = false;   // true while a loading screen is shown
   var guestNote = ""; // short line shown above free content to visitors who aren't signed in
   // Free content never asks for an account. Guests get one quiet line saying where their progress is kept.
@@ -126,7 +156,7 @@
   function owns(sid) { return !!CONF.previewAllContent || (Account.enabled && Account.hasSubject(sid)); }
   function isFree(num) { return num <= FREE; }
   function canAccess(sid, num) { return isFree(num) || owns(sid); }
-  function lockTip(s) { return "Buy " + s.name + " for ₹" + PRICE + " to unlock all its modules"; }
+  function lockTip(s) { return "Buy " + s.name + " for " + priceText() + " to unlock all its modules"; }
 
   // Returns true when the page was replaced by a redirect or loading screen.
   // Free modules open at once for everyone, signed in or not, without waiting for the account check.
@@ -147,7 +177,7 @@
     if (owns(s.id)) return '<div class="callout key"><span class="label">Unlocked</span>You own ' + esc(s.name) + ". Every module is open to you.</div>";
     var pend = Account.enabled && Account.purchaseFor(s.id);
     if (pend && pend.status === "pending") return '<div class="callout trap"><span class="label">Payment being checked</span>We received your payment reference ' + esc(pend.reference || "") + ". Modules unlock as soon as it is confirmed.</div>";
-    return '<div class="buy-banner"><div><b>Modules 1–' + FREE + " are free.</b> Unlock all " + total + " modules of " + esc(s.name) + " for <b>₹" + PRICE + "</b>.</div>" +
+    return '<div class="buy-banner"><div><b>Modules 1–' + FREE + " are free.</b> Unlock all " + total + " modules of " + esc(s.name) + " for <b>" + priceText() + "</b>.</div>" +
       '<a class="btn" href="#/buy/' + s.id + '">Unlock subject</a></div>';
   }
 
@@ -213,7 +243,8 @@
     var built = s.modules.filter(function (m) { return outline(sid, m.num); }).length;
     var upi = CONF.upi || {};
     var head = '<div class="buy-head"><span class="kicker">Unlock a subject</span><h1>' + s.icon + " " + esc(s.name) + "</h1>" +
-      '<div class="price">₹' + PRICE + '<span> one-time</span></div>' +
+      '<div class="price">' + priceText() + '<span> one-time</span></div>' +
+      (CARD && upi.id ? '<p class="small muted price-alt">In India? Pay ₹' + PRICE + " with UPI instead (below).</p>" : "") +
       '<ul class="ticks"><li>All ' + s.modules.length + " learning modules of " + esc(s.name) + (built >= s.modules.length ? "" : " (" + built + " ready now, the rest added as they are written)") + "</li>" +
       "<li>Every lesson, diagram, worked example and quiz</li><li>End-of-module quizzes, the full subject test and your saved progress</li>" +
       "<li>Each subject is bought separately: this unlocks " + esc(s.name) + " only</li></ul></div>";
@@ -227,7 +258,13 @@
         '<a class="btn" href="#/signup">Create a free account</a> <a class="btn ghost" href="#/login">Sign in</a></div>';
     } else {
       var pend = Account.enabled ? Account.purchaseFor(sid) : null;
-      if (pend && pend.status === "pending") {
+      if (CARD && checkoutSid === sid && Account.user()) {
+        body = checkoutSlow
+          ? '<div class="callout trap"><span class="label">Almost there</span>Your payment is taking longer than usual to confirm. Please refresh this page in a minute. ' +
+            'If ' + esc(s.name) + ' is still locked, <a href="#/contact">contact us</a> with the email on your receipt.</div>'
+          : '<div class="callout key"><span class="label">Payment received</span>Thank you! Unlocking ' + esc(s.name) + "… this usually takes a few seconds.</div>";
+        if (!checkoutSlow) waitForUnlock(sid);
+      } else if (pend && pend.status === "pending") {
         body = '<div class="callout trap"><span class="label">Payment being checked</span>We have your UPI transaction ID <b>' + esc(pend.reference || "") +
           "</b>. The subject unlocks as soon as the payment is confirmed. You don't need to pay again.</div>";
       } else {
@@ -245,8 +282,7 @@
           } catch (e) { qr = ""; }
         }
         if (!qr) qr = '<div class="qr placeholder">QR code<br><span class="small">added soon</span></div>';
-        body = (Account.enabled ? "" : '<div class="callout key"><span class="label">Preview</span>Payments switch on once accounts are connected (see SETUP.md).</div>') +
-          '<div class="pay-card"><h2>Step 1: Pay ₹' + PRICE + ' with UPI</h2><div class="pay-row">' + qr +
+        var upiHtml = '<div class="pay-card"><h2>Step 1: Pay ₹' + PRICE + ' with UPI</h2><div class="pay-row">' + qr +
           '<div><p>Scan the QR code with any UPI app (Google Pay, PhonePe, Paytm, BHIM). The amount, <b>₹' + PRICE + "</b>, fills in by itself; please don't change it.</p>" +
           (upi.id ? '<p class="small">UPI ID: <b>' + esc(upi.id) + "</b>" + (upi.payeeName ? " · " + esc(upi.payeeName) : "") + "</p>" +
             '<a class="btn ghost mobile-only" href="' + esc(upiLink) + '">Open my UPI app</a>' : "") +
@@ -255,9 +291,25 @@
           '<p class="small muted">After paying, your app shows a 12-digit UPI transaction ID (also called UTR or reference number).</p>' +
           '<form id="payform" novalidate><label for="utr">UPI transaction ID</label><input id="utr" name="utr" inputmode="numeric" autocomplete="off" maxlength="12" placeholder="e.g. 412345678901">' +
           '<div class="form-msg" id="msg" role="status"></div><button class="btn wide" type="submit">Submit payment</button></form></div>';
+        var cardHtml = CARD ? '<div class="pay-card"><h2>Pay $' + USD + " by card</h2>" +
+          "<p>Visa, Mastercard, American Express, Apple Pay or Google Pay. Prices are in US dollars; any VAT or sales tax for your country is shown before you pay.</p>" +
+          '<button class="btn wide" id="cardpay" type="button">Pay $' + USD + " and unlock " + esc(s.name) + "</button>" +
+          '<div class="form-msg" id="cardmsg" role="status"></div>' +
+          '<p class="small muted">Secure checkout by Polar, our authorised reseller, which appears on your receipt. The subject unlocks automatically a few seconds after you pay.</p></div>' : "";
+        if (CARD) upiHtml = upi.id ? '<details class="upi-alt"><summary>Paying from India? Pay ₹' + PRICE + " with UPI instead</summary>" + upiHtml + "</details>" : "";
+        body = (Account.enabled ? "" : '<div class="callout key"><span class="label">Preview</span>Payments switch on once accounts are connected (see SETUP.md).</div>') + cardHtml + upiHtml;
       }
     }
     render(head + body, "Unlock " + s.name);
+    var cp = document.getElementById("cardpay");
+    if (cp) cp.addEventListener("click", function () {
+      var cmsg = document.getElementById("cardmsg");
+      if (!Account.enabled) { cmsg.className = "form-msg bad"; cmsg.textContent = "Payments aren't connected yet in this preview."; return; }
+      cp.disabled = true; cmsg.className = "form-msg"; cmsg.textContent = "Opening the secure payment page…";
+      Account.startCardCheckout(sid).then(function (url) { location.href = url; }).catch(function (err) {
+        cp.disabled = false; cmsg.className = "form-msg bad"; cmsg.textContent = friendlyError(err);
+      });
+    });
     var f = document.getElementById("payform");
     if (f) f.addEventListener("submit", function (e) {
       e.preventDefault();
@@ -405,7 +457,7 @@
     var full = owns(sid);
     var needFetch = full && !p.paid;
     var lockHtml = '<div class="test-lock"><div class="lock-icon">🔒</div><h3>Questions ' + (p.free.length + 1) + "–" + p.total + " are locked</h3>" +
-      "<p>You have reached the end of the free questions. Unlock the full " + esc(s.name) + " subject (₹" + PRICE + ") to continue the test from question " +
+      "<p>You have reached the end of the free questions. Unlock the full " + esc(s.name) + " subject (" + priceText() + ") to continue the test from question " +
       (p.free.length + 1) + ", along with every paid module and its quiz.</p>" +
       '<a class="btn" href="#/buy/' + sid + '">Unlock ' + esc(s.name) + "</a></div>";
     render(
@@ -632,8 +684,8 @@
       : '<h1>My progress</h1><p class="muted">Saved in this browser only.' + (Account.enabled ? ' <a href="#/signup">Create an account</a> to keep it on every device.' : "") + "</p>";
     var buys = u ? Account.purchases() : [];
     var label = { pending: "Being checked", paid: "Unlocked", rejected: "Not confirmed" };
-    var buyHtml = buys.length ? '<section class="section"><h2>My subjects</h2><div class="table-wrap"><table><tr><th>Subject</th><th>Status</th><th>UPI reference</th><th class="num">Amount</th></tr>' +
-      buys.map(function (b) { var sj = subjectById(b.subject_id); return "<tr><td>" + esc(sj ? sj.name : b.subject_id) + "</td><td>" + esc(label[b.status] || b.status) + "</td><td>" + esc(b.reference || "") + '</td><td class="num">₹' + esc(b.amount_inr) + "</td></tr>"; }).join("") +
+    var buyHtml = buys.length ? '<section class="section"><h2>My subjects</h2><div class="table-wrap"><table><tr><th>Subject</th><th>Status</th><th>Paid with</th><th class="num">Amount</th></tr>' +
+      buys.map(function (b) { var sj = subjectById(b.subject_id); return "<tr><td>" + esc(sj ? sj.name : b.subject_id) + "</td><td>" + esc(label[b.status] || b.status) + "</td><td>" + esc(referenceText(b)) + '</td><td class="num">' + esc(amountText(b)) + "</td></tr>"; }).join("") +
       "</table></div></section>" : "";
     render(head + buyHtml + '<p class="muted">' + totals.done + " of " + totals.lessons + " lesson quizzes completed.</p>" + rows, "My progress");
     var so = document.getElementById("signout");
@@ -650,7 +702,7 @@
     filter = filter || "pending";
     if (filter === "visitors") return viewVisitors();
     render('<div class="account-head"><h1>Payments to check</h1><button class="btn ghost" id="reload" type="button">Refresh</button></div>' +
-      '<p class="muted">Match each UPI transaction ID with your bank or UPI app, then approve it. Approving unlocks the subject for that student straight away.</p>' +
+      '<p class="muted">Match each UPI transaction ID with your bank or UPI app, then approve it. Approving unlocks the subject for that student straight away. Card payments (Polar) unlock by themselves and appear under All.</p>' +
       '<nav class="toc"><a href="#/admin/pending"' + (filter === "pending" ? ' class="on"' : "") + '>Pending</a><a href="#/admin/all"' + (filter === "all" ? ' class="on"' : "") + '>All</a><a href="#/admin/visitors">Visitors</a></nav>' +
       '<div id="admintable"><p class="muted">Loading…</p></div>', "Admin");
     var box = document.getElementById("admintable");
@@ -659,15 +711,15 @@
       Account.adminList().then(function (rows) {
         var list = (rows || []).filter(function (r) { return filter === "all" || r.status === "pending"; });
         if (!list.length) { box.innerHTML = '<p class="muted">' + (filter === "pending" ? "No payments waiting. 🎉" : "No purchases yet.") + "</p>"; return; }
-        box.innerHTML = '<div class="table-wrap"><table class="admin"><tr><th>Submitted</th><th>Student</th><th>Subject</th><th class="num">Amount</th><th>UPI transaction ID</th><th>Status</th><th></th></tr>' +
+        box.innerHTML = '<div class="table-wrap"><table class="admin"><tr><th>Submitted</th><th>Student</th><th>Subject</th><th class="num">Amount</th><th>UPI transaction ID / card order</th><th>Status</th><th></th></tr>' +
           list.map(function (r) {
             var sj = subjectById(r.subject_id);
             var when = new Date(r.created_at).toLocaleString();
             var actions = r.status === "pending"
               ? '<button class="btn small-btn" data-approve="' + r.id + '">Approve</button> <button class="btn ghost small-btn" data-reject="' + r.id + '">Reject</button>'
               : (r.status === "paid" ? '<button class="btn ghost small-btn" data-reject="' + r.id + '">Revoke</button>' : '<button class="btn ghost small-btn" data-approve="' + r.id + '">Approve</button>');
-            return "<tr><td>" + esc(when) + "</td><td>" + esc(r.email || "") + "</td><td>" + esc(sj ? sj.name : r.subject_id) + '</td><td class="num">₹' + esc(r.amount_inr) +
-              "</td><td><b>" + esc(r.reference || "") + "</b></td><td>" + esc(label[r.status] || r.status) + (r.note ? '<br><span class="small muted">' + esc(r.note) + "</span>" : "") +
+            return "<tr><td>" + esc(when) + "</td><td>" + esc(r.email || "") + "</td><td>" + esc(sj ? sj.name : r.subject_id) + '</td><td class="num">' + esc(amountText(r)) +
+              "</td><td><b>" + esc(r.method === "polar" ? "Card · " + String(r.reference || "").replace(/^polar:/, "").slice(0, 8) : (r.reference || "")) + "</b></td><td>" + esc(label[r.status] || r.status) + (r.note ? '<br><span class="small muted">' + esc(r.note) + "</span>" : "") +
               '</td><td class="actions">' + actions + "</td></tr>";
           }).join("") + "</table></div>";
       }).catch(function (e) { box.innerHTML = '<p class="form-msg bad">' + esc(friendlyError(e)) + "</p>"; });

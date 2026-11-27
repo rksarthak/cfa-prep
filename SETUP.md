@@ -83,9 +83,9 @@ The sign-in page shows **Continue with Google** first, above the email form.
 
 Don't want Google sign-in? Set `googleLogin: false` in `js/config.js` and the button disappears.
 
-## 7. Payments: your UPI QR code and admin access
+## 7. Payments: your UPI QR code and admin access (India)
 
-Modules 1 and 2 of every subject, and the first 25 subject-test questions, are free and open without signing in (guests see one short line that their progress is kept in this browser; creating an account later adds it to the account). Students are asked to sign in only on the Unlock page, when they buy. A whole subject costs ₹399 (change both in `js/config.js`: `freeModulesPerSubject`, `subjectPriceInr`).
+Modules 1 and 2 of every subject, and the first 25 subject-test questions, are free and open without signing in (guests see one short line that their progress is kept in this browser; creating an account later adds it to the account). Students are asked to sign in only on the Unlock page, when they buy. A whole subject costs ₹199 with UPI (change both in `js/config.js`: `freeModulesPerSubject`, `subjectPriceInr`). Card payments in US dollars for students everywhere are step 11; they unlock automatically.
 
 **Add your QR code**
 1. Save your UPI QR image as `assets/upi-qr.png` in this folder.
@@ -137,6 +137,67 @@ Counts everyone who opens the site, including guests who never sign in. No cooki
 
 You see visitors and pages opened for today, the last 7 and 30 days and all time, how many were guests (no account), new sign-ups, a day-by-day table for the last 14 days, and the most opened pages. Your own visits as admin are not counted, and bots are skipped. A "visitor" is one device and browser on one day: the database keeps a one-way daily fingerprint (IP + browser + date + a secret), never the IP itself, so nobody can be followed from one day to the next.
 
+## 11. Card payments in US dollars (Polar)
+
+Students anywhere can pay by card, Apple Pay or Google Pay in **US dollars**. **Polar** (polar.sh) is the *merchant of record*: it sells to the student in its own name, charges and pays EU VAT and other sales taxes, and pays the rest out to your Dutch bank account. You don't register for VAT abroad. UPI in rupees stays on the page as "Paying from India?".
+
+Why Polar: Lemon Squeezy closed to new sellers on 16 Nov 2026 (it shuts down 31 March 2027); Stripe Managed Payments needs an eligibility review first. Polar's fee: 5% + $0.50 per sale, plus 1.5% for cards from outside the US, plus small payout fees (check polar.sh/docs/fees). That is why the card price is in dollars and higher than ₹199.
+
+How it works: **Pay $9 by card** → the `polar-checkout` function (in Supabase) checks who is signed in and opens Polar's payment page with their account id and the subject attached → after payment Polar calls the `polar-webhook` function → it marks the purchase **paid** in the database and the subject unlocks within seconds, with no approval from you. A full refund in Polar locks the subject again. Both functions are in `supabase/functions/`.
+
+Allow about 30 minutes. Do it first in Polar's **sandbox** (test cards, no real money), then repeat steps B–E in the live account.
+
+**A. Database (once)**
+Supabase → **SQL Editor → New query** → paste all of `supabase/schema.sql` → **Run**. This adds the `currency` and `amount_cents` columns and the two functions the webhook uses. Safe to run again.
+
+**B. Polar account and product**
+1. Sign up at **polar.sh** (sandbox for testing: **sandbox.polar.sh**, a separate account). Create an organization, e.g. `FinPrepCamp`.
+2. **Products → New product**: name `FinPrepCamp course: one subject` (Polar flags names with "unlock" or "study notes" as cheating tools, so avoid those words), description "Unlocks one subject of FinPrepCamp's CFA Level I study notes", pricing **one-time**, **fixed price $9** (or the price you choose), currency **USD**. Don't add files or benefits (the site does the unlocking). Save, then copy the **product ID** (⋯ menu → Copy ID; it looks like `3f1c…-…`).
+   One product serves every subject; the subject travels with the checkout.
+3. **Settings → Developers → New token**: name `Supabase checkout`, scope **checkouts:write**, an expiry you are comfortable with (renew it before it runs out). Copy the token (`polar_oat_…`). Don't paste it into chats or the site.
+4. Live account only: finish **Settings → Payouts** (Stripe Connect Express, as an individual in the Netherlands, with your IBAN) and the identity check Polar asks for. Polar reviews new organizations before the first payouts.
+
+**C. Supabase functions**
+1. Supabase → **Edge Functions → Deploy a new function → Via Editor**. Name it exactly `polar-checkout`, replace the sample code with all of `supabase/functions/polar-checkout/index.ts`, and **Deploy**.
+2. Do the same for `polar-webhook` with `supabase/functions/polar-webhook/index.ts`.
+3. For **each** function open its **Details / Settings** and turn **Verify JWT with legacy secret** (or "Enforce JWT verification") **OFF**, then save. Both check the caller themselves (the student's sign-in, and Polar's signature).
+   With the Supabase CLI instead: `supabase functions deploy polar-checkout` and `supabase functions deploy polar-webhook`; `supabase/config.toml` already turns the JWT check off.
+4. Copy the webhook address shown for `polar-webhook`: `https://iiywhafsndhnjlboosre.supabase.co/functions/v1/polar-webhook`.
+
+**D. Polar webhook**
+Polar → **Settings → Webhooks → Add endpoint**: URL = the address from C4, format **Raw**, API version **2026-10**, events **order.paid** and **order.refunded**. Save and copy its **secret** (`whsec_…`).
+
+**E. Secrets**
+Supabase → **Edge Functions → Secrets** (Manage secrets), add:
+
+| Name | Value |
+|---|---|
+| `POLAR_ACCESS_TOKEN` | the `polar_oat_…` token from B3 |
+| `POLAR_PRODUCT_ID` | the product ID from B2 |
+| `POLAR_WEBHOOK_SECRET` | the `whsec_…` secret from D |
+| `POLAR_SERVER` | `sandbox` while testing, `production` when live |
+| `SITE_URL` | `https://finprepcamp.onrender.com` |
+
+Nothing goes into Render: the site is static, and these secrets must stay out of the site's files. (`SUPABASE_URL` and `SUPABASE_SERVICE_ROLE_KEY` are provided to the functions by Supabase.)
+
+**F. Switch it on**
+In `public/js/config.js` set `cardPayments: { enabled: true, priceUsd: 9 }` (priceUsd = the Polar product's price; it is only what the site shows) and push, or ask Claude to. The Unlock page then shows **Pay $9 by card** first, with UPI folded under "Paying from India?".
+
+**G. Test (sandbox)**
+1. Sign in on the site with a test account (not admin), open a locked subject → **Pay $9 by card**.
+2. On Polar's page pay with the test card `4242 4242 4242 4242`, any future date, any CVC.
+3. You come back to the Unlock page ("Payment received… unlocking") and within a few seconds the subject opens.
+4. Admin → **Payments → All** shows the row as Unlocked, "Card · …", $9.00.
+5. If it stays locked: Polar → Webhooks → the endpoint's **deliveries** shows the reply; Supabase → Edge Functions → `polar-webhook` → **Logs** shows why ("Bad signature" = wrong `POLAR_WEBHOOK_SECRET`; "Ignored" = wrong `POLAR_PRODUCT_ID`).
+6. Then switch to live: repeat B–E in the live Polar account and set `POLAR_SERVER` to `production`.
+
+**Status (27 Nov 2026):** sandbox set up. Schema run, both functions deployed with JWT check off, Polar sandbox product `FinPrepCamp course: one subject` ($9, id `bf989c3c-d77a-4acd-a0e7-cc735f952d9e`) and webhook "Supabase unlock" created, Supabase secrets `POLAR_PRODUCT_ID`, `POLAR_SERVER=sandbox`, `SITE_URL` added. `POLAR_ACCESS_TOKEN` and `POLAR_WEBHOOK_SECRET` added (the token must come from the sandbox account; a live token gives "invalid_token"). End-to-end sandbox test passed: a test-card payment unlocked Portfolio Management on Sarthak's account within seconds (purchase row `polar:<order id>`, status paid). Still to do: the live Polar account (B–E with `POLAR_SERVER=production`), then `cardPayments.enabled: true` and merge.
+
+**Good to know**
+- If a student already owns a subject (e.g. approved UPI payment) and still pays by card, they keep access and the row's note says "Also paid by card … refund it in Polar". A card payment replaces a UPI request that was still pending.
+- Refunds are made in Polar (Orders → order → Refund). A full refund locks the subject again automatically.
+- Polar's name appears on the student's card statement and receipt; Polar sends the receipt and handles invoices and VAT.
+
 ---
 
 ## Costs
@@ -147,6 +208,7 @@ You see visitors and pages opened for today, the last 7 and 30 days and all time
 | Supabase | Free: plenty of users for a study site, small database | The free project **pauses after about a week without visits** (restore with one click in the dashboard). Pro plan, about $25/month, never pauses and adds daily backups. |
 | Email service (SMTP) | Free tiers usually cover a few thousand emails a month | Only at large volume |
 | Google sign-in | Free | – |
+| Polar (card payments) | No monthly fee | 5% + $0.50 per sale (+1.5% for non-US cards) and small payout fees; Polar also collects the VAT/sales tax from the buyer |
 
 Check each service's pricing page for current numbers.
 

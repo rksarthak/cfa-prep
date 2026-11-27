@@ -388,3 +388,6 @@ table.admin .reason { font: inherit; font-size: 14px; padding: 6px 8px; border-r
 .contact-card select:focus, .contact-card textarea:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
 .contact-alt { margin-top: 16px; overflow-wrap: anywhere; }
 .tiny-btn { font-size: .8rem; padding: 3px 10px; margin-left: 4px; }
+.price-alt { margin: -4px 0 8px; }
+details.upi-alt { margin: 16px 0; }
+details.upi-alt > summary { cursor: pointer; font-weight: 600; color: var(--accent); padding: 6px 0; }

@@ -1,0 +1,8 @@
+# Only used if you deploy with the Supabase CLI (supabase functions deploy).
+# Both functions check the caller themselves: polar-checkout reads the student's sign-in token,
+# polar-webhook checks Polar's signature. So the gateway's JWT check is turned off.
+[functions.polar-checkout]
+verify_jwt = false
+
+[functions.polar-webhook]
+verify_jwt = false

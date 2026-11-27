@@ -102,3 +102,65 @@ create policy "buyers read paid content" on public.module_content for select usi
 -- No insert/update policies: content is only changed from the SQL Editor (which bypasses these rules).
 
 -- Visitor counter: run supabase/visitor-stats.sql too (SETUP.md step 10).
+
+-- ============================================================
+-- Card payments in USD through Polar (merchant of record; added 27 Nov 2026).
+-- The Supabase Edge Function supabase/functions/polar-webhook calls grant_card_purchase when Polar
+-- reports a paid order, and revoke_card_purchase when an order is fully refunded.
+-- Only the service role (used by that function) may call them; students and admins cannot.
+-- ============================================================
+alter table public.purchases add column if not exists currency     text not null default 'INR';
+alter table public.purchases add column if not exists amount_cents integer;   -- card payments, in cents of `currency`
+alter table public.purchases alter column amount_inr drop not null;           -- empty for card payments
+
+create or replace function public.grant_card_purchase(
+  p_user uuid, p_email text, p_subject text, p_reference text, p_amount_cents integer, p_currency text
+) returns text
+  language plpgsql security definer set search_path = public
+  as $$
+declare
+  existing public.purchases%rowtype;
+begin
+  if p_user is null or not exists (select 1 from auth.users where id = p_user) then return 'no_user'; end if;
+  -- The same Polar order delivered twice: nothing to do.
+  if exists (select 1 from public.purchases where reference = p_reference) then return 'duplicate'; end if;
+
+  select * into existing from public.purchases
+   where user_id = p_user and subject_id = p_subject and status <> 'rejected'
+   for update;
+
+  if found then
+    if existing.status = 'paid' then
+      -- Already owned (e.g. approved UPI payment): keep access, flag the extra card payment so it can be refunded.
+      update public.purchases
+         set note = concat_ws(' · ', note, 'Also paid by card, Polar order ' || p_reference || ': refund it in Polar')
+       where id = existing.id;
+      return 'already_owned';
+    end if;
+    -- A pending UPI request: the card payment replaces it.
+    update public.purchases
+       set status = 'paid', method = 'polar', reference = p_reference, amount_inr = null,
+           amount_cents = p_amount_cents, currency = upper(p_currency), email = coalesce(p_email, email),
+           note = 'Paid by card. Earlier UPI reference: ' || coalesce(existing.reference, '-'), reviewed_at = now()
+     where id = existing.id;
+    return 'granted';
+  end if;
+
+  insert into public.purchases (user_id, email, subject_id, amount_inr, amount_cents, currency, method, reference, status, reviewed_at)
+  values (p_user, p_email, p_subject, null, p_amount_cents, upper(p_currency), 'polar', p_reference, 'paid', now());
+  return 'granted';
+end $$;
+
+create or replace function public.revoke_card_purchase(p_reference text, p_note text) returns text
+  language plpgsql security definer set search_path = public
+  as $$
+begin
+  update public.purchases set status = 'rejected', note = p_note, reviewed_at = now()
+   where reference = p_reference and method = 'polar' and status = 'paid';
+  return case when found then 'revoked' else 'not_found' end;
+end $$;
+
+revoke all on function public.grant_card_purchase(uuid, text, text, text, integer, text) from public, anon, authenticated;
+revoke all on function public.revoke_card_purchase(text, text) from public, anon, authenticated;
+grant execute on function public.grant_card_purchase(uuid, text, text, text, integer, text) to service_role;
+grant execute on function public.revoke_card_purchase(text, text) to service_role;
