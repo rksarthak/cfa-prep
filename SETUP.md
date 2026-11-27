@@ -152,7 +152,7 @@ Supabase → **SQL Editor → New query** → paste all of `supabase/schema.sql`
 
 **B. Polar account and product**
 1. Sign up at **polar.sh** (sandbox for testing: **sandbox.polar.sh**, a separate account). Create an organization, e.g. `FinPrepCamp`.
-2. **Products → New product**: name `FinPrepCamp subject unlock`, description "Unlocks one subject of FinPrepCamp's CFA Level I study notes", pricing **one-time**, **fixed price $9** (or the price you choose), currency **USD**. Don't add files or benefits (the site does the unlocking). Save, then copy the **product ID** (⋯ menu → Copy ID; it looks like `3f1c…-…`).
+2. **Products → New product**: name `FinPrepCamp course: one subject` (Polar flags names with "unlock" or "study notes" as cheating tools, so avoid those words), description "Unlocks one subject of FinPrepCamp's CFA Level I study notes", pricing **one-time**, **fixed price $9** (or the price you choose), currency **USD**. Don't add files or benefits (the site does the unlocking). Save, then copy the **product ID** (⋯ menu → Copy ID; it looks like `3f1c…-…`).
    One product serves every subject; the subject travels with the checkout.
 3. **Settings → Developers → New token**: name `Supabase checkout`, scope **checkouts:write**, an expiry you are comfortable with (renew it before it runs out). Copy the token (`polar_oat_…`). Don't paste it into chats or the site.
 4. Live account only: finish **Settings → Payouts** (Stripe Connect Express, as an individual in the Netherlands, with your IBAN) and the identity check Polar asks for. Polar reviews new organizations before the first payouts.
@@ -165,7 +165,7 @@ Supabase → **SQL Editor → New query** → paste all of `supabase/schema.sql`
 4. Copy the webhook address shown for `polar-webhook`: `https://iiywhafsndhnjlboosre.supabase.co/functions/v1/polar-webhook`.
 
 **D. Polar webhook**
-Polar → **Settings → Webhooks → Add endpoint**: URL = the address from C4, format **Raw**, events **order.paid** and **order.refunded**. Save and copy its **secret** (`whsec_…`).
+Polar → **Settings → Webhooks → Add endpoint**: URL = the address from C4, format **Raw**, API version **2026-10**, events **order.paid** and **order.refunded**. Save and copy its **secret** (`whsec_…`).
 
 **E. Secrets**
 Supabase → **Edge Functions → Secrets** (Manage secrets), add:
@@ -190,6 +190,8 @@ In `public/js/config.js` set `cardPayments: { enabled: true, priceUsd: 9 }` (pri
 4. Admin → **Payments → All** shows the row as Unlocked, "Card · …", $9.00.
 5. If it stays locked: Polar → Webhooks → the endpoint's **deliveries** shows the reply; Supabase → Edge Functions → `polar-webhook` → **Logs** shows why ("Bad signature" = wrong `POLAR_WEBHOOK_SECRET`; "Ignored" = wrong `POLAR_PRODUCT_ID`).
 6. Then switch to live: repeat B–E in the live Polar account and set `POLAR_SERVER` to `production`.
+
+**Status (27 Nov 2026):** sandbox set up. Schema run, both functions deployed with JWT check off, Polar sandbox product `FinPrepCamp course: one subject` ($9, id `bf989c3c-d77a-4acd-a0e7-cc735f952d9e`) and webhook "Supabase unlock" created, Supabase secrets `POLAR_PRODUCT_ID`, `POLAR_SERVER=sandbox`, `SITE_URL` added. Still to do: `POLAR_ACCESS_TOKEN` and `POLAR_WEBHOOK_SECRET` (Sarthak), switch on, test, then the live account.
 
 **Good to know**
 - If a student already owns a subject (e.g. approved UPI payment) and still pays by card, they keep access and the row's note says "Also paid by card … refund it in Polar". A card payment replaces a UPI request that was still pending.
